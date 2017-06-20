@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ns1:urlset
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://www.sitemaps.org/schemas/sitemap/0.9'
+    xsi:schemaLocation='http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'>
+    <ns1:url>
+        <ns1:loc>http://www.marionrampal.com</ns1:loc>
+        <ns1:changefreq>daily</ns1:changefreq>
+        <ns1:priority>1</ns1:priority>
+    </ns1:url>
+    <ns1:url>
+        <ns1:loc>http://www.marionrampal.com/mainblue</ns1:loc>
+        <ns1:changefreq>weekly</ns1:changefreq>
+        <ns1:priority>0.8</ns1:priority>
+    </ns1:url>
+    <ns1:url>
+        <ns1:loc>http://www.marionrampal.com/biography</ns1:loc>
+        <ns1:changefreq>weekly</ns1:changefreq>
+        <ns1:priority>0.8</ns1:priority>
+    </ns1:url>
+    <ns1:url>
+        <ns1:loc>http://www.marionrampal.com/concerts</ns1:loc>
+        <ns1:changefreq>daily</ns1:changefreq>
+        <ns1:priority>1</ns1:priority>
+    </ns1:url>
+    <ns1:url>
+        <ns1:loc>http://www.marionrampal.com/listen</ns1:loc>
+        <ns1:changefreq>weekly</ns1:changefreq>
+        <ns1:priority>0.8</ns1:priority>
+    </ns1:url>
+    <ns1:url>
+        <ns1:loc>http://www.marionrampal.com/lyrics</ns1:loc>
+        <ns1:changefreq>monthly</ns1:changefreq>
+        <ns1:priority>0.8</ns1:priority>
+    </ns1:url>
+    <ns1:url>
+        <ns1:loc>http://www.marionrampal.com/contacts</ns1:loc>
+        <ns1:changefreq>weekly</ns1:changefreq>
+        <ns1:priority>0.8</ns1:priority>
+    </ns1:url>
+
+</ns1:urlset>

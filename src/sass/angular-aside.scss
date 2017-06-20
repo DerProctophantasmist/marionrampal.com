@@ -1,0 +1,112 @@
+/*!
+ * angular-aside - v1.3.2
+ * https://github.com/dbtek/angular-aside
+ * 2015-11-17
+ * Copyright (c) 2015 İsmail Demirbilek
+ * License: MIT
+ */
+
+/*!
+Animate.css - http://daneden.me/animate
+Licensed under the MIT license - http://opensource.org/licenses/MIT
+
+Copyright (c) 2014 Daniel Eden
+*/
+
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import "libs/skel"; 
+
+/* Common */
+
+.modal-open .ng-aside.modal {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.ng-aside .modal-dialog {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+
+
+.ng-aside {
+  opacity: 1;    
+  @include vendor('transition', 'unset');
+  @include vendor('transition', 'transform 0.5s ease-in-out');
+  .modal-dialog {
+      @include vendor('transition', 'inherit !important');
+  }
+}
+
+.ng-aside .modal-dialog .modal-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: none;
+  border-radius: 0;
+}
+
+/* Horizontal */
+
+.ng-aside.horizontal {  
+}
+
+.ng-aside.horizontal .modal-dialog .modal-content {
+  height: 100%;
+}
+
+.ng-aside.horizontal .modal-dialog {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.ng-aside.horizontal.left .modal-dialog {
+  left: 0;
+}
+
+.ng-aside.horizontal.fade.right .modal-dialog {
+  @include vendor('transform', 'translateX(100%)');
+}
+
+.ng-aside.horizontal.fade.in.right .modal-dialog {
+  @include vendor('transform', 'translateX(0%)');
+}
+
+.ng-aside.horizontal.right .modal-dialog {
+  right: 0;
+}
+
+/* Vertical */
+
+.ng-aside.vertical {
+  width: 100% !important;
+  overflow: hidden;
+}
+
+.ng-aside.vertical .modal-dialog {
+  left: 0;
+  right: 0;
+  width: 100% !important;
+}
+
+.ng-aside.vertical .modal-dialog .modal-content {
+  max-height: 400px;
+}
+
+
+.ng-aside.vertical.bottom .modal-dialog {
+  bottom: 0;
+}
+
+.ng-aside.vertical.top .modal-dialog {
+  top: 0;
+}
+
+.ng-aside.vertical .modal-dialog .modal-content {
+  width: 100%;
+}

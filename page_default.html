@@ -1,0 +1,14 @@
+<article   id="{{page.id}}" 
+           in-view='website.Activate.page($inview, page, $inviewInfo)' in-view-options="inViewOptions"  
+           data-afkl-lazy-image="{{page.bkgImg}}" data-afkl-lazy-image-options='{"background": true,"nolazy":true}' 
+           ng-class="[page.type + ' ' + page.theme + ' main lazy fullscreen full-gravity', {'inactive': !page.active}]"
+           ng-style="{'background-position':page.bkgImgPos, 'min-height':website.androidHeightHack()}"  du-scrollspy >
+    
+    <div  ng-repeat="box in page.boxes" ng-controller="BoxCtrl"  class="{{'content-sizer box ' + box.position}}">
+        <header  ng-if="header !== undefined" data-render-json="header">
+        </header>
+        <div data-render-json="content" ></div>
+    </div>
+
+    <a ng-if="website.displayNextPage(page)" href="#{{page.next.id}}" du-smooth-scroll class="button down anchored">More</a>
+</article>

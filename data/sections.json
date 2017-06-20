@@ -1,0 +1,256 @@
+[
+    {
+        "id": "intro",
+        "name": "Home",
+        "googleFont": {
+            "family": "Comfortaa",
+            "styles": ["400", "700"]
+        },
+        "pages": [
+            {
+                "type": "style2",
+                "theme": "transparent white text-center force-float-images-left",
+                "template": "page_default.html",
+                "bkgImg": "images/MarionRampal.MainBlue.Floating.Left1.jpg",
+                "bkgImgPos" : "10% 0%",
+                "boxes": [
+                    {
+                        "position": "right",
+                        "content": [
+                            {
+                                "marked": "",
+                                "@compile": "true",
+                                "@filename": "'Home'"
+                            },
+                            {
+                                "p":[
+                                    {
+                                       "a": "Main Blue",
+                                        "@class": "button text-center special-font h2 narrow",
+                                        "@href": "#mainBlue.0",
+                                        "@du-smooth-scroll":""
+                                    }
+                                ],                                
+                                "@class":"text-center"  
+                            },
+                            {
+                                "marked": "",
+                                "@compile": "true",
+                                "@filename": "'buyMainBlue'"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+
+    },
+    {
+        "name": "Concerts",
+        "id": "concerts",
+        "pages": [
+            {
+                "type": "style2",
+                "template": "page_default.html",
+                "theme": "transparent white",
+                "bkgImg": "images/MarionRampal.ByeByeBerlin.singing.right0.jpg",
+                "bkgImgPos" : "100% 40%",
+                "boxes": [
+                    {
+                        "position": "left",
+                        "mobile-header": [{                                
+                                "h2": "Concerts",
+                                "@class": "special-font"
+                            }],
+                        "content": [
+                            {
+                                "google-calendar":"",
+                                "@id": "u8rqlh129povjraessq4jcp7ok@group.calendar.google.com"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "biography",
+        "name": {"fr":"Biographie","en":"Biography"},
+        "googleFont": {
+            "family": "Comfortaa",
+            "styles": ["400", "700"]
+        },
+        "pages": [
+            {
+                "type": "style2",
+                "theme": "dark  text-justify align-top",
+                "template": "page_default.html",
+                "bkgImg": "images/MarionRampal.Rome.péristyle0.jpg",
+                "bkgImgPos" : "0% 65%",
+                "boxes": [
+                    {
+                        "position": "right",
+                        "mobile-header": [{
+                                "h2": "Biographie",
+                                "@class": "special-font"
+                            }],
+                        "content": [
+                            {
+                                "xtended": "include-markup",
+                                "filename": "Biography",
+                                "main":true,
+                                "chapeau": {
+                                   "fr":"#### *Chanteuse, songwriter, Marion Rampal tisse un lien entre mémoire et invention, mot et mélodie, musiques populaires afro-américaines et racines classiques occidentales.*",
+                                    "en": "#### *Singer and songwriter Marion Rampal weaves a link between memory and invention, word and melody, African American folk music and classical occidental roots.*"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "mainBlue",
+        "name": "Main Blue",
+        "googleFont": {
+            "family": "Comfortaa",
+            "styles": ["400", "700"]
+        },
+        "pages": [
+            {
+                "type": "style2",
+                "theme": "transparent white text-justify align-top",
+                "template": "page_default.html",
+                "bkgImg": "images/MarionRampal.MainBlue.Floating.Right5.jpg",
+                "bkgImgPos" : "85% 5%",
+                "boxes": [
+                    {
+                        "position": "left",
+                        "mobile-header": [{
+                                "h2": "Main Blue",
+                                "@class": "special-font"
+                            }],
+                        "content": [
+                            {
+                                "xtended": "include-markup",
+                                "filename": "MainBlue",
+                                "chapeau": "#### Sous le ciel d’une New Orleans réinventée, Marion Rampal a façonné des chansons fulgurantes et simples. Amours trahis, soulèvements, tempêtes, la matière de *Main Blue* est le bleu profond, celui qui baigne les bayous et qui imprègne toutes les musiques du Delta du Mississippi.",
+                                "main":true
+                                
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "listen",
+        "name": {"fr": "Écouter/Regarder", "en": "Listen/Watch"},
+        "googleFont": {
+            "family": "Comfortaa",
+            "styles": ["light", "normal", "bold"]
+        },
+        "pages": [
+            {
+                "type": "style2",
+                "template": "page_default.html",
+                "theme": "white text-justify align-top",
+                "bkgImg": "images/MarionRampal.Rome.mur.palais.left.couleur1.jpg",
+                "menuBkg": "rgba(70,60,50,0.3)",
+                "bkgImgPos" : "20% 60%",
+                "boxes": [
+                    {
+                        "position": "right",
+                        "mobile-header": [{
+                                "h2": "Écouter/Regarder",
+                                "@class": "special-font"
+                            }],
+                        "content": [
+                            {
+                                "xtended":"include-markup",
+                                "filename": "Ecoutervoir",
+                                "main":true,
+                                "chapeau": "#### Aujourd'hui, hier, il n'y a pas si longtemps... avec Pierre-François Blanchard, le Quatuor Manfred, Raphaël Imbert, Archie Shepp, Perrine Mansuy..."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "lyrics",
+        "name": "Songbook",
+        "googleFont": {
+            "family": "Marcellus SC",
+            "styles": ["light", "normal", "bold"]
+        },
+        "pages": [
+            {
+                "type": "style2",
+                "template": "page_default.html",
+                "theme": "text-justify align-top",
+                "bkgImg": "images/mainblue.map.jpg",
+                "headerColor": "#205F5A",
+                "menuBkg": "rgba(255,255,255,0.6)",
+                "bkgImgPos" : "60% 71%",
+                "boxes": [
+                    {
+                        "position": "left",
+                        "mobile-header": [{
+                                "h2": "Songbook",
+                                "@class": "special-font"
+                            }],
+                        "content": [
+                            {
+                                "marked": "",
+                                "@compile": "true",
+                                "@filename": "'lyrics'"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "contacts",
+        "name": {"fr": "Contacts", "en": "Contact"},
+        "googleFont": {
+            "family": "Comfortaa",
+            "styles": ["light", "normal", "bold"]
+        },
+        "pages": [
+            {
+                "type": "style2",
+                "theme": "dark",
+                "template": "page_default.html",
+                "bkgImg": "images/MarionRampal.Passerelle.Chevaleret1.jpg",
+                "bkgImgPos" : "65% 60%",
+                "boxes": [
+                    {
+                        "position": "left",
+                        "mobile-header": [{
+                                "h2": "Contacts",
+                                "@class": "special-font"
+                            }],
+                        "content": [
+                            {   
+                                "contact-form":""
+                            },
+                            {
+                                "marked": "",
+                                "@compile": "true",
+                                "@filename": "'Contacts'"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
+
+

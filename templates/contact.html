@@ -1,0 +1,32 @@
+
+<div class="">
+
+    <!-- Contact Form -->
+    <form method="post" name="contactForm" ng-submit="submit()" novalidate>
+        <div  class="row 50%">
+            <div ng-controller="formCtrl" class="6u 12u(mobile)" >
+                <input ng-blur="focused=false" ng-focus="focused=true" ng-class='{"ng-focused":focused}' ng-minlength="3" type="email" name="emailFrom" ng-model="msg.emailFrom" i18n-placeholder='{"fr":"Votre email","en":"Your email"}' ng-required="true" />
+                <div class="message small"><i18n lang="fr">Email Invalide</i18n><i18n lang="en">Invalid Email</i18n></div>
+            </div>
+            <div ng-controller="formCtrl" class="6u 12u(mobile)" >
+                <input ng-blur="focused=false" ng-focus="focused=true" ng-class='{"ng-focused":focused}' ng-minlength="3" type="text" name="subject" ng-model="msg.subject" i18n-placeholder='{"fr":"Sujet", "en":"Title"}' ng-required="true" />
+                <div class="message minlength small"><i18n lang="fr">Le sujet doit comprendre au moins 3 caractères</i18n><i18n lang="en">Title should be at least 3 characters long</i18n></div>
+            </div>
+        </div>
+        <div class="row 50%">
+            <div ng-controller="formCtrl"  class="12u" >
+                <textarea ng-blur="focused=false" ng-focus="focused=true" ng-class='{"ng-focused":focused}' ng-minlength="10" name="message" ng-model="msg.content" placeholder="Message" rows="6" ng-required="true" ></textarea>
+                <div class="message minlength small"><i18n lang="fr">Ce message est trop court</i18n><i18n lang="en">Message too short</i18n></div>
+            </div>
+            <div class="12u small" ng-class='["message show-valid show-submit", {"invalid":msg.error , "valid": msg.error === false, "submitting": submitting }]'>
+                {{msg.result||"En attente de la réponse du serveur\u2026"}}
+            </div>
+            <div class="12u">
+                <ul class="actions text-center ">
+                    <li ><input class="narrower" type="submit" ng-disabled="!contactForm.$valid || msg === {}" i18n-value='{"fr":"Envoyer","en":"Send"}' /></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+
+</div>

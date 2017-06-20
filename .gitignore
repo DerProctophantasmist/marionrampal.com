@@ -1,0 +1,8 @@
+/src/node_modules/
+/nbproject/private/
+/**/*.map
+/assets/css/*.css
+/assets/js/
+/assets/.sass-cache/
+/images/
+/src/config.data.*
