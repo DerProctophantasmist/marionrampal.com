@@ -12,7 +12,11 @@
 
   picker = require('angular').module('languagePicker', ['ui.bootstrap', 'ui.bootstrap.locale-dialog']).factory('Locale', [
     '$window', function($window) {
-      var availLoc, curLocale, emitter, locale, storedLocale;
+      var availLoc, curLocale, defaultLoc, emitter, locale, storedLocale;
+      defaultLoc = {
+        "en": "en-US",
+        "fr": "fr-FR"
+      };
       availLoc = {
         "en-US": {
           "name": "English (US)",
@@ -39,6 +43,9 @@
           if (persist == null) {
             persist = false;
           }
+          if (newLocale.length === 2) {
+            newLocale = defaultLoc[newLocale];
+          }
           if (availLoc[newLocale] != null) {
             curLocale = availLoc[newLocale];
             emitter.emit('changeLocale');
@@ -64,9 +71,10 @@
           }
         },
         init: function(prefLang, forceLang) {
-          if ((forceLang != null) && (availLoc[forceLang] != null)) {
-            return locale.set(forceLang, true);
-          } else if (curLocale === null && prefLang && (availLoc[prefLang] != null)) {
+          console.log("locale init, prefLang: " + prefLang + ", forceLang: " + forceLang);
+          if (forceLang) {
+            return locale.set(forceLang);
+          } else {
             return locale.set(prefLang);
           }
         },

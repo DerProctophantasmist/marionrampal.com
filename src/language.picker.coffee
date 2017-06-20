@@ -9,6 +9,10 @@ picker = require('angular').module('languagePicker',  [
   'ui.bootstrap.locale-dialog'
 ])
 .factory('Locale', ['$window', ($window)->
+  defaultLoc = {
+    "en": "en-US",
+    "fr": "fr-FR"
+  }
   availLoc = {
     "en-US": {
       "name": "English (US)",
@@ -32,6 +36,9 @@ picker = require('angular').module('languagePicker',  [
   return locale = {
     available: availLoc,
     set: (newLocale, persist=false) ->
+    
+      if newLocale.length == 2
+        newLocale = defaultLoc[newLocale]
       if availLoc[newLocale]?
         curLocale = availLoc[newLocale]
         emitter.emit('changeLocale')
@@ -54,10 +61,10 @@ picker = require('angular').module('languagePicker',  [
         console.log "locale was not set!"
     ,
     init: (prefLang, forceLang) ->   
-      if forceLang? && availLoc[forceLang]?
-        locale.set(forceLang, true)
-      else if curLocale == null && prefLang && availLoc[prefLang]?
-        locale.set(prefLang)
+      console.log "locale init, prefLang: " + prefLang + ", forceLang: " + forceLang
+      if forceLang
+        locale.set(forceLang)
+      else locale.set(prefLang) #if prefLang is not valid locale will be set to French by default
         
      
     onChange: (callback, scope)->      
