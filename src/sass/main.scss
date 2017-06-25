@@ -966,7 +966,7 @@ a.popup-link {
     clear:both;
 }
 
-.pagination > li > a, .pagination > li > span, .pagination >li.active > a {
+.pagination > li > a, .pagination > li > span {
     text-decoration: none;
     color: #000;
     background-color: #fff;
@@ -974,7 +974,7 @@ a.popup-link {
     border: none;
 }
 
-pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+.pagination > li.active > a, .pagination > li.active > a:hover, .pagination > li.active > a:focus, .pagination > li.active > span, .pagination > li.active > span:hover, .pagination > li.active > span:focus {
     color: #fff;
     background-color: #000;
     cursor: default;

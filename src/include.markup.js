@@ -35,7 +35,7 @@
         link: function(scope, elt, attrs) {
           var filename, localizeChapeau, localizeFilename, onclose;
           localizeFilename = function(filename) {
-            if (filename.substr(-4) === '.md') {
+            if (filename.substr(-3) === '.md') {
               return filename;
             }
             return filename + '.' + Locale.get().language + '.md';

@@ -18,7 +18,7 @@
     resourceFile = url.match(/\.([^.]+)$/);
     if (resourceFile) {
       switch (resourceFile[1]) {
-        case 'txt':
+        case 'md':
           if (text == null) {
             text = "";
           }
@@ -29,8 +29,8 @@
           return {
             html: html
           };
-        case '.i18n':
-          url = url.substr(0, url.length(-4));
+        case 'i18n':
+          url = url.substr(0, url.length(-5));
           if (text == null) {
             text = "";
           }

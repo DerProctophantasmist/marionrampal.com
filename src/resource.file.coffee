@@ -14,7 +14,7 @@ resourceUrl = (url,title,text) ->
   resourceFile = url.match(/\.([^.]+)$/)
   if resourceFile 
     switch resourceFile[1] #the extension
-      when 'txt' #treat as markdown      
+      when 'md' #treat as markdown      
       
         text?= "";
         title?= "";
@@ -27,8 +27,8 @@ resourceUrl = (url,title,text) ->
         return {
           html: html
         }
-      when '.i18n'  #treat as markdown, filename needs to be localised (include-markup takes care of that when we get rid of the extension)   
-        url = url.substr(0, url.length -4)      
+      when 'i18n'  #treat as markdown, filename needs to be localised (include-markup takes care of that when we get rid of the extension)   
+        url = url.substr(0, url.length -5)      
       
         text?= "";
         title?= "";

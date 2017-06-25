@@ -42,7 +42,7 @@ require('angular').module('includeMarkup', ['config', require('./marked.config')
         #filename that end with .md should not be localised, we want the very file specified
         #othewise, add '.[locale].md' at the end
         localizeFilename = (filename) ->
-          if filename.substr(-4) == '.md'
+          if filename.substr(-3) == '.md'
             return filename
           return filename + '.' + Locale.get().language + '.md'
         

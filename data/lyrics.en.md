@@ -8,4 +8,4 @@
 [#### Visitation of the Bayou Maharajah](lyrics/Visitation of the Bayou Maharajah.md)
 [#### À la mer](lyrics/A la mer.md)
 
-*Paroles et musiques de Marion Rampal, Éditions capt'n music*
+*Lyrics and music by Marion Rampal, Edited by capt'n music*
