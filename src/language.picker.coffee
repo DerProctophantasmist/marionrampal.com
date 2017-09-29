@@ -29,9 +29,11 @@ picker = require('angular').module('languagePicker',  [
   emitter.setMaxListeners(100);
   
   if storedLocale =  $window.localStorage.getItem('marionrampal.locale')
+    console.log("stored locale: " + $window.localStorage.getItem('marionrampal.locale'))
     curLocale =  availLoc[storedLocale]    
     if !curLocale
-      localStorage.removeItem('marionrampal.locale')
+      localStorage.removeItem('marionrampal.locale')  
+  else console.log("no stored locale")
   
   return locale = {
     available: availLoc,
@@ -42,9 +44,9 @@ picker = require('angular').module('languagePicker',  [
       if availLoc[newLocale]?
         curLocale = availLoc[newLocale]
         emitter.emit('changeLocale')
-        if persist?
+        if persist
           $window.localStorage.setItem('marionrampal.locale', newLocale)        
-          console.log("storage: " + $window.localStorage.getItem('marionrampal.locale'))
+          console.log("stored locale: " + $window.localStorage.getItem('marionrampal.locale'))
   
       else if curLocale == null
         curLocale = availLoc['fr-FR']
@@ -64,7 +66,8 @@ picker = require('angular').module('languagePicker',  [
       console.log "locale init, prefLang: " + prefLang + ", forceLang: " + forceLang
       if forceLang
         locale.set(forceLang)
-      else locale.set(prefLang) #if prefLang is not valid locale will be set to French by default
+      else if !storedLocale? 
+        locale.set(prefLang) #if prefLang is not valid locale will be set to French by default
         
      
     onChange: (callback, scope)->      

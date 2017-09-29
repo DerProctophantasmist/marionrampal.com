@@ -101,7 +101,7 @@
                                 "main":true,
                                 "chapeau": {
                                    "fr":"#### *Chanteuse, songwriter, Marion Rampal tisse un lien entre mémoire et invention, mot et mélodie, musiques populaires afro-américaines et racines classiques occidentales.*",
-                                    "en": "#### *Singer and songwriter Marion Rampal weaves a link between memory and invention, word and melody, African American folk music and classical occidental roots.*"
+                                   "en": "#### *French Singer and songwriter Marion Rampal entwines memory and invention, words and melodies, folkloric musics and classical occidental roots.*"
                                 }
                             }
                         ]
@@ -135,7 +135,10 @@
                             {
                                 "xtended": "include-markup",
                                 "filename": "MainBlue",
-                                "chapeau": "#### Sous le ciel d’une New Orleans réinventée, Marion Rampal a façonné des chansons fulgurantes et simples. Amours trahis, soulèvements, tempêtes, la matière de *Main Blue* est le bleu profond, celui qui baigne les bayous et qui imprègne toutes les musiques du Delta du Mississippi.",
+                                "chapeau": {
+                                   "fr": "#### Sous le ciel d’une New Orleans réinventée, Marion Rampal a façonné des chansons fulgurantes et simples. Amours trahis, soulèvements, tempêtes, la matière de *Main Blue* est le bleu profond, celui qui baigne les bayous et qui imprègne toutes les musiques du Delta du Mississippi.",
+                                   "en":"#### Beneath the skies of a reinvented New Orleans, Marion Rampal has carved simple and searing songs. Betrayed love, tempest, uprising, this music is made of the deep blue that bathes the Louisiana Bayou, an expression of the many sounds and rhythms of the Delta."
+                                },
                                 "main":true
                                 
                             }
@@ -164,7 +167,7 @@
                     {
                         "position": "right",
                         "mobile-header": [{
-                                "h2": "Écouter/Regarder",
+                                "h2": [{"i18n": ["Écouter/Regarder"],"@lang":"fr"},{"i18n": ["Listen/Watch"],"@lang":"en"}],
                                 "@class": "special-font"
                             }],
                         "content": [
@@ -172,7 +175,10 @@
                                 "xtended":"include-markup",
                                 "filename": "Ecoutervoir",
                                 "main":true,
-                                "chapeau": "#### Aujourd'hui, hier, il n'y a pas si longtemps... avec Pierre-François Blanchard, le Quatuor Manfred, Raphaël Imbert, Archie Shepp, Perrine Mansuy..."
+                                "chapeau": {
+                                   "fr": "#### Aujourd'hui, hier, il n'y a pas si longtemps... avec Pierre-François Blanchard, le Quatuor Manfred, Raphaël Imbert, Archie Shepp, Perrine Mansuy...",
+                                   "en": "#### On this day, yesterday, not so long ago… With Pierre-François Blanchard, the Manfred Quartet, Raphaël Imbert, Archie Shepp, Perrine Mansuy..."
+                                }
                             }
                         ]
                     }

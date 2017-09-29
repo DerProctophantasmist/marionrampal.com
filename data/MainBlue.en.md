@@ -1,35 +1,25 @@
-English
-#### Sous le ciel d’une New Orleans réinventée, Marion Rampal a façonné des chansons fulgurantes et simples. Amours trahis, soulèvements, tempêtes, la matière de *Main Blue* est le bleu profond, celui qui baigne les bayous et qui imprègne toutes les musiques du Delta du Mississippi.
+#### Beneath the skies of a reinvented New Orleans, Marion Rampal has carved simple and searing songs. Betrayed love, tempest, uprising, this music is made of the deep blue that bathes the Louisiana Bayou, an expression of the many sounds and rhythms of the Delta.
 
-ÉCOUTER UN EXTRAIT DE *Main Blue* EN EXCLUSIVITÉ 
-https://soundcloud.com/marion-rampal/let-the-wind-blow
+The singular melodies of Main Blue were composed during a voyage across the U.S. mainland, shaped by shared memories and the soul of the land. Inspired by the mischievous tongues of the Cajuns and the French Créoles, Marion created her own language of the sunken hearts, a blend of half-forgotten vocables flowing down the river of Time like an undiscovered Mississipi. Vivacious and untamed, Marion's voice explores the continuum between tradition and invention, heady melodies and improvisation, from contained emotions to a brazenly Soul exuberance. 
 
-**Sortie le 9 Décembre sur e-motive records**
-Distribution Internationale L'Autre Distribution - sauf Allemagne Galileo
+Fairy drummer  Anne Paceo - 2016 french Jazz Victories' Artist of the Year - and Rhodes-Chief Pierre-François Blanchard fuel the fire with potent grooviness, drawing from an implacable surge from the deep past. 
 
-
-Marion Rampal, la songwriter, c’est un amour indéfectible pour Jim Morrison, Patti Smith, Joni Mitchell, et des carnets de chansons  — en Anglais — remplis depuis l’adolescence. Ce sont de premières aventures Rock et Folk puis la rencontre avec le Jazz  et la grande tradition Noire Américaine aux côtés de Raphaël Imbert et d’Archie Shepp. En 2009, elle surprend déjà avec un premier album Own Virago.
-
-Lors d’un voyage buissonnier aux États-Unis, au gré des mémoires qu’il ravivait, elle a composé les mélopées singulières de Main Blue. Sur les terres humides de Louisiane elle s’est créée une langue nouvelle, inspirée par le français des créoles et des cajuns, ce grand creuset d’images et de sons où le blues a rencontré des couplets bretons, des chants amérindiens et des airs d’accordéon. Marion Rampal engendre dans sa musique des créolisations qui lui sont propre, des ailleurs possibles, et sa « langue des cœurs coulés » les enveloppe autour de nous.
-
-Son chant se déploie dans un va-et-vient vivace et libertaire entre mémoire et invention, mélodies entêtantes et improvisation, émotions contenues et déchaînements dionysiaques. Un bouleversement est à peine marqué par une fêlure du timbre et, tout à coup, la voix explose dans un déferlement Soul. La fée batteuse Anne Paceo et le Rhodes-Chief  Pierre-François Blanchard attisent ce feu d’un groove puissant, lové au fond du temps. 
-
-Ils nous entraînent dans un voyage imaginaire depuis l’Afrique mandingue de Savage jusqu’aux rives rêvées du Mississippi. On y croise une sirène et des capitaines, et aussi le « Maharadjah du Bayou » James Booker, virtuose sur pianos déglingués, empereur de la Soul bastringue-baroque. Marion Rampal invoque les esprits: cache-cache spirite avec la chanteuse cajun Alma Barthélemy, clin d'oeil spatial à Blind Willie Johnson… 
-
-Main Blue célèbre le Blues  comme art d’incarner l’émotion. C’est un carrefour d’influence où les chansons, les rythmes et les langues traversent les mers et descendent les rivières. 
+Main Blue is an anthem to Blues as an emotional highway, and an unlikely crossroads of complementary inspirations : the tale of a time when songs, tongues and rhythms flew down rivers and crossed the ocean. 
 
 
-*Paroles&Musiques de Marion Rampal* 
-Avec :
-ANNE PACEO : Batterie, Choeurs / PIERRE-FRANÇOIS BLANCHARD :Fender Rhodes, Orgue, claviers, choeurs / Invités: JULIA SARR au choeurs & SEBASTIEN LLADO au Trombone / Enregistré par SEBASTIEN TONDO au Studio des Bruères, Mignaloux-Beauvoir / Mixé par SEBASTIEN TONDO & RAPHAEL ALLAIN au Studio Think Tank, Montreuil / Mastering par RAPHAEL JONIN  / Visuels par MARC HERNANDEZ / Photos par MARTIN SARRAZAC / Production & Management FRANÇOIS PEYRATOUT / Edition CAPT'N MUSIC
+*Compositions & Lyrics by Marion Rampal* 
+With :
+ANNE PACEO : Drums, back vocals / PIERRE-FRANÇOIS BLANCHARD :Fender Rhodes, Organ, keyboards, back vocals / Featuring: JULIA SARR back vocals & SEBASTIEN LLADO trombone / Recorded by SEBASTIEN TONDO at Studio des Bruères, Mignaloux-Beauvoir / Mix by SEBASTIEN TONDO & RAPHAEL ALLAIN at Studio Think Tank, Montreuil / Mastering by RAPHAEL JONIN  / Graphism by MARC HERNANDEZ / Photos: MARTIN SARRAZAC / Production & Management FRANÇOIS PEYRATOUT / Edition CAPT'N MUSIC
 
 ![logos main blue](/images/barre logos main blue.jpg)
 
-REGARDER LE LIVE DE "The Perfect Husband", 2014
+WATCH "The Perfect Husband", LIVE 2014
 https://www.youtube.com/watch?v=mWCdSFWrqH8
 
-*Main Blue* existe aussi grâce aux nombreux lieux et personnes qui ont contribué à son éclosion depuis 2012, parmi eux:  La Compagnie Nine Spirit, l'ADDIM70, Mission Voix Franche-Comté, le Forum de Berre, l'Escale MJC d'Aubagne, la Ville des Herbiers, Tandem et le Théâtre du Rocher à la Garde.
+Teaser: https://www.youtube.com/watch?v=sIorOkrRm9Q
 
-[*Visiter le site d'Anne Paceo*](http://www.annepaceo.com)
-[*Visiter le site de Pierre-François Blanchard*](http://www.pierrefrancoisblanchard.com)
+*Main Blue* wouldn't exist without the many people who have helped since the beginning of the project in 2012. Among these: Compagnie Nine Spirit, ADDIM70, Mission Voix Franche-Comté, Forum de Berre, Escale MJC d'Aubagne, Les Herbiers, Tandem and Théâtre du Rocher of la Garde. 
+
+[*Anne Paceo's website*](http://www.annepaceo.com)
+[*Pierre-François Blanchard's website*](http://www.pierrefrancoisblanchard.com)
 
