@@ -19,6 +19,7 @@ require('angular').module('data.provider',[require('./language.picker')])
           return
         delayedOnLoad.push {perSection:funcPerSection, onEnd:onEnd}      
         return
+        
     }
     
     getname = () ->

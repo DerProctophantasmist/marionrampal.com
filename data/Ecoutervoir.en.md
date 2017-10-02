@@ -1,8 +1,10 @@
 #### On this day, yesterday, not so long ago… With Pierre-François Blanchard, the Manfred Quartet, Raphaël Imbert, Archie Shepp, Perrine Mansuy...
 
 
+
+***Lost ArT sOng***
 **Marion Rampal & Pierre-François Blanchard**
-Lost ArT sOng is a time suspending machine, an "untimely" musical gesture evoking a dialog, through interpretation and improvisation, between French Melody (Debussy, Fauré…), and the fantasies and complaits of Colette Magny, Michel Legrand or Brigitte Fontaine… New standards that Marion Rampal et Pierre-François Blanchard explore in all their possibilities, sailing from spleen to levity. 
+This duo is a time suspending machine, an "untimely" musical gesture evoking through interpretation and improvisation, a dialog between French Melody (Debussy, Fauré…), and the fantasies and complaits of Colette Magny, Michel Legrand or Brigitte Fontaine… New standards that Marion Rampal and Pierre-François Blanchard explore in all their possibilities, sailing from spleen to levity. 
 
 https://youtu.be/1jf-RCGeCtY?list=PL5qp3t801Mh8QwoeeMkt9W-Bsa1NmludT
 [learn more about LosT ArT sOng](http://www.pierrefrancoisblanchard.com/projects/lost-art-song/) 
