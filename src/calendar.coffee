@@ -71,7 +71,10 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
           event.expanded = !event.expanded
           return     
         scope.googleMaps = (event) ->
-          return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(event.location)
+          #google maps links in calendar should only be active if event is expanded
+          if event.expanded
+            return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(event.location)
+          return ""
         
   ])
 
