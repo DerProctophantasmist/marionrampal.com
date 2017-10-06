@@ -56,10 +56,10 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
   .directive('googleCalendar', ['Calendars', 'marked', (Calendars, marked)->
       restrict: 'E',
       template: '<ul class="calendar"><li dir-paginate="event in calendars(id)|itemsPerPage: 5" class="calendar-event">' +
-              '<button ng-click="toogleExpand(event)" ng-show="event.description" class="toggle-expand fa-stack fa-sm"> <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-stack-1x fa-inverse" ng-class=\'{"fa-chevron-down":event.expanded, "fa-chevron-up":!event.expanded}\' ></i></button>'+     
+              '<button ng-click="toogleExpand(event)" ng-show="event.description" class="toggle-expand fa-stack fa-sm"> <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-stack-1x fa-inverse" ng-class=\'{"fa-minus":event.expanded, "fa-plus":!event.expanded}\' ></i></button>'+     
               '<span class="localTime">{{event.localTime}}</span>' +
               '<span class="summary">{{event.summary}}</span>' +       
-              '<div class="location">{{event.location}}</div>' +
+              '<a target="blank" ng-href="{{googleMaps(event)}}" class="location">{{event.location}}</a>' +
               '<div class="description" ng-show="event.expanded" marked="event.description"></div>' +
               '</li><dir-pagination-controls></dir-pagination-controls></ul>',
       scope: {id: '@'},
@@ -70,6 +70,8 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
         scope.toogleExpand = (event) ->
           event.expanded = !event.expanded
           return     
+        scope.googleMaps = (event) ->
+          return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(event.location)
         
   ])
 

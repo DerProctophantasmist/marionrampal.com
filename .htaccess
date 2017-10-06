@@ -27,17 +27,7 @@ RewriteRule "^(.*)$" "%{ENV:HostMaRamp}/$1" [L,R=301,NE]
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*(default|index)\.(html|php|htm)\ HTTP/ [NC]
 RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
 RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule ^(([^/]+/)*)(default|main|index)\.(html|php|htm)$ %{ENV:HostMaRamp}/$1 [L,R=301]
-
-
-RequestHeader set X-Prerender-Token "07E5NMSpXDWYiuYDuJDp"
-RewriteCond %{HTTP_USER_AGENT} baiduspider|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora\ link\ preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator [NC,OR]
-RewriteCond %{QUERY_STRING} _escaped_fragment_
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-# Only proxy the request to Prerender if it's a request for HTML
-RewriteRule ^(?!.*?(\.js|\.css|\.xml|\.less|\.png|\.jpg|\.jpeg|\.gif|\.pdf|\.doc|\.txt|\.ico|\.rss|\.zip|\.mp3|\.rar|\.exe|\.wmv|\.doc|\.avi|\.ppt|\.mpg|\.mpeg|\.tif|\.wav|\.mov|\.psd|\.ai|\.xls|\.mp4|\.m4a|\.swf|\.dat|\.dmg|\.iso|\.flv|\.m4v|\.torrent|\.ttf|\.woff))(.*) http://service.prerender.io/http://www.marionrampal.com/$2 [P,L]
-
+RewriteRule ^(([^/]+/)*)(default|main|index)\.(html|php|htm)$ $1 [L,R=301]
 
 
 RewriteCond     %{REQUEST_FILENAME} !-f
