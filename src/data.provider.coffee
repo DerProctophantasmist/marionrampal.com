@@ -1,6 +1,9 @@
-require('angular').module('data.provider',[require('./language.picker')])
-  .factory 'Sections',['$http', 'Locale'
-  , ($http, Locale) -> 
+
+CSON = require 'cson-parser'
+
+require('angular').module('data.provider',[require('./language.picker'), require('./config')])
+  .factory 'Sections',['$http', 'Locale', 'Config'
+  , ($http, Locale, Config) -> 
     loaded = false
     delayedOnLoad = []
     onDone = null
@@ -28,8 +31,10 @@ require('angular').module('data.provider',[require('./language.picker')])
     
         
     
-    $http.get('/data/sections.json').then (response) ->
-      sections.data = response.data
+ #   $http.defaults.headers.common['Cache-Control'] = 'no-cache'
+    $http({method: 'get', url: Config.dataPath + '/sections.cson', headers: {'Cache-Control': 'no-cache'}}).then (response) ->
+#      sections.data = response.data
+      sections.data = CSON.parse(response.data)
       for section, s in sections.data
         section.getname = getname
         section.previous = if s > 0 then sections.data[s-1] else null

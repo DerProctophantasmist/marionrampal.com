@@ -22,7 +22,7 @@ function GoogleFonts() {
     this.add = function (fontFamily, fontStyles) {
         var font = fontList[fontFamily];
 
-        if (font != undefined) {
+        if (font !== undefined) {
             fontList[fontFamily] = font.mergeAsSet(fontStyles);
         } else
             fontList[fontFamily] = fontStyles;

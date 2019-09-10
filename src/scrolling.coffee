@@ -36,13 +36,13 @@ require('angular').module('scrolling', ['angular-inview', require('angular-scrol
   #                            $page.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove")
   #                        }})
 
-  angular.element($window).on("scroll", () ->
-    $rootScope.$apply( ()->
-      
-      #debounce( adjust, 250)(article)
-
-    )
-  )
+#  angular.element($window).on("scroll", () ->
+#    $rootScope.$apply( ()->
+#      
+#      debounce( adjust, 250)(article)
+#
+#    )
+#  )
 ])
 
 .factory('Activate', ['Sections', '$window', '$document', (Sections, $window, $document) ->

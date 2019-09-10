@@ -18,7 +18,7 @@
         'afkl.lazyImage', 'hc.marked',
         'bootstrapLightbox', 'ngTouch', 'angular-loading-bar',
         'ngAnimate', 'ui.bootstrap', 'videosharing-embed',
-        require('angular-marked'), require('./oEmbed'), require('./contact.form'),
+        require('angular-marked'), require('./oEmbed'), require('./contact.form'), require('./section'),
         require('./calendar'), require('./include.markup'), require('./config'), require('./quirks'),
         require('./language.picker'), require('./render.json')
     ]).config(['markedProvider', function (markedProvider) {
@@ -93,7 +93,7 @@
                     var index = scope.popupLinks.length - 1;
                     var wClass = {video: 'video-container'}[attrs.popupLink];
                     elt.bind('click', function () {
-                        Lightbox.openModal(scope.popupLinks, index, {'templateUrl': "/lightbox.html", 'windowTopClass': wClass});
+                        Lightbox.openModal(scope.popupLinks, index, {'templateUrl': "lightbox.html", 'windowTopClass': wClass});
                     });
 
                 }

@@ -22,11 +22,11 @@ resourceUrl = (url) ->
           provider: "soundcloud"
         }
       when 'youtu.be', 'youtube.com'
-        parameters = url.match(/([a-z\:\/]*\/\/)(?:www\.)?(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:&amp;index=[0-9]+)?(?:&amp;list=)?([a-zA-Z0-9_-]{34})?/)
+        parameters = url.match(/([a-z\:\/]*\/\/)(?:www\.)?(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\?(?:index=[0-9]+&amp;)?(?:list=)?([a-zA-Z0-9_-]{34})?)?/)
         if parameters
           playlist = if parameters[3] then parameters[3] else Config.defaultYoutubePlaylist
           videoID = parameters[2]
-          protocol = parameters[1]
+          protocol = parameters[1] 
         res =  {          
           request: "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+videoID+"&fields=items(snippet(thumbnails(medium(url))))&key="+Config.googleApiKey,
 #          request: 'http://www.youtube.com/oembed?url=' +url,
@@ -73,11 +73,15 @@ require('angular').module('oEmbed', ['config'])
     
     confs = {}
     
+    
          
     load = (url, callback, resource) -> 
       
       if( resource ?= resourceUrl(url))
-        $http.get(resource.request ).then (response) ->        
+        headers = []
+        if resource.provider == 'youtube'
+         headers['Cache-Control'] = 'no-cache'
+        $http({method:'get', url: resource.request, 'headers': headers} ).then (response) ->        
           if response.data.type == 'image'
             response.data.html = '<img class="image fit" src="' + response.data.src + '"></img>'
           switch( resource.provider)

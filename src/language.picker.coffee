@@ -2,7 +2,7 @@
 module.exports = 'languagePicker'
 require('angular-bootstrap-locale-dialog');
 EventEmitter = require('events');
-require('flag-icon-css')
+#require('flag-icon-css')
 
 picker = require('angular').module('languagePicker',  [
   'ui.bootstrap',

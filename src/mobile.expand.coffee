@@ -9,7 +9,7 @@ require('angular').module('mobile.expand', [require('angular-aside')]).
           console.log "trying to open mobile expand window while it already is"
           return window
         window = $uibModal.open({
-          templateUrl: '/templates/mobileExpand.html',
+          templateUrl: 'templates/mobileExpand.html',
           backdrop: true,
           size: 'fs',
           controller: ['$scope', '$uibModalInstance', 'Sections', ($scope, $uibModalInstance,Sections) ->

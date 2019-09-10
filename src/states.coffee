@@ -67,9 +67,10 @@ require('angular').module('states', [require('angular-ui-router'),require('angul
         return $state.current.name == 'section'
       ,      
       isSectionToDisplay : (sectionName) ->
-        return !State.singleSection() || ($state.current.name == 'section' && sectionName.toLowerCase() == $stateParams.id.toLowerCase());
+        return !State.singleSection() && !State.hiddenSections[sectionName] || (sectionName.toLowerCase() == $stateParams.id.toLowerCase());
       ,
       sectionToDisplay : null,
+      hiddenSections: [],
       home: (()-> $state.go('home');return)
     }
       

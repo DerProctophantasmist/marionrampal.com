@@ -1,14 +1,13 @@
 module.exports = 'includeMarkup'
-require('angular').module('includeMarkup', ['config', require('./marked.config'), require('angular-marked'),require('./quirks'), require('./mobile.expand'), require('./language.picker')])
+require('angular').module('includeMarkup', [require('./config'), require('./marked.config'), require('angular-marked'),require('./quirks'), require('./mobile.expand'), require('./language.picker')])
 
-  .factory('ReadDataFile',['$http' , ($http ) ->
-    
+  .factory('ReadDataFile', ['$http', 'Config', ($http, Config ) ->
     
     files = {}
     
     
     loadDataFile = (filename, dataObject) -> 
-      $http.get('/data/' + filename).then (response) ->
+      $http({method: 'get', url: Config.dataPath + '/' +  filename, headers: {'Cache-Control': 'no-cache'}}).then (response) ->
         files[filename] = response.data
         dataObject.data = response.data
         return

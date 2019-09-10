@@ -1,6 +1,6 @@
 config = require './config.data.js'
 require('angular').module('config',[])
-  .config(['$sceDelegateProvider', '$httpProvider', ($sceDelegateProvider, $httpProvider) ->
+  .config(['$sceDelegateProvider', '$httpProvider', 'markedProvider', ($sceDelegateProvider, $httpProvider, markedProvider) ->
     $sceDelegateProvider.resourceUrlWhitelist([
       # Allow same origin resource loads.
       'self',
@@ -16,7 +16,16 @@ require('angular').module('config',[])
       'http*://google.com/**',      
       'http*://*.google.com/**',
       'http*://*.marionrampal.com/**',
+      'http*://*.marionrampal.local/**',
+      'http*://192.168.1.51/**',
+      'http*://proctophantasmist.net/**',
+      'http*://*.proctophantasmist.net/**'
     ])
+    if not $httpProvider.defaults.headers.common?
+        $httpProvider.defaults.headers.commom = {}
+       
+    
+    markedProvider.setDataPath(config.dataPath);
     
   ])
   .factory('Config', ['$location', ($location) ->
@@ -29,9 +38,9 @@ require('angular').module('config',[])
       if local
         return "http://ajax.marionrampal.local" + "/" +uri
       return "http://ajax.marionrampal.com" + "/" + uri
+      
     return config
     
   ])
-  .run(['Config', (config) ->
-  ])
+  .run(['Config', (config) -> {} ])
 module.exports = 'config'

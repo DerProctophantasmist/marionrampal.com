@@ -5,7 +5,7 @@ module.exports = 'contactForm'
 require('angular').module('contactForm', [require('./config')])
   .directive("contactForm", [()->
       restrict: 'AE',
-      templateUrl:'/templates/contact.html',
+      templateUrl:'templates/contact.html',
       scope:false
       replace: true,
       controller: ['$scope', '$http', "$location", "Config", ($scope,$http, $location, Config) ->

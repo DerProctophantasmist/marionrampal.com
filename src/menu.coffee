@@ -10,7 +10,7 @@ require('angular').module('menu', [require('angular-aside'), require('./states')
           console.log "trying to open main menu while it already is"
           return menu
         menu = $aside.open({
-          templateUrl: '/templates/menu.html',
+          templateUrl: 'templates/menu.html',
           placement: 'right',
           windowClass: 'main-menu',
           backdrop: true,

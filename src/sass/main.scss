@@ -5,7 +5,8 @@
 @charset 'UTF-8';
 /*@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900');*/
 /*@import url(https://fonts.googleapis.com/css?family=Exo+2:900,600,500,400,300,300italic,500italic,400italic,700,700italic);*/
-@import url(https://fonts.googleapis.com/css?family=Exo:900,600,500,400,300,300italic,500italic,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:900,600,500,400,300,300italic,500italic,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Comfortaa:900,600,500,400,300,300italic,500italic,400italic,700,700italic);
 /*@import url(https://fonts.googleapis.com/css?family=Maven+Pro&effect=outline);*/
 @import url(https://fonts.googleapis.com/css?family=Marcellus+SC);
 @import url('font-awesome.min.css');
@@ -20,12 +21,19 @@
 
 @include skel-breakpoints((
 wide: '(max-width: 1920px)',
+big: '(max-height: 1080px)',
 normal: '(max-width: 1680px)',
+normalheight: '(max-height: 945px)',
 narrow: '(max-width: 1280px)',
+small: '(max-height: 720px)',
 narrower: '(max-width: 1000px)', 
+smaller: '(max-height: 563px)',
 mobile: '(max-width: 736px)',
+mobileheight: '(max-height: 414px)',
 mobilenarrow: '(max-width: 410px)',
+mobilesmall: '(max-height: 230px)',
 mobilenarrowest: '(max-width: 350px)',
+mobilesmallest: '(max-height: 197px)',
 ));
 
 @include skel-layout((
@@ -76,7 +84,7 @@ html {
 body {
     background: #fff;
     height: 100%;
-    font-family:'Exo', sans-serif;
+    font-family:'Titillium Web', sans-serif;
     font-weight: 400;
     font-size: 18pt;
     line-height: 1.2em;
@@ -91,11 +99,11 @@ body {
 }
 
 .special-font {
-    font-family:'Exo';
+    font-family:'Comfortaa';
 }
  
 input, textarea, select {
-    font-family:'Exo', sans-serif;
+    font-family:'Titillium Web', sans-serif;
     font-weight: 300;
     font-size: 18pt;
     line-height: 1.75em;
@@ -705,11 +713,6 @@ a.popup-link {
         min-height: 100vh;        
     }
 
-    &.align-top, &.baseStyle.align-top {        
-        @include vendor('justify-content', 'flex-start');
-        padding-top: 6em;
-    }
-
     &.style1 {
         text-align: center;
         padding: 3em 0 5em 0;
@@ -812,7 +815,7 @@ a.popup-link {
         
         
         &.white .box {
-            background-color: rgba(147,128,110,0.8);
+            background-color: rgba(50,50,50,0.8);
             .fa-inverse {color: #000}
         }
         
@@ -875,7 +878,70 @@ a.popup-link {
     }
     
     
+    
 
+    
+    &.baseStyle  {        
+        &.align-top {
+             @include vendor('justify-content', 'flex-start');
+             padding-top: 4em;
+        }
+             
+        &.align-bottom {
+             @include vendor('justify-content', 'flex-end');
+             padding-bottom: 4em;
+        }
+        
+        
+        $percentil-xl: (0:2em, 10:14em, 20:22em, 30:30em, 40: 40em);
+        $percentil-l: (0:0em, 10:10em, 20:16em, 30:22em, 40: 30em);
+        $percentil-m: (0:0em, 10:8em, 20:12em, 30:16em, 40: 22em);
+        $percentil-s: (0:0em, 10:6em, 20:8m, 30:12em, 40: 16em);
+        $percentil-xs: (0:0em, 10:4em, 20:6em, 30:8em, 40: 12em);
+        
+        @each $nbr, $per in $percentil-xl {
+            &.start-pos-#{$nbr} {
+                @include vendor('justify-content', 'flex-start');
+                &::before {
+                    content: "";
+                    display: block;
+                    height: $per;
+                }
+            }
+        }    
+        
+        @include breakpoint(big) {
+            @each $nbr, $per in $percentil-l {
+                &.start-pos-#{$nbr}::before {
+                    height: $per;
+                }
+            } 
+        }
+        @include breakpoint(normalheight) {
+            @each $nbr, $per in $percentil-m {
+                &.start-pos-#{$nbr}::before {
+                    height: $per;
+                }
+            } 
+        }
+        
+        @include breakpoint(small) {
+            @each $nbr, $per in $percentil-s {
+                &.start-pos-#{$nbr}::before {
+                    height: $per;
+                }
+            } 
+        }
+        
+        @include breakpoint(smaller) {
+            @each $nbr, $per in $percentil-xs {
+                &.start-pos-#{$nbr}::before {
+                    height: $per;
+                }
+            } 
+        }
+
+    }
 }
 .fa-sm {
     font-size:0.63em;
@@ -990,12 +1056,15 @@ a.popup-link {
 
 .main.red.baseStyle {
     .box {
-        background-color:rgba(180,180,180,0);
-        color:rgb(30,30,30);
         /*border: 10px solid rgba(200,0,0,0.7);*/
     }
+    
+    .button, button{
+        color:  rgba(160,0,0,1);
+        border-color: rgba(160,0,0,1);
+    }
     .button.down, button.down{
-        border-color: rgba(220,0,0,0.8);
+        border-width: 3px;
         background-color: rgba(200,200,200, 0.60);
         background-image: url('images/red-arrow.svg');
         &:hover {
@@ -1967,10 +2036,26 @@ body.mobile-layout {
     }
 
 }
+@include breakpoint(big) {
+    /* Basic */
+    body, input, textarea, select {
+        font-size: 15pt;
+    }
+    
+}
 
 /* Normal */
 
 @include breakpoint(normal) {
+
+    /* Basic */
+    body, input, textarea, select {
+        font-size: 14pt;
+    }
+
+}
+
+@include breakpoint(normalheight) {
 
     /* Basic */
     body, input, textarea, select {
@@ -2009,6 +2094,15 @@ body.mobile-layout {
                 left: -50%;
             }
         }
+    }
+
+}
+
+@include breakpoint(small) {
+
+    /* Basic */
+    body, input, textarea, select {
+        font-size: 13pt;
     }
 
 }
@@ -2075,6 +2169,15 @@ body.mobile-layout {
             padding: 0;
             list-style: none;
         }
+    }
+
+}
+
+@include breakpoint(smaller) {
+
+    /* Basic */
+    body, input, textarea, select {
+        font-size: 13pt;
     }
 
 }
@@ -2215,7 +2318,177 @@ body.mobile-layout {
 }
 
 
+@include breakpoint(mobileheight) {
+    
+
+    /* Basic */
+    body {
+        min-height: 200px;
+        font-size: 11pt;
+        line-height: 1.4em;
+    }
+
+    input, textarea, select {
+        font-size: 12pt;
+        line-height: 1.4em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+        letter-spacing: -1px;
+    }
+
+    /* Box */
+    .box {
+        padding: 1em;
+    }
+
+    /* Main */
+    .main {
+
+        &.style1 {
+
+            h2 {
+                font-size: 3em;
+                letter-spacing: -3px;
+            }
+        }
+
+        &.baseStyle {
+
+            /*            .button.anchored {
+                            display: none;
+                        }*/
+
+            .content-sizer {
+                width: 100%;
+                left: 0% !important;
+            }
+
+            &.inactive .content-sizer{
+                opacity: 0;
+            }
+
+
+            .box {
+                padding: 1.5em 1.25em 1.5em 1.25em;
+                background-color: rgba(255, 255, 255, 0.8);
+            }
+
+            .tmp {
+                width: 100%;
+                height: 10em;
+                background-size: cover;
+            }
+        }        
+
+        &.style3 {
+            text-align: center;
+        }
+
+    }
+
+    /* Header */
+    /*			#header {
+                                    height: 2.5em;
+                                    line-height: 2.5em;
+                            }*/
+
+
+    #logo {
+        text-align: center;
+        position: relative;
+        left: 0;
+        top: 0;
+        height: 2.5em;
+        line-height: 2.5em;
+
+        a {
+            font-size: 1em;
+        }
+    }
+
+    /* Footer */
+    #footer {
+        .menu {
+            li {
+                border-left: 0;
+                padding: 1em 0 0 0;
+                margin: 0;
+                display: block;
+
+                &:first-child {
+                    padding-top: 0;
+                }
+
+                a {
+                    line-height: 1.5em;
+                }
+            }
+        }
+    }
+
+    /* Poptrox */
+    .poptrox-popup {
+        .nav-next:before,
+            .nav-previous:before {
+            width: 48px;
+            height: 32px;
+            background-size: contain;
+            margin: -16px 0 0 0;
+        }
+
+        .closer:before {
+            right: 12px;
+            top: 12px;
+            width: 20px;
+            height: 20px;
+            box-shadow: inset 0 0 0 1px #fff;
+            background-size: contain;
+            opacity: 0.65;
+        }
+    }
+
+}
+
+
+
 @include breakpoint(mobilenarrow) {
+    
+    .text-justify {
+        text-align: center;
+    }
+    
+    .main.baseStyle {
+        padding-top: 5em;
+    }
+    
+     body {
+        font-size: 10pt;
+     }
+     
+
+    h1 {
+        font-size: 2.4em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    h3 {
+        font-size: 1.5em;
+    }
+    h4 {
+        font-size: 1.2em;
+    }
+    h5 {
+        font-size: 1em;
+    }
+    h6 {
+        font-size: 0.85em;
+    }  
+}
+
+@include breakpoint(mobilesmall) {
     
     .text-justify {
         text-align: center;
