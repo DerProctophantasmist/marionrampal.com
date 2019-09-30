@@ -1,5 +1,5 @@
 
-CSON = require 'cson-parser'
+CSON = require 'cson'
 
 require('angular').module('data.provider',[require('./language.picker'), require('./config')])
   .factory 'Sections',['$http', 'Locale', 'Config'

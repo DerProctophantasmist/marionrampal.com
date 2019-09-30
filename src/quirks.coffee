@@ -13,7 +13,7 @@ require('angular').module('quirks', ['config', require('./marked.config'), requi
         androidHeightHack: ()->
           if deviceDetector.os == 'android'
               return (screen.availHeight - 25) + 'px'
-          return '100vh'
+          return '100vh' 
       }
     
   ])

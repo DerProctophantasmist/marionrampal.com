@@ -93,7 +93,7 @@
                     var index = scope.popupLinks.length - 1;
                     var wClass = {video: 'video-container'}[attrs.popupLink];
                     elt.bind('click', function () {
-                        Lightbox.openModal(scope.popupLinks, index, {'templateUrl': "lightbox.html", 'windowTopClass': wClass});
+                        Lightbox.openModal(scope.popupLinks, index, {'templateUrl': "templates/lightbox.html", 'windowTopClass': wClass});
                     });
 
                 }

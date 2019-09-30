@@ -1,0 +1,9 @@
+
+
+<div class="modal-body" id="menu">
+    <ul>
+        <li ng-repeat='section in MenuCtrl.sections' ng-class="'section-' + section.id">
+            <a  ng-click="MenuCtrl.ok()" href="#{{section.id}}" du-smooth-scroll >{{section.getname()}}</a>
+        </li>
+    </ul>
+</div>
