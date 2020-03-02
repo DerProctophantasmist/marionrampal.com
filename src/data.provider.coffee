@@ -1,5 +1,5 @@
 
-CSON = require 'cson'
+CSON = require 'cson-parser'
 
 require('angular').module('data.provider',[require('./language.picker'), require('./config')])
   .factory 'Sections',['$http', 'Locale', 'Config'
@@ -31,8 +31,8 @@ require('angular').module('data.provider',[require('./language.picker'), require
     
         
     
- #   $http.defaults.headers.common['Cache-Control'] = 'no-cache'
-    $http({method: 'get', url: Config.dataPath + '/sections.cson', headers: {'Cache-Control': 'no-cache'}}).then (response) ->
+    $http.defaults.headers.common['Cache-Control'] = 'no-cache'
+    $http({method: 'get', url: Config.dataPath + '/sections.cson'}).then (response) ->
 #      sections.data = response.data
       sections.data = CSON.parse(response.data)
       for section, s in sections.data

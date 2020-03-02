@@ -1,4 +1,4 @@
-config = require './config.data.js'
+config = window.config
 require('angular').module('config',[])
   .config(['$sceDelegateProvider', '$httpProvider', 'markedProvider', ($sceDelegateProvider, $httpProvider, markedProvider) ->
     $sceDelegateProvider.resourceUrlWhitelist([
@@ -29,15 +29,14 @@ require('angular').module('config',[])
     
   ])
   .factory('Config', ['$location', ($location) ->
-    local = /(\.local|192\.168\.1\.51)$/.test $location.host()
-    if local != config.local 
-      msg = 'wrong config file!'
-      console.log msg      
-    
+    # local = /(\.local|192\.168\.1\.51)$/.test $location.host()
+    # if local != config.local 
+    #   msg = 'wrong config file!'
+    #   console.log msg      
+    hostname = $location.host().split('.').slice( - 2).join('.')
+
     config.ajaxHost = (uri) ->
-      if local
-        return "http://ajax.marionrampal.local" + "/" +uri
-      return "http://ajax.marionrampal.com" + "/" + uri
+      return "https://ajax." + hostname + "/" +uri
       
     return config
     

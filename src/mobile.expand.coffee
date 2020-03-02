@@ -1,7 +1,10 @@
 module.exports = 'mobile.expand'
 
-require('angular').module('mobile.expand', [require('angular-aside')]).
-  factory('MobileExpand', ['$uibModal', ($uibModal) ->
+require('angular').module('mobile.expand', [
+  require('angular-aside')
+  require('./states')
+]).
+  factory('MobileExpand', ['$uibModal', 'State', ($uibModal, State) ->
     window = null
     return {
       open: (content,popupLinks) ->
@@ -9,11 +12,13 @@ require('angular').module('mobile.expand', [require('angular-aside')]).
           console.log "trying to open mobile expand window while it already is"
           return window
         window = $uibModal.open({
+          windowTemplateUrl: 'templates/modalExpand.html',
           templateUrl: 'templates/mobileExpand.html',
           backdrop: true,
-          size: 'fs',
-          controller: ['$scope', '$uibModalInstance', 'Sections', ($scope, $uibModalInstance,Sections) ->
+          # size: 'fs',
+          controller: ['$scope', '$uibModalInstance', 'Sections',  ($scope, $uibModalInstance,Sections) ->
             this.title = 'Mobile Content'
+            State.hideMainContent(true)
             this.ok = (e) ->
               $uibModalInstance.close();
               e.stopPropagation() if e
@@ -25,14 +30,16 @@ require('angular').module('mobile.expand', [require('angular-aside')]).
             return this
           ],
           controllerAs:'MobileContentCtrl',
-          windowTopClass:'windowTopClass',
-          windowClass:'windowClass'
+          windowTopClass:'style2 white',
+          windowClass:'expanded-content'
         });
         window.result.then(( ->
             console.log('Closed window')
+            State.hideMainContent(false)
             window = null
           ),( ->             
             console.log('Dismissed window')
+            State.hideMainContent(false)
             window = null
         ))           
         return window.result;

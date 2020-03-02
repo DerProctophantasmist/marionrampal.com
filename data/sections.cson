@@ -1,0 +1,362 @@
+[
+	{
+		id: "intro"
+		name: "Home"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"400"
+				"700"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "transparent white text-center"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.MarieRouge.dorée.sourire.right.jpg 1920w, images/MarionRampal4k.MarieRouge.dorée.sourire.right.jpg 3840w"
+				bkgImgPos: "74% 40%"
+				boxes: [
+					{
+						position: "left"
+						content: [
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'Home'"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		name: "Concerts"
+		id: "concerts"
+		emptyEvent: "noConcert"
+		pages: [
+			{
+				type: "style2"
+				template: "page_default.html"
+				theme: "transparent white"
+				bkgImg: "images/MarionRampal.ByeByeBerlin.singing.right.jpg 1920w, images/MarionRampal4k.ByeByeBerlin.singing.right.jpg 3840w"
+				bkgImgPos: "85% 40%"
+				boxes: [
+					{
+						position: "left"
+						"mobile-header": [
+							{
+								h2: "Concerts"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								"google-calendar": ""
+								"@id": "u8rqlh129povjraessq4jcp7ok@group.calendar.google.com"
+								"@empty-event": "noConcert"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "biography"
+		name:
+			fr: "Biographie"
+			en: "Biography"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"400"
+				"700"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "dark  text-justify start-pos-30"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.Rome.péristyle.jpg 1920w, images/MarionRampal4k.Rome.péristyle.jpg 3840w"
+				bkgImgPos: "37% 65%"
+				boxes: [
+					{
+						position: "right"
+						"mobile-header": [
+							{
+								h2: "Biographie"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								xtended: "include-markup"
+								filename: "Biography"
+								main: true
+								chapeau:
+									fr: "#### *Chanteuse, songwriter, Marion Rampal tisse un lien entre mémoire et invention, mot et mélodie, musiques populaires afro-américaines et racines classiques occidentales.*"
+									en: "#### *French Singer and songwriter Marion Rampal entwines memory and invention, words and melodies, folkloric musics and classical occidental roots.*"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "mainBlue"
+		name: "Main Blue"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"400"
+				"700"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "transparent white text-justify start-pos-10"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.MainBlue.Floating.Right.jpg 1920w, images/MarionRampal.MainBlue.Floating.Right.jpg 3840w"
+				bkgImgPos: "78% 5%"
+				boxes: [
+					{
+						position: "left"
+						"mobile-header": [
+							{
+								h2: "Main Blue"
+								"@class": "special-font"
+							}
+						]
+						content: [{
+								div: [{
+										marked: ""
+										"@compile": "true"
+										"@filename": "'ChapeauMainblue'"
+									}
+									{
+										marked: ""
+										"@compile": "true"
+										"@filename": "'buyMainBlue'"
+									}									
+								]
+								"@class": "force-float-images-left clearfix text-center"
+							}	
+							{
+								xtended: "include-markup"
+								filename: "MainBlue"
+								chapeau:
+									fr: "#### Sous le ciel d’une New Orleans réinventée, Marion Rampal a façonné des chansons fulgurantes et simples. Amours trahis, soulèvements, tempêtes, la matière de *Main Blue* est le bleu profond, celui qui baigne les bayous et qui imprègne toutes les musiques du Delta du Mississippi."
+									en: "#### Beneath the skies of a reinvented New Orleans, Marion Rampal has carved simple and searing songs. Betrayed love, tempest, uprising, this music is made of the deep blue that bathes the Louisiana Bayou, an expression of the many sounds and rhythms of the Delta."
+								main: true
+							}
+						]					
+						
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "lesecret"
+		name: "Le Secret"
+		googleFont:
+			family: "Roboto"
+			styles: [
+				"300"
+				"300i"
+				"700"
+				"700i"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "red white text-justify start-pos-20"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.lesecret1.left.jpg 1920w, images/MarionRampal4k.lesecret1.left.jpg 3840w"
+				bkgImgPos: "37% 37%"
+				boxes: [
+					{
+						position: "right"
+						content: [{
+							div: [{
+								xtended: "include-markup"
+								filename: "LeSecret"
+								chapeau:
+									fr: '''
+										## *SORTIE le 18 octobre 2019*
+										<div style="margin: 0" class="force-float-images-left clearfix text-center">
+										![youtube](https://www.youtube.com/watch?v=wbv88CRV3JI&list=PL5qp3t801Mh906POSR69Ta3-JcIs6YTe7)
+										__Marion RAMPAL__: chant  
+										__Pierre-François BLANCHARD__: piano  
+										*invitent*  
+										__Archie SHEPP__: saxophone ténor, chant  
+										__Raúl BARBOZA__: accordéon
+
+										*Un disque ArtOvations / l’Autre Distribution  
+										Enregistré au Studio de Meudon par __Alban Moraud__*
+										</div>
+									'''
+									en: '''
+										## *OUT on October 18th 2019*
+										<div style="margin: 0" class="force-float-images-left clearfix text-center">
+										![youtube](https://www.youtube.com/watch?v=wbv88CRV3JI&list=PL5qp3t801Mh906POSR69Ta3-JcIs6YTe7)
+										__Marion RAMPAL__: voice  
+										__Pierre-François BLANCHARD__: piano  
+										*featuring*  
+										__Archie Shepp__: tenor saxophone, voice  
+										__Raúl Barboza__: accordion
+
+										*ArtOvations / l’Autre Distribution  
+										Recorded at Studio de Meudon by __Alban Moraud__*
+										</div>
+									'''
+								main: true
+							}]
+							"@class": "special-font"
+						}]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "listen"
+		name:
+			fr: "Écouter/Regarder"
+			en: "Listen/Watch"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"light"
+				"normal"
+				"bold"
+			]
+		pages: [
+			{
+				type: "style2"
+				template: "page_default.html"
+				theme: "light black text-justify start-pos-20"
+				bkgImg: "images/MarionRampal.lombredansleau.couleur.right.jpg 1920w, images/MarionRampal4k.lombredansleau.couleur.right.jpg 3840w"
+				bkgImgPos: "35% 35%"
+				boxes: [
+					{
+						position: "right"
+						"mobile-header": [
+							{
+								h2: [
+									{
+										i18n: [
+											"Écouter/Regarder"
+										]
+										"@lang": "fr"
+									}
+									{
+										i18n: [
+											"Listen/Watch"
+										]
+										"@lang": "en"
+									}
+								]
+								"@class": "special-font"
+							}
+						]
+						content: [{
+							xtended: "include-markup"
+							filename: "Ecoutervoir"
+							main: true
+							chapeau:
+								fr: "#### Aujourd'hui, hier, il n'y a pas si longtemps... avec Archie Shepp, Raphaël Imbert, le Quatuor Manfred..."
+								en: "#### On this day, yesterday, not so long ago… With Archie Shepp, Quatuor Manfred, Raphaël Imbert..."
+							class: "special-font"
+						}]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "lyrics"
+		name: "Songbook"
+		googleFont:
+			family: "Marcellus SC"
+			styles: [
+				"light"
+				"normal"
+				"bold"
+			]
+		pages: [
+			{
+				type: "style2"
+				template: "page_default.html"
+				theme: "white text-justify start-pos-0"
+				bkgImg: "images/mainblue.map.jpg"
+				headerColor: "#205F5A"
+				menuBkg: "rgba(255,255,255,0.6)"
+				bkgImgPos: "78% 71%"
+				boxes: [
+					{
+						position: "left"
+						"mobile-header": [
+							{
+								h2: "Songbook"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'lyrics'"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "contacts"
+		name:
+			fr: "Contacts"
+			en: "Contact"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"light"
+				"normal"
+				"bold"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "dark"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.Passerelle.Chevaleret.jpg 1920w, images/MarionRampal4k.Passerelle.Chevaleret.jpg 3840w"
+				bkgImgPos: "53% 60%"
+				boxes: [
+					{
+						position: "left"
+						"mobile-header": [
+							{
+								h2: "Contacts"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								"contact-form": ""
+							}
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'Contacts'"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

@@ -3,6 +3,7 @@ module.exports = 'calendar'
 moment = require 'moment'
 require 'moment/locale/fr'
 require 'moment-timezone' 
+striptags = require('striptags')
 p= require 'bluebird'
 
 require('angular').module('calendar', ['config', require('angular-marked'), require('angular-utils-pagination'), require('./language.picker'),  require('./states'),])
@@ -31,6 +32,8 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
           calendar = []
           for event in response.data.items
             setLocalTime(event)
+            console.log event.description
+            event.description = striptags(event.description, ['a','u','i','b','ol','li','ul'],'  \n')
             calendar.push(event)
           console.log(response.data)
           return calendar

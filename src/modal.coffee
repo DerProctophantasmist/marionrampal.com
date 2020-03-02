@@ -18,12 +18,12 @@ baseParams =
           ],
           controllerAs:'MenuCtrl'
 
-makeMenu = (params)-> #params is an object must include placement and template or templateUrl 
+makeMenu = -> 
   ($aside) ->
     menu = null
 
     return {
-      open: ->
+      open: (params) -> #params is an object must include placement and template or templateUrl 
         if menu != null
           console.log "trying to open main menu while it already is"
           return menu
@@ -51,7 +51,7 @@ makeMenu = (params)-> #params is an object must include placement and template o
     }
 
 require('angular').module('menu', [require('angular-aside'), require('./states')]).
-  factory('Menu', ['$aside', (makeMenu  {placement: 'right', templateUrl: 'templates/menu.html'})
+  factory('Menu', ['$aside', (makeMenu())
   ])
   .directive("mainMenu", ['Menu' , (Menu)->
       restrict: 'A',
@@ -59,19 +59,21 @@ require('angular').module('menu', [require('angular-aside'), require('./states')
       replace: false, 
       link: (scope,elt,attrs) ->
         elt.on('click', () -> 
-          Menu.open().then ( -> console.log(' Closed menu 2')), ->
+          Menu.open( {placement: 'right', templateUrl: 'templates/menu.html'}).then ( -> console.log(' Closed menu 2')), ->
             console.log(' Dismissed menu 2')
         )
   ])
-  .factory('GetInTouch',  ['$aside', (makeMenu {placement: 'left', template: '<marked compile=true filename="getInTouch"></marked>'})
+  .factory('LeftAside',  ['$aside', (makeMenu())
   ])
-  .directive("getInTouch", ['GetInTouch' , (Menu)->
+  .directive("leftAside", ['LeftAside' , (Menu)->
       restrict: 'A',
       scope:false
       replace: false, 
       link: (scope,elt,attrs) ->
+        
         elt.on('click', () -> 
-          Menu.open().then ( -> console.log(' Closed get in touch')), ->
-            console.log(' Dismissed get in touch')
+          Menu.open( {placement: 'left', template: '<div class="sidebar menu" style="height:100%;width:100%" marked compile=true filename="\''+attrs.mdfile+'\'"></div>'})
+          .then ( -> console.log(' Closed '+ attrs.mdfile )), ->
+            console.log(' Dismissed' + attrs.mdfile)
         )
   ])

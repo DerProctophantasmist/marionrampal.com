@@ -1,6 +1,6 @@
 module.exports = 'states'
 
-require('angular').module('states', [require('angular-ui-router'),require('angular-scroll'), require('./menu'),require('./data.provider')])
+require('angular').module('states', [require('angular-ui-router'),require('angular-scroll'), require('./modal'),require('./data.provider')])
   .config(['$stateProvider' , '$urlRouterProvider', '$locationProvider', 
   ($stateProvider,$urlRouterProvider,$locationProvider) ->
 #    $urlRouterProvider.otherwise("/loading")
@@ -62,6 +62,7 @@ require('angular').module('states', [require('angular-ui-router'),require('angul
     
   ])
   .factory('State', ['$state', '$stateParams', ($state, $stateParams) ->
+    hideMainContent = false
     State = {
       singleSection : () ->
         return $state.current.name == 'section'
@@ -72,6 +73,9 @@ require('angular').module('states', [require('angular-ui-router'),require('angul
       sectionToDisplay : null,
       hiddenSections: [],
       home: (()-> $state.go('home');return)
+      isMainContentHidden: () -> hideMainContent
+      hideMainContent: (value)->hideMainContent = (value != false)
+      getCarouselInterval: ()->if hideMainContent then 0 else 5000
     }
       
     

@@ -1,5 +1,5 @@
 module.exports = 'oEmbed'
-Config = require('./config.data.js')
+Config = window.config 
 
 
 attributeString = (object) ->
@@ -18,7 +18,7 @@ resourceUrl = (url) ->
         height = if url.indexOf('/sets/') != -1 then 305 else 110
           
         res =  {
-          request: "http://soundcloud.com/oembed?type=json&visual=false&maxheight="+height+"&color=000000&show_comments=false&show_artwork=true&url=" + url,
+          request: "https://soundcloud.com/oembed?type=json&visual=false&maxheight="+height+"&color=000000&show_comments=false&show_artwork=true&url=" + url,
           provider: "soundcloud"
         }
       when 'youtu.be', 'youtube.com'
@@ -79,8 +79,11 @@ require('angular').module('oEmbed', ['config'])
       
       if( resource ?= resourceUrl(url))
         headers = []
-        if resource.provider == 'youtube'
-         headers['Cache-Control'] = 'no-cache'
+        if resource.provider in ['youtube']
+          headers['Cache-Control'] = 'no-cache'
+        if resource.provider == 'soundcloud'
+          headers['Cache-Control'] = undefined
+          headers["Content-Type"] = "text/plain"
         $http({method:'get', url: resource.request, 'headers': headers} ).then (response) ->        
           if response.data.type == 'image'
             response.data.html = '<img class="image fit" src="' + response.data.src + '"></img>'

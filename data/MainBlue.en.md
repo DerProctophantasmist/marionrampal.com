@@ -11,12 +11,12 @@ Main Blue is an anthem to Blues as an emotional highway, and an unlikely crossro
 With :
 ANNE PACEO : Drums, back vocals / PIERRE-FRANÇOIS BLANCHARD :Fender Rhodes, Organ, keyboards, back vocals / Featuring: JULIA SARR back vocals & SEBASTIEN LLADO trombone / Recorded by SEBASTIEN TONDO at Studio des Bruères, Mignaloux-Beauvoir / Mix by SEBASTIEN TONDO & RAPHAEL ALLAIN at Studio Think Tank, Montreuil / Mastering by RAPHAEL JONIN  / Graphism by MARC HERNANDEZ / Photos: MARTIN SARRAZAC / Production & Management FRANÇOIS PEYRATOUT / Edition CAPT'N MUSIC
 
-![logos main blue](/images/barre logos main blue.jpg)
+![logos main blue](images/barre logos main blue.jpg)
 
 WATCH "The Perfect Husband", LIVE 2014
-https://www.youtube.com/watch?v=mWCdSFWrqH8
+![youtube](https://www.youtube.com/watch?v=mWCdSFWrqH8)
 
-Teaser: https://www.youtube.com/watch?v=sIorOkrRm9Q
+Teaser:![youtube](https://www.youtube.com/watch?v=sIorOkrRm9Q)
 
 *Main Blue* wouldn't exist without the many people who have helped since the beginning of the project in 2012. Among these: Compagnie Nine Spirit, ADDIM70, Mission Voix Franche-Comté, Forum de Berre, Escale MJC d'Aubagne, Les Herbiers, Tandem and Théâtre du Rocher of la Garde. 
 

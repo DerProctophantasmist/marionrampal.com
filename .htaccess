@@ -8,39 +8,26 @@ SetEnvIf Host "\.local$" HostMaRamp=http://www.marionrampal.local
 SetEnvIf Host "^(en|fr)\." ForceLang=$1
 
 
-<FilesMatch ".(txt|json|css)$">
-    Header unset Cache-Control
+<FilesMatch ".(md|json)$">
+    Header set Cache-Control "must-revalidate"
 </FilesMatch>
 
-RewriteCond "%{HTTP_HOST}" "^.*archieball\.com$" [NC]
-RewriteRule ".*" - [L,R=404]
 
 RewriteCond "%{HTTP_HOST}" "^ajax\.marionrampal\.(com|local)$" [NC]
+RewriteCond     %{REQUEST_URI} ^(/contact)$
 RewriteRule "^(.*)$" "http://127.0.0.1:49152/$1" [P,L]
 
 
 RewriteCond "%{HTTP_HOST}"   "^marionrampal\.(com|local)$" [NC]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 RewriteRule "^(.*)$" "%{ENV:HostMaRamp}/$1" [L,R=301,NE]
 
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*(default|index)\.(html|php|htm)\ HTTP/ [NC]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 RewriteRule ^(([^/]+/)*)(default|main|index)\.(html|php|htm)$ $1 [L,R=301]
 
 
-RewriteCond     %{REQUEST_FILENAME} !-f
-RewriteCond     %{REQUEST_URI} ^(/|/mainblue|/concerts|/contacts|/biography|/listen|/lyrics)$
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond     %{REQUEST_URI} ^(/|/mainblue|/concerts|/contacts|/biography|/listen|/lyrics|/lesecret)$
 RewriteRule     ([^/]*)/?$ http://127.0.0.1:49152/?page=$1&forceLang=%{ENV:ForceLang} [P,L]
 
 
 RewriteCond     %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 RewriteRule .* - [L,R=404]
-
-
-

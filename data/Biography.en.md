@@ -1,4 +1,4 @@
-#### *French Singer and songwriter Marion Rampal entwines memory and invention, words and melodies, folkloric musics and classical occidental roots.*
+#### *French Singer and songwriter Marion Rampal entwines memory and invention, words and melodies, folkloric music and classical occidental roots.*
 
  
 Born in 1980 in Marseille, she studied music and singing according to the fanciful gifts of life: A mother who invented lulabies à la Michel Legrand. A grandfather who played all Nat King Cole in F on the piano. A few flute lessons (she is not in any way related to Jean-Pierre Rampal). Her fabulous high school choir which toured Europe… 

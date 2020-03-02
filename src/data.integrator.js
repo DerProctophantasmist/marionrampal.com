@@ -22,7 +22,7 @@
         require('./calendar'), require('./include.markup'), require('./config'), require('./quirks'),
         require('./language.picker'), require('./render.json')
     ]).config(['markedProvider', function (markedProvider) {
-        markedProvider.setOptions({gfm: true, breaks:true});
+        markedProvider.setOptions({gfm: true, breaks:false});
     }]);;
     
     

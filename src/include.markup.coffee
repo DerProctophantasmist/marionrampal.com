@@ -34,7 +34,8 @@ require('angular').module('includeMarkup', [require('./config'), require('./mark
               '<span class="sr-only" >Loading...</span></span>' +
 #              '<span  ng-show="content.expanded && content.data">  {{content.collapse || "Masquer"}} </span>'+
               '<i class="fa" ng-class=\'{"fa-minus":content.expanded && content.data, "fa-plus":!isExpanded()}\' ></i></button></span>'+             
-              '<span ng-if="!isMobileLayout()" class="more" ng-show="isExpanded() && content.data" marked="content.data.replace(chapeau,\'\')" compile="true" popup-links="popupLinks"></span> </span>' 
+              '<span ng-show="defaultExpanded()" class="more" ng-show="isExpanded() && content.data" marked="content.data.replace(chapeau,\'\')" compile="true" popup-links="popupLinks"></span>' +
+              '</span>' 
       scope: {content: '=', popupLinks: '='},
       replace: true, 
       link: (scope,elt,attrs) ->
@@ -65,7 +66,8 @@ require('angular').module('includeMarkup', [require('./config'), require('./mark
             content.expanded = true
             #for mobiles extanding the page itself is not an option, it causes all sort of layout problems,
             #so we open a modal window:
-            if Quirks.isMobileLayout()
+            # if Quirks.isMobileLayout()
+            if !scope.defaultExpanded()
               onclose = (()->content.expanded = false;return)
               MobileExpand.open(content, scope.popupLinks).then(onclose,onclose)
           else
@@ -93,9 +95,9 @@ require('angular').module('includeMarkup', [require('./config'), require('./mark
           #filename for the included file actually depends on locale, so compute it here:
           filename = localizeFilename scope.content.filename
           ReadDataFile(filename, scope.content)          
-          if Quirks.isMobileLayout()
-            onclose = (()->State.home();return)
-            MobileExpand.open(scope.content, scope.popupLinks).then(onclose,onclose)
+          # if Quirks.isMobileLayout()
+          #   onclose = (()->State.home();return)
+          #   MobileExpand.open(scope.content, scope.popupLinks).then(onclose,onclose)
         
         
   ])

@@ -12,7 +12,7 @@
                 "theme": "transparent white text-center force-float-images-left",
                 "template": "page_default.html",
                 "bkgImg": "images/MarionRampal.MainBlue.Floating.Left1.jpg",
-                "bkgImgPos" : "10% 0%",
+                "bkgImgPos" : "14% 0%",
                 "boxes": [
                     {
                         "position": "right",
@@ -48,13 +48,14 @@
     {
         "name": "Concerts",
         "id": "concerts",
+        "emptyEvent":"noConcert",
         "pages": [
             {
                 "type": "style2",
                 "template": "page_default.html",
                 "theme": "transparent white",
                 "bkgImg": "images/MarionRampal.ByeByeBerlin.singing.right0.jpg",
-                "bkgImgPos" : "100% 40%",
+                "bkgImgPos" : "85% 40%",
                 "boxes": [
                     {
                         "position": "left",
@@ -65,7 +66,8 @@
                         "content": [
                             {
                                 "google-calendar":"",
-                                "@id": "u8rqlh129povjraessq4jcp7ok@group.calendar.google.com"
+                                "@id": "u8rqlh129povjraessq4jcp7ok@group.calendar.google.com",
+                                "@empty-event": "noConcert"
                             }
                         ]
                     }
@@ -86,7 +88,7 @@
                 "theme": "dark  text-justify align-top",
                 "template": "page_default.html",
                 "bkgImg": "images/MarionRampal.Rome.péristyle0.jpg",
-                "bkgImgPos" : "0% 65%",
+                "bkgImgPos" : "37% 65%",
                 "boxes": [
                     {
                         "position": "right",
@@ -123,7 +125,7 @@
                 "theme": "transparent white text-justify align-top",
                 "template": "page_default.html",
                 "bkgImg": "images/MarionRampal.MainBlue.Floating.Right5.jpg",
-                "bkgImgPos" : "85% 5%",
+                "bkgImgPos" : "78% 5%",
                 "boxes": [
                     {
                         "position": "left",
@@ -149,6 +151,40 @@
         ]
     },
     {
+        "id": "lombredansleau",
+        "name": "L'Ombre dans l'eau",
+        "googleFont": {
+            "family": "Comfortaa",
+            "styles": ["400", "700"]
+        },
+        "pages": [
+            {
+                "type": "style2",
+                "theme": "light black text-justify align-top",
+                "template": "page_default.html",
+                "bkgImg": "images/MarionRampal.lombredansleau.couleur.right.jpg",
+                "bkgImgPos" : "37% 60%",
+                "boxes": [
+                    {
+                        "position": "right",
+                        "content": [
+                            {
+                                "xtended": "include-markup",
+                                "filename": "LOmbreDansLEau",
+                                "chapeau": {
+                                   "fr": "## L'Ombre dans l'eau\n__Marion RAMPAL & Pierre-François BLANCHARD__\n\nDepuis leur rencontre en 2009, Pierre-François Blanchard et Marion Rampal travaillent à élaborer un langage commun de l’interprétation qui bouscule les codes établis.\n\nImaginez les mélodies de Fauré ou Debussy et les poèmes de Verlaine, avec les couleurs des cabarets blues, des « Vaudevilles » d’Atlanta, de Dallas ou Broadway…",
+                                   "en": "## L'Ombre dans l'eau\n__Marion RAMPAL & Pierre-François BLANCHARD__\n\nDepuis leur rencontre en 2009, Pierre-François Blanchard et Marion Rampal travaillent à élaborer un langage commun de l’interprétation qui bouscule les codes établis.\n\nImaginez les mélodies de Fauré ou Debussy et les poèmes de Verlaine, avec les couleurs des cabarets blues, des « Vaudevilles » d’Atlanta, de Dallas ou Broadway…"
+                                },
+                                "main":true
+                                
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }, 
+    {
         "id": "listen",
         "name": {"fr": "Écouter/Regarder", "en": "Listen/Watch"},
         "googleFont": {
@@ -159,10 +195,9 @@
             {
                 "type": "style2",
                 "template": "page_default.html",
-                "theme": "white text-justify align-top",
-                "bkgImg": "images/MarionRampal.Rome.mur.palais.left.couleur1.jpg",
-                "menuBkg": "rgba(70,60,50,0.3)",
-                "bkgImgPos" : "20% 60%",
+                "theme": "red white text-justify align-top",
+                "bkgImg": "images/MarionRampal.Rome.mur.palais.left.nb0.jpg",
+                "bkgImgPos" : "35% 35%",
                 "boxes": [
                     {
                         "position": "right",
@@ -197,11 +232,11 @@
             {
                 "type": "style2",
                 "template": "page_default.html",
-                "theme": "text-justify align-top",
+                "theme": "white text-justify align-top",
                 "bkgImg": "images/mainblue.map.jpg",
                 "headerColor": "#205F5A",
                 "menuBkg": "rgba(255,255,255,0.6)",
-                "bkgImgPos" : "60% 71%",
+                "bkgImgPos" : "78% 71%",
                 "boxes": [
                     {
                         "position": "left",
@@ -234,7 +269,7 @@
                 "theme": "dark",
                 "template": "page_default.html",
                 "bkgImg": "images/MarionRampal.Passerelle.Chevaleret1.jpg",
-                "bkgImgPos" : "65% 60%",
+                "bkgImgPos" : "53% 60%",
                 "boxes": [
                     {
                         "position": "left",

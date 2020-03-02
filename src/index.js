@@ -6,7 +6,7 @@
     var app = angular.module('single.page.site', [
         require('./dyn.styles'), require('./data.integrator'), require('./data.provider'),
         require('./config'), 
-        require('./menu'),
+        require('./modal'),
         require('./scrolling'),
         require('./quirks'),
         require('./states'),
@@ -38,9 +38,11 @@
             website.isMobileLayout = Quirks.isMobileLayout;             
             website.androidHeightHack = Quirks.androidHeightHack;
             website.locale = Locale;
+
+            website.getCarouselInterval = State.getCarouselInterval;
             
             website.headerImage = function () {
-                return (!Quirks.isMobileLayout() && Sections.topPage) ? 'url(' + Sections.topPage.bkgImg + ')' : "";
+                return (!Quirks.isMobileLayout() && Sections.topPage) ?  Sections.topPage.bkgImg : "";
             };
             website.headerColor = function() {
                 return (Sections.topPage)? (Sections.topPage.headerColor || "#FFF") :"#FFF";
@@ -62,6 +64,8 @@
                 
             });
             website.Activate = Activate;
+
+            website.isMainContentHidden = State.isMainContentHidden
             
             
             $scope.inViewOptions = {throttle:30,offset:[-40,0,-40,0]};
