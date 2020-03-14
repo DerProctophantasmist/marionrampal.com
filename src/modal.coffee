@@ -3,7 +3,7 @@ module.exports = 'menu'
 baseParams = 
           windowClass: 'main-menu',
           backdrop: true,
-          controller: ['$scope', '$uibModalInstance', 'Sections', 'State', ($scope, $uibModalInstance,Sections, State) ->
+          controller: ['$scope', '$uibModalInstance', 'Sections', 'State', '$http', ($scope, $uibModalInstance,Sections, State, $http) ->
             #on opening the menu we navigate back to the home state, so that all "pages" are available.
             State.home();
             this.title = 'Menu'
@@ -14,9 +14,23 @@ baseParams =
               $uibModalInstance.dismiss();
               e.stopPropagation() if e
             this.sections = Sections.data
+            this.showAdmin = State.getAllowEdit
+            if State.getAllowEdit()
+              this.adminCommit = adminCommand.bind(this, $http, './commit', 'Successfully commited changes', 'Error, changes where not commited.', (err)=>this.ok())                
+              this.adminUnstage = adminCommand.bind(this, $http, './unstage', 'Successfully unstaged changes', 'Error, changes where not unstaged.', (err)=> if err then this.ok() else window.location.reload())
             return this
           ],
           controllerAs:'MenuCtrl'
+
+adminCommand = ($http, url, msgSuccess, msgError, callback) ->         
+  $http.post(url,"").then (res)->
+      alert(msgSuccess)
+      callback()
+    ,
+    (res) -> 
+      alert(msgError) + "\n" +  res.data.txt
+      callback(new Error(res.data.txt))
+
 
 makeMenu = -> 
   ($aside) ->

@@ -26,7 +26,7 @@ picker = require('angular').module('languagePicker',  [
     }
   }
   emitter = new EventEmitter();
-  emitter.setMaxListeners(100);
+  emitter.setMaxListeners(100000);
   
   if storedLocale =  $window.localStorage.getItem('marionrampal.locale')
     console.log("stored locale: " + $window.localStorage.getItem('marionrampal.locale'))
@@ -76,6 +76,8 @@ picker = require('angular').module('languagePicker',  [
         scope.$on('$destroy', ()-> 
           emitter.removeListener('changeLocale',callback)
         )    
+    offChange:(callback)->
+      emitter.removeListener('changeLocale',callback)
     
   }
 ])
@@ -130,7 +132,6 @@ for name in ['Placeholder', 'Value']
 #            updatei18n()
 #          )   
       }
-      return params
 
     ])
   

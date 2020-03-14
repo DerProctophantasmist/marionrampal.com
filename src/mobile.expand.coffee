@@ -3,10 +3,13 @@ module.exports = 'mobile.expand'
 require('angular').module('mobile.expand', [
   require('angular-aside')
   require('./states')
+  require('angular-marked')
+  require('./markdownEditor')
 ]).
-  factory('MobileExpand', ['$uibModal', 'State', ($uibModal, State) ->
+  factory('MobileExpand', ['$uibModal', 'State', 'marked', '$compile', ($uibModal, State, marked, $compile) ->
     window = null
-    return {
+    mobileExpand =  {
+      refresh: ()->{}
       open: (content,popupLinks) ->
         if window != null
           console.log "trying to open mobile expand window while it already is"
@@ -16,17 +19,37 @@ require('angular').module('mobile.expand', [
           templateUrl: 'templates/mobileExpand.html',
           backdrop: true,
           # size: 'fs',
-          controller: ['$scope', '$uibModalInstance', 'Sections',  ($scope, $uibModalInstance,Sections) ->
+          controller: ['$scope', '$uibModalInstance', 'Sections',  'MarkdownEditor', ($scope, $uibModalInstance,Sections, MarkdownEditor) ->
+            mobileExpand.refresh = () -> 
+              $scope.$apply()
+            # onCloseEditor = () =>
+            #   content.editor.off('fileChange',onEdit)
+            #   content.editor.off('onClose', onClose)
+              
             this.title = 'Mobile Content'
             State.hideMainContent(true)
             this.ok = (e) ->
               $uibModalInstance.close();
+              # console.log "markdown: " + $scope.content.data
               e.stopPropagation() if e
             this.cancel = (e) ->
               $uibModalInstance.dismiss();
+              # console.log "markdown: " + $scope.content.data
               e.stopPropagation() if e
+            this.edit = (content) ->
+              # DataFile.read(filename, fileCallbacks, $scope)  if !content.data
+               # we are not actually using the editor reference, otherwise set
+               # content.editor = 
+              MarkdownEditor.open(content.localizedFilename, content.data) 
+              # content.editor.on('fileChange', onEdit)
+              # content.editor.on('close', onCloseEditor)
+            # make some stuff accessible to the template, via the scope:
             $scope.content = content
+            #this is for the editor: should we show it?
+            $scope.globalState = State
             $scope.popupLinks = popupLinks
+            
+
             return this
           ],
           controllerAs:'MobileContentCtrl',
@@ -56,5 +79,6 @@ require('angular').module('mobile.expand', [
           return
         window.dismiss()        
     }
+    return mobileExpand
   ])
   

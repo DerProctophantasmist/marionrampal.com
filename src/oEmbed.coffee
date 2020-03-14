@@ -81,9 +81,12 @@ require('angular').module('oEmbed', ['config'])
         headers = []
         if resource.provider in ['youtube']
           headers['Cache-Control'] = 'no-cache'
-        if resource.provider == 'soundcloud'
+        else if resource.provider == 'soundcloud'
           headers['Cache-Control'] = undefined
           headers["Content-Type"] = "text/plain"
+        else if resource.provider == "vimeo"
+          headers['Cache-Control'] = undefined
+
         $http({method:'get', url: resource.request, 'headers': headers} ).then (response) ->        
           if response.data.type == 'image'
             response.data.html = '<img class="image fit" src="' + response.data.src + '"></img>'
@@ -96,10 +99,13 @@ require('angular').module('oEmbed', ['config'])
                                     '"><img src="' + response.data.thumbnail_url + '" /><span class="play-button"></span></a>'
               response.data.compile = true
             when 'youtube'
-              thumbnail_url = response.data.items[0].snippet.thumbnails.medium.url
-              response.data.html ='<a popup-link="video" class="image half centered popup-link" data-url="https://www.youtube.com/watch?v=' + resource.videoID + '" content-settings="{&quot;list&quot;:&quot;' + resource.playlist +
-              '&quot;}"><img src="' + thumbnail_url + '" /><span class="play-button"></span></a>'
-              response.data.compile = true
+              if response.data.items.length == 0
+                console.log "BEWARE: the youtube video: " + resource.url + " is probably private. It won't be rendered."
+              else
+                thumbnail_url = response.data.items[0].snippet.thumbnails.medium.url
+                response.data.html ='<a popup-link="video" class="image half centered popup-link" data-url="https://www.youtube.com/watch?v=' + resource.videoID + '" content-settings="{&quot;list&quot;:&quot;' + resource.playlist +
+                '&quot;}"><img src="' + thumbnail_url + '" /><span class="play-button"></span></a>'
+                response.data.compile = true
           confs[url] = response.data
           callback(response.data)
         ,(response) -> console.log 'Could not load '+url+' : ' + JSON.stringify(response)

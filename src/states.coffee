@@ -7,7 +7,7 @@ require('angular').module('states', [require('angular-ui-router'),require('angul
 
     $urlRouterProvider.otherwise("/home")
 #    
-#    $stateProvider.state('loading', {      
+#    $stateProvider.state('loading', {       
 #      url: "/loading/:url"
 #    })
     
@@ -71,11 +71,14 @@ require('angular').module('states', [require('angular-ui-router'),require('angul
         return !State.singleSection() && !State.hiddenSections[sectionName] || (sectionName.toLowerCase() == $stateParams.id.toLowerCase());
       ,
       sectionToDisplay : null,
+      showEditors: false,
       hiddenSections: [],
       home: (()-> $state.go('home');return)
       isMainContentHidden: () -> hideMainContent
       hideMainContent: (value)->hideMainContent = (value != false)
       getCarouselInterval: ()->if hideMainContent then 0 else 5000
+      setAllowEdit:(allowEdit) -> State.showEditors = allowEdit
+      getAllowEdit:()->State.showEditors
     }
       
     

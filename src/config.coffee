@@ -1,6 +1,6 @@
 config = window.config
 require('angular').module('config',[])
-  .config(['$sceDelegateProvider', '$httpProvider', 'markedProvider', ($sceDelegateProvider, $httpProvider, markedProvider) ->
+  .config(['$sceDelegateProvider', '$httpProvider', 'markedProvider', '$compileProvider', ($sceDelegateProvider, $httpProvider, markedProvider,$compileProvider) ->
     $sceDelegateProvider.resourceUrlWhitelist([
       # Allow same origin resource loads.
       'self',
@@ -16,7 +16,7 @@ require('angular').module('config',[])
       'http*://google.com/**',      
       'http*://*.google.com/**',
       'http*://*.marionrampal.com/**',
-      'http*://*.marionrampal.local/**',
+      'http*://*.marionrampal.local/**', 
       'http*://192.168.1.51/**',
       'http*://proctophantasmist.net/**',
       'http*://*.proctophantasmist.net/**'
@@ -24,7 +24,12 @@ require('angular').module('config',[])
     if not $httpProvider.defaults.headers.common?
         $httpProvider.defaults.headers.commom = {}
        
-    
+    if PROD? #defined by uglyfy process
+      $compileProvider.debugInfoEnabled(false);
+      $compileProvider.commentDirectivesEnabled(false);
+      $compileProvider.cssClassDirectivesEnabled(false);
+      console.log = ()->{}
+
     markedProvider.setDataPath(config.dataPath);
     
   ])
