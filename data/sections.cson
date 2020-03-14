@@ -22,7 +22,7 @@
 							{
 								marked: ""
 								"@compile": "true"
-								"@filename": "'Home'"
+								"@filename": "'accueil/home.md'"
 							}
 						]
 					}
@@ -91,12 +91,9 @@
 						]
 						content: [
 							{
-								xtended: "include-markup"
-								filename: "Biography"
-								main: true
-								chapeau:
-									fr: "#### *Chanteuse, songwriter, Marion Rampal tisse un lien entre mémoire et invention, mot et mélodie, musiques populaires afro-américaines et racines classiques occidentales.*"
-									en: "#### *French Singer and songwriter Marion Rampal entwines memory and invention, words and melodies, folkloric musics and classical occidental roots.*"
+								marked: ""
+								"@compile": "true"
+								"@filename": "'bio/bio'"
 							}
 						]
 					}
@@ -129,29 +126,13 @@
 								"@class": "special-font"
 							}
 						]
-						content: [{
-								div: [{
-										marked: ""
-										"@compile": "true"
-										"@filename": "'ChapeauMainblue'"
-									}
-									{
-										marked: ""
-										"@compile": "true"
-										"@filename": "'buyMainBlue'"
-									}									
-								]
-								"@class": "force-float-images-left clearfix text-center"
-							}	
+						content: [
 							{
-								xtended: "include-markup"
-								filename: "MainBlue"
-								chapeau:
-									fr: "#### Sous le ciel d’une New Orleans réinventée, Marion Rampal a façonné des chansons fulgurantes et simples. Amours trahis, soulèvements, tempêtes, la matière de *Main Blue* est le bleu profond, celui qui baigne les bayous et qui imprègne toutes les musiques du Delta du Mississippi."
-									en: "#### Beneath the skies of a reinvented New Orleans, Marion Rampal has carved simple and searing songs. Betrayed love, tempest, uprising, this music is made of the deep blue that bathes the Louisiana Bayou, an expression of the many sounds and rhythms of the Delta."
-								main: true
+								marked: ""
+								"@compile": "true"
+								"@filename": "'mainBlue/mainBlue'"
 							}
-						]					
+						]	
 						
 					}
 				]
@@ -179,43 +160,14 @@
 				boxes: [
 					{
 						position: "right"
-						content: [{
-							div: [{
-								xtended: "include-markup"
-								filename: "LeSecret"
-								chapeau:
-									fr: '''
-										## *SORTIE le 18 octobre 2019*
-										<div style="margin: 0" class="force-float-images-left clearfix text-center">
-										![youtube](https://www.youtube.com/watch?v=wbv88CRV3JI&list=PL5qp3t801Mh906POSR69Ta3-JcIs6YTe7)
-										__Marion RAMPAL__: chant  
-										__Pierre-François BLANCHARD__: piano  
-										*invitent*  
-										__Archie SHEPP__: saxophone ténor, chant  
-										__Raúl BARBOZA__: accordéon
-
-										*Un disque ArtOvations / l’Autre Distribution  
-										Enregistré au Studio de Meudon par __Alban Moraud__*
-										</div>
-									'''
-									en: '''
-										## *OUT on October 18th 2019*
-										<div style="margin: 0" class="force-float-images-left clearfix text-center">
-										![youtube](https://www.youtube.com/watch?v=wbv88CRV3JI&list=PL5qp3t801Mh906POSR69Ta3-JcIs6YTe7)
-										__Marion RAMPAL__: voice  
-										__Pierre-François BLANCHARD__: piano  
-										*featuring*  
-										__Archie Shepp__: tenor saxophone, voice  
-										__Raúl Barboza__: accordion
-
-										*ArtOvations / l’Autre Distribution  
-										Recorded at Studio de Meudon by __Alban Moraud__*
-										</div>
-									'''
-								main: true
-							}]
-							"@class": "special-font"
-						}]
+						content: [
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'leSecret/leSecret'"
+								"@class": "special-font"
+							}
+						]	
 					}
 				]
 			}
@@ -262,15 +214,14 @@
 								"@class": "special-font"
 							}
 						]
-						content: [{
-							xtended: "include-markup"
-							filename: "Ecoutervoir"
-							main: true
-							chapeau:
-								fr: "#### Aujourd'hui, hier, il n'y a pas si longtemps... avec Archie Shepp, Raphaël Imbert, le Quatuor Manfred..."
-								en: "#### On this day, yesterday, not so long ago… With Archie Shepp, Quatuor Manfred, Raphaël Imbert..."
-							class: "special-font"
-						}]
+						content: [
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'otherProjects/otherProjects'"
+								"@class": "special-font"
+							}
+						]	
 					}
 				]
 			}
@@ -308,7 +259,7 @@
 							{
 								marked: ""
 								"@compile": "true"
-								"@filename": "'lyrics'"
+								"@filename": "'lyrics/lyrics'"
 							}
 						]
 					}
@@ -351,7 +302,7 @@
 							{
 								marked: ""
 								"@compile": "true"
-								"@filename": "'Contacts'"
+								"@filename": "'contacts'"
 							}
 						]
 					}

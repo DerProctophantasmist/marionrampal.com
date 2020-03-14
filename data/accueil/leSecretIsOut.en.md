@@ -1,4 +1,4 @@
-<figure left-aside class="clickable image half left" mdfile="buyLeSecret.md" >
+<figure left-aside class="clickable image half left" mdfile="buy/buyLeSecret.md" >
 ![couv le secret](images/couv le secret.jpeg "listen/buy the disc")
 <figcaption>listen/buy the disc</figurecaption>
 </figure>

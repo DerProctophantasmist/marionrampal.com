@@ -1,0 +1,2 @@
+#### *Chanteuse, songwriter, Marion Rampal tisse un lien entre mémoire et invention, mot et mélodie, musiques populaires afro-américaines et racines classiques occidentales.*
+[markdown](bio/bio.expanded)
