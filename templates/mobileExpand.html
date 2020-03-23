@@ -1,5 +1,9 @@
 <div  id="mobileContent" class="" >
     <div class="closer"  ng-click="MobileContentCtrl.cancel()"></div>
     <!--note that we print the whole text, including the chapeau (contrarily to the desktop version) since this doesn't create a duplicate-->
-     <span class="more" marked="content.data" compile="true" popup-links="popupLinks"></span>  
+    <a ng-if="globalState.showEditors" ng-click="MobileContentCtrl.edit(content)" class="btn-floating btn btn-default" style="position:absolute;top:0;color:black">
+        <i class="fa fa-edit" style="color:black"></i><span  style="color:black">{{content.localizedFilename}}</span>
+    </a>    
+    <div class="more" marked="content.data" compile="true" popup-links="popupLinks"></div>
+    <!-- {{content.data}}        -->
 </div>

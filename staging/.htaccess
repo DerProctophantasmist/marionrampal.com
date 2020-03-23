@@ -25,10 +25,12 @@ AuthName "marionrampal.com staging"
 
 
 RewriteCond "%{HTTP_HOST}" "^ajax\.marionrampal\.(com|local)$" [NC]
-RewriteCond  %{REQUEST_URI} (/contact)$
+RewriteCond     "%{HTTPS}"  "on"
+RewriteCond  %{REQUEST_URI} (/contact$)
 RewriteRule "([^/]*)/?$" http://127.0.0.1:49152/$1?path=%{ENV:PATH} [P,L]
 
 #redirect all requests without subdomain to www
+RewriteCond     "%{HTTPS}"  "on"
 RewriteCond "%{HTTP_HOST}"   "^[^.]+\.(com|local)$" [NC]
 RewriteRule "^(.*)$" "%{REQUEST_SCHEME}://www.%{HTTP_HOST}/$1" [L,R=301,NE]
 
@@ -36,15 +38,13 @@ RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*(default|index)\.(html|php|htm
 RewriteRule ^(([^/]+/)*)(default|main|index)\.(html|php|htm)$ $1 [L,R=301]
 
 
-RewriteCond     %{REQUEST_FILENAME} !-f
-#RewriteCond     "%{HTTPS}"  "on"
-RewriteCond     %{REQUEST_URI} (/|/mainblue|/concerts|/contacts|/biography|/listen|/lyrics|/lesecret)$
+RewriteCond     "%{HTTPS}"  "on"
+RewriteCond     %{REQUEST_URI} ^/staging(/|/mainblue|/concerts|/contacts|/biography|/listen|/lyrics|/lesecret)$
 RewriteRule     ^([^/]*)/?$ http://127.0.0.1:49152/?path=%{ENV:PATH}&page=$1&forceLang=%{ENV:ForceLang} [P,L]
 
-RewriteCond     %{REQUEST_FILENAME} !-f
-#RewriteCond     "%{HTTPS}"  "on"
-RewriteCond     %{REQUEST_URI} (/commit)$
-RewriteRule     ^([^/]*)/?$ http://127.0.0.1:49152/admin/$1?path=%{ENV:PATH} [P,L]
+RewriteCond     "%{HTTPS}"  "on"
+RewriteCond     %{REQUEST_URI} ^/staging/(commit$|unstage$|editfile/)
+RewriteRule     ^(.*)/?$ http://127.0.0.1:49152/admin/$1 [P,L]
 
 
 

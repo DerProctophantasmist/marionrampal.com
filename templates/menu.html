@@ -1,9 +1,18 @@
 
 
 <div class="modal-body" id="menu">
+    <ul ng-if="MenuCtrl.showAdmin()">            
+        <li >
+            <a  ng-click="MenuCtrl.adminCommit()" href >Commit changes</a>
+        </li>
+        <li >
+            <a  ng-click="MenuCtrl.adminUnstage()" href >Undo all changes</a>
+        </li>          
+        <hr>
+    </ul>
     <ul>
         <li ng-repeat='section in MenuCtrl.sections' ng-class="'section-' + section.id">
             <a  ng-click="MenuCtrl.ok()" href="#{{section.id}}" du-smooth-scroll >{{section.getname()}}</a>
-        </li>
+        </li>        
     </ul>
 </div>

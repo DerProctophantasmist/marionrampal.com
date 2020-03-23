@@ -96,6 +96,9 @@ body {
         @include vendor('transition', 'none !important');
         @include vendor('animation', 'none !important');
     }
+    &.modal-open{
+        overflow:hidden;
+    }
 }
 
 .special-font {
@@ -289,7 +292,7 @@ article:last-child {
 figcaption {
     font-style: italic;
 }
-.image {
+.image { 
     position: relative;
     display: inline-block;
 
@@ -320,6 +323,7 @@ figcaption {
 
     &.left {
         float: left;
+        z-index : 1;
         margin: 0 1em 1em 0;
     }
 
@@ -329,8 +333,9 @@ figcaption {
     }
 }
 .force-float-images-left, .force-left {
-    .image.centered {        
+    .image {        
         float: left;
+        z-index : 1;
         margin: 0 1em 0 0;
     }
 }
@@ -2630,7 +2635,6 @@ body.mobile-layout {
         .modal-content{    
             padding-top: 2em;
             width: auto;
-            background-color:  transparent;
             border: none;
             outline: none;
             box-shadow: none;
@@ -2649,4 +2653,7 @@ body.mobile-layout {
             }
         }
     }
+}
+.expanded-content .modal-dialog .modal-content {
+    background-color:  transparent;
 }
