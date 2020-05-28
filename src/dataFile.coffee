@@ -29,6 +29,14 @@ require('angular').module('dataFile', [
           console.log 'Could not load '+filename+' : ' + JSON.stringify(err)
           ref.data = ''
       return
+    
+    #this mimicks the behaviour of loading data when we have done preloading
+    #simplyfies things for the calling code
+    cacheData = (filename, callbacks, scope, content) -> 
+      ref = (files[filename] = {callbacks: [callbacks]})
+      scope[filename + "-watcher"] = 0
+      ref.data = content
+      callbacks.onSuccess(content) if callbacks.onSuccess 
 
  
     dataFile = 
@@ -56,6 +64,22 @@ require('angular').module('dataFile', [
         for own key, callbacks of ref.callbacks
           # console.log callbacks
           callbacks.onChange(content)
+        return
+      #this mimicks the behaviour of loading data when we have done preloading
+      #simplyfies things for the calling code
+      cache: (filename, callbacks,scope,content) ->
+        ref = files[filename]
+        if !ref # we haven't yet asked for this file
+          cacheData(filename, callbacks, scope, content)
+        else 
+          callbacks.onSuccess(ref.data)
+
+          ref.callbacks.push(callbacks)
+          scope[filename+"-watcher"] = ref.callbacks.length  - 1
+        
+          scope.$on '$destroy', ()-> 
+            delete callbacks[scope[filename+"-watcher"]]
+            return
         return
 
     return dataFile
