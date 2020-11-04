@@ -40,6 +40,11 @@
             website.locale = Locale;
 
             website.getCarouselInterval = State.getCarouselInterval;
+
+            website.init = function (prefLang,forceLang,allowEdit) {
+                Locale.init(prefLang,forceLang);
+                State.setAllowEdit(allowEdit);
+            }
             
             website.headerImage = function () {
                 return (!Quirks.isMobileLayout() && Sections.topPage) ?  Sections.topPage.bkgImg : "";

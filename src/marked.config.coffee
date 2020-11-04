@@ -6,10 +6,6 @@ ResourceFile = require('./resourceFile')
 EmbedUrl =  require('./resourceUrl').embedUrl
 
 
-console.log "EmbedUrl:"
-console.log EmbedUrl
-
-
 
 renderer =
   link :  ( href, title, text) ->
@@ -99,6 +95,13 @@ shorthand = (heading, content) ->
                     
         </div>            
         """
+    when 'sections'
+      result = lexer.lex(content);
+      console.log "sections content:"
+      result = parserFactory(sectionsScheme)(result)
+      console.log result
+      return result
+
     else  
       return false
 
@@ -109,6 +112,21 @@ carouselScheme =
     '<div uib-carousel active="active" interval="website.getCarouselInterval()">  \n' +  body + '  \n</div>  \n'
   listItem: (body, curIndex) ->
     '<div uib-slide index="' + curIndex + '" >  \n' + marked(body,options) + '  \n</div>  \n'
+
+sectionsScheme = 
+  list: (body) -> 
+    '<div uib-carousel active="active" interval="website.getCarouselInterval()">  \n' +  body + '  \n</div>  \n'
+  listItem: (body, curIndex) ->
+    '<div uib-slide index="' + curIndex + '" >  \n' + marked(body,options) + '  \n</div>  \n'
+  image: ( href, title, text) ->
+    section = 
+      id:title
+    website.sections.data.push()
+    """
+    <section ng-if="website.displaySection(section.id)"  id="\{{section.id}}" section="section" ng-class="'section-' + section.id" >            
+        <x-page ng-repeat='page in section.pages' ng-include="page.template" ng-init="pageIndex = $index"></x-page>
+    </section>
+    """
 
 parserFactory = (parserScheme)->
   token = null
