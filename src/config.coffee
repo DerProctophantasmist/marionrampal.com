@@ -1,5 +1,5 @@
 config = window.config
-require('angular').module('config',[])
+require('angular').module('config',[require('angular-marked')])
   .config(['$sceDelegateProvider', '$httpProvider', 'markedProvider', '$compileProvider', ($sceDelegateProvider, $httpProvider, markedProvider,$compileProvider) ->
     $sceDelegateProvider.resourceUrlWhitelist([
       # Allow same origin resource loads.

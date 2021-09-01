@@ -11,8 +11,8 @@
 
 ![markdown](accueil/leSecretIsOut)
     </div>
-    <div uib-slide index="3">
+    <!-- div uib-slide index="3">
 
 ![markdown](accueil/jazzExportDays)
-    </div>
+    </div --> 
 </div>

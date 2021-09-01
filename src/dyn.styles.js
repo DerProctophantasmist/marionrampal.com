@@ -1,6 +1,6 @@
 
 var angular = require('angular');
-var modStyles = angular.module('dyn.styles', []);
+var modStyles = angular.module('dyn.styles', [ require('./states')]);
 
 
 
@@ -99,5 +99,21 @@ modStyles.directive("fontStyle", ['googleFonts', function (googleFonts) {
 
 
 modStyles.value('dynSvg', {});
+
+modStyles.directive("fullsiteonly",[function () {
+    return {
+        restrict: 'A',
+        controller: ['State', function(State){ 
+            this.shown = function(){
+                return !State.singleSection();
+            };
+        }],
+        scope:{},
+        controllerAs: '$c',
+        transclude: true,
+        template: '<ng-transclude ng-show="$c.shown()" />'
+    };
+
+}]);
 
 module.exports = 'dyn.styles';

@@ -102,6 +102,44 @@
 		]
 	}
 	{
+		id: "ile"
+		name: "L'Île aux Chants Mêlés"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"400"
+				"700"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "red white text-justify start-pos-10"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.IleAuxChants3.left.jpg 1920w, images/MarionRampal4k.IleAuxChants3.left.jpg 3840w"
+				bkgImgPos: "37% 5%"
+				boxes: [
+					{
+						position: "right"
+						"mobile-header": [
+							{
+								h2: "L'Île Aux Chants Mêlés"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'ile/ile'"
+							}
+						]	
+						
+					}
+				]
+			}
+		]
+	}
+	{
 		id: "mainBlue"
 		name: "Main Blue"
 		googleFont:

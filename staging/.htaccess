@@ -39,7 +39,7 @@ RewriteRule ^(([^/]+/)*)(default|main|index)\.(html|php|htm)$ $1 [L,R=301]
 
 
 RewriteCond     "%{HTTPS}"  "on"
-RewriteCond     %{REQUEST_URI} ^/staging(/|/mainblue|/concerts|/contacts|/biography|/listen|/lyrics|/lesecret)$
+RewriteCond     %{REQUEST_URI} ^/staging(/|/mainblue|/concerts|/contacts|/biography|/listen|/lyrics|/lesecret|/ile)$
 RewriteRule     ^([^/]*)/?$ http://127.0.0.1:49152/?path=%{ENV:PATH}&page=$1&forceLang=%{ENV:ForceLang} [P,L]
 
 RewriteCond     "%{HTTPS}"  "on"

@@ -2,14 +2,22 @@
 (function() {
   module.exports = 'mobile.expand';
 
-  require('angular').module('mobile.expand', [require('angular-aside'), require('./states')]).factory('MobileExpand', [
+  require('angular').module('mobile.expand', [require('angular-aside'), require('./states'), require('angular-marked'), require('./markdownEditor')]).factory('MobileExpand', [
     '$uibModal',
     'State',
+    'marked',
+    '$compile',
     function($uibModal,
-    State) {
-      var window;
+    State,
+    marked,
+    $compile) {
+      var mobileExpand,
+    window;
       window = null;
-      return {
+      mobileExpand = {
+        refresh: function() {
+          return {};
+        },
         open: function(content,
     popupLinks) {
           if (window !== null) {
@@ -25,9 +33,17 @@
               '$scope',
               '$uibModalInstance',
               'Sections',
+              'MarkdownEditor',
               function($scope,
               $uibModalInstance,
-              Sections) {
+              Sections,
+              MarkdownEditor) {
+                mobileExpand.refresh = function() {
+                  return $scope.$apply();
+                };
+                // onCloseEditor = () =>
+                //   content.editor.off('fileChange',onEdit)
+                //   content.editor.off('onClose', onClose)
                 this.title = 'Mobile Content';
                 State.hideMainContent(true);
                 this.ok = function(e) {
@@ -42,7 +58,20 @@
                     return e.stopPropagation();
                   }
                 };
+                this.edit = function(content) {
+                  // DataFile.read(filename, fileCallbacks, $scope)  if !content.data
+                  // we are not actually using the editor reference, otherwise set
+                  // content.editor = 
+                  return MarkdownEditor.open(content.localizedFilename,
+              content.data);
+                };
+                
+                // content.editor.on('fileChange', onEdit)
+                // content.editor.on('close', onCloseEditor)
+                // make some stuff accessible to the template, via the scope:
                 $scope.content = content;
+                //this is for the editor: should we show it?
+                $scope.globalState = State;
                 $scope.popupLinks = popupLinks;
                 return this;
               }
@@ -81,6 +110,7 @@
           return window.dismiss();
         }
       };
+      return mobileExpand;
     }
   ]);
 

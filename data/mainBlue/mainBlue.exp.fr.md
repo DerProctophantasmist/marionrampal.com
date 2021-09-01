@@ -44,4 +44,3 @@ Teaser:![youtube](https://www.youtube.com/watch?v=sIorOkrRm9Q)
 
 [*Visiter le site d'Anne Paceo*](http://www.annepaceo.com)
 [*Visiter le site de Pierre-François Blanchard*](http://www.pierrefrancoisblanchard.com)
-

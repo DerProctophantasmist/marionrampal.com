@@ -12,7 +12,7 @@
       //    $urlRouterProvider.otherwise("/loading")
       $urlRouterProvider.otherwise("/home");
       
-      //    $stateProvider.state('loading', {      
+      //    $stateProvider.state('loading', {       
       //      url: "/loading/:url"
       //    })
       $stateProvider.state('home',
@@ -96,6 +96,7 @@
           return !State.singleSection() && !State.hiddenSections[sectionName] || (sectionName.toLowerCase() === $stateParams.id.toLowerCase());
         },
         sectionToDisplay: null,
+        showEditors: false,
         hiddenSections: [],
         home: (function() {
           $state.go('home');
@@ -112,6 +113,12 @@
           } else {
             return 5000;
           }
+        },
+        setAllowEdit: function(allowEdit) {
+          return State.showEditors = allowEdit;
+        },
+        getAllowEdit: function() {
+          return State.showEditors;
         }
       };
       return State;

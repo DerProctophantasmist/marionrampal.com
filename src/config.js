@@ -4,13 +4,15 @@
 
   config = window.config;
 
-  require('angular').module('config', []).config([
+  require('angular').module('config', [require('angular-marked')]).config([
     '$sceDelegateProvider',
     '$httpProvider',
     'markedProvider',
+    '$compileProvider',
     function($sceDelegateProvider,
     $httpProvider,
-    markedProvider) {
+    markedProvider,
+    $compileProvider) {
       $sceDelegateProvider.resourceUrlWhitelist([
         // Allow same origin resource loads.
         'self',
@@ -33,6 +35,14 @@
       ]);
       if ($httpProvider.defaults.headers.common == null) {
         $httpProvider.defaults.headers.commom = {};
+      }
+      if (typeof PROD !== "undefined" && PROD !== null) {
+        $compileProvider.debugInfoEnabled(false);
+        $compileProvider.commentDirectivesEnabled(false);
+        $compileProvider.cssClassDirectivesEnabled(false);
+        console.log = function() {
+          return {};
+        }; //defined by uglyfy process
       }
       return markedProvider.setDataPath(config.dataPath);
     }

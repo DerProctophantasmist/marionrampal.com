@@ -34,7 +34,7 @@
         }
       };
       emitter = new EventEmitter();
-      emitter.setMaxListeners(100);
+      emitter.setMaxListeners(100000);
       if (storedLocale = $window.localStorage.getItem('marionrampal.locale')) {
         console.log("stored locale: " + $window.localStorage.getItem('marionrampal.locale'));
         curLocale = availLoc[storedLocale];
@@ -47,13 +47,16 @@
       return locale = {
         available: availLoc,
         set: function(newLocale,
-    persist = false) {
+    persist = false,
+    emit = true) {
           if (newLocale.length === 2) {
             newLocale = defaultLoc[newLocale];
           }
           if (availLoc[newLocale] != null) {
             curLocale = availLoc[newLocale];
-            emitter.emit('changeLocale');
+            if (emit) {
+              emitter.emit('changeLocale');
+            }
             if (persist) {
               $window.localStorage.setItem('marionrampal.locale',
     newLocale);
@@ -61,7 +64,9 @@
             }
           } else if (curLocale === null) {
             curLocale = availLoc['fr-FR'];
-            emitter.emit('changeLocale');
+            if (emit) {
+              emitter.emit('changeLocale');
+            }
           }
           return curLocale;
         },
@@ -80,9 +85,13 @@
     forceLang) {
           console.log("locale init, prefLang: " + prefLang + ", forceLang: " + forceLang);
           if (forceLang) {
-            return locale.set(forceLang);
+            return locale.set(forceLang,
+    false,
+    false);
           } else if (storedLocale == null) {
-            return locale.set(prefLang); //if prefLang is not valid locale will be set to French by default
+            return locale.set(prefLang,
+    false,
+    false); //if prefLang is not valid locale will be set to French by default
           }
         },
         onChange: function(callback,
@@ -96,6 +105,10 @@
     callback);
             });
           }
+        },
+        offChange: function(callback) {
+          return emitter.removeListener('changeLocale',
+    callback);
         }
       };
     }
@@ -158,15 +171,15 @@
         scope);
             }
           };
-          //          scope.$watch( i18nAttrName, (newValue, oldValue) -> 
-          //            attrValue = scope.$eval newValue
-          //            updatei18n()
-          //          )   
-          return params;
         }
       ]);
     })(name);
   }
+
+  //          scope.$watch( i18nAttrName, (newValue, oldValue) -> 
+//            attrValue = scope.$eval newValue
+//            updatei18n()
+//          )   
 
 }).call(this);
 
