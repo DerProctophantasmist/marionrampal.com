@@ -1,5 +1,5 @@
 config = window.config
-require('angular').module('config',[require('angular-marked')])
+require('angular').module('config',[require('angular-marked'),require('./sections')])
   .config(['$sceDelegateProvider', '$httpProvider', 'markedProvider', '$compileProvider', ($sceDelegateProvider, $httpProvider, markedProvider,$compileProvider) ->
     $sceDelegateProvider.resourceUrlWhitelist([
       # Allow same origin resource loads.
@@ -33,7 +33,7 @@ require('angular').module('config',[require('angular-marked')])
     markedProvider.setDataPath(config.dataPath);
     
   ])
-  .factory('Config', ['$location', ($location) ->
+  .factory('Config', ['$location', 'Sections', ($location,Sections) ->
     # local = /(\.local|192\.168\.1\.51)$/.test $location.host()
     # if local != config.local 
     #   msg = 'wrong config file!'
@@ -42,6 +42,10 @@ require('angular').module('config',[require('angular-marked')])
 
     config.ajaxHost = (uri) ->
       return "https://ajax." + hostname + "/" +uri
+
+    
+    config.nbrOfSectionsToLoad = (nbr)->
+      Sections.nbrOfSectionsToLoad(nbr)
       
     return config
     

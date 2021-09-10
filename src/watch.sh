@@ -1,3 +1,3 @@
-pushd "$(dirname "$(realpath "$0")")";
-watchify --debug index.js -o ../assets/js/bundle.js  -p [ parcelify -wo ../assets/css/bundle.css ]
+pushd "$(dirname "$(realpath "$0")")";  
+watchify --verbose --debug index.js -o ../assets/js/bundle.js  -p [ parcelify -wo ../assets/css/bundle.css ]
 popd

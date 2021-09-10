@@ -18,54 +18,26 @@
         'afkl.lazyImage', 'hc.marked',
         'bootstrapLightbox', 'ngTouch', 'angular-loading-bar',
         'ngAnimate', 'ui.bootstrap', 'videosharing-embed',
-        require('angular-marked'), require('./oEmbed'), require('./contact.form'), require('./section'),
+        require('angular-marked'), require('./oEmbed'), require('./contact.form'), require('./section'), require('./page'),
         require('./calendar'), require('./include.markup'), require('./config'), require('./quirks'),
-        require('./language.picker'), require('./render.json')
+        require('./language.picker'), require('./render.json'), require('./mobile.header')
     ]).config(['markedProvider', function (markedProvider) {
         markedProvider.setOptions({gfm: true, breaks:false});
     }]);;
     
     
-//    var sectionCtrl = ['$scope', function($scope){            
-//            $scope.activated = false;
-//            this.activate = function(status){
-//                $scope.activated = status;
-//            };
-//    }];
-
-    function getPageTemplateUrl(type) {
-        switch (type) {
-            case 'intro':
-                return '/page_intro.html';
-            case 'main':
-                return '/page_standard.html';
-            case 'collection':
-                return '/page_collection.html';
-
-        }
-    }
 
 
-//    modData.directive("page", function () {
-//        return {
-//            restrict: 'E',
-//            scope: false,
-//            replace: true,
-//            link: function (scope, elt, attrs) {
-//            }
-//        };
-//    });
 
 
     var boxCtrl = ['$scope', 'Quirks', function ($scope, Quirks) {
-            if (Quirks.isMobileLayout()) $scope.header = $scope.box["mobile-header"];
-            $scope.content = $scope.box.content;
+
             $scope.popupLinks = [];
             $scope.getPopupLinks = function () {
                 return $scope.popupLinks;
             };
         }];
-
+        
 
     modData.directive("renderJson", ['$compile', '$interpolate', 'Config', 'JsonRenderer',  function ($compile, $interpolate,  Config, JsonRenderer) {
         

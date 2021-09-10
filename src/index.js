@@ -73,7 +73,7 @@
             website.isMainContentHidden = State.isMainContentHidden
             
             
-            $scope.inViewOptions = {throttle:30,offset:[-40,0,-40,0]};
+            website.inViewOptions = {throttle:30,offset:[-40,0,-40,0]};
             
         }];
     

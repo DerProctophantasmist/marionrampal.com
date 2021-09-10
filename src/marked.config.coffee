@@ -1,11 +1,12 @@
 module.exports = 'markedConfig'
-Config = window.config
+config = window.config
 marked = require('marked')
 oldRenderer = new marked.Renderer()
 ResourceFile = require('./resourceFile')
 EmbedUrl =  require('./resourceUrl').embedUrl
 
-
+CSON = require('cson-parser')
+htmlentities = require('html-entities')
 
 renderer =
   link :  ( href, title, text) ->
@@ -42,7 +43,7 @@ renderer =
 genRenderer = new marked.Renderer
 genRenderer.link = renderer.link
 genRenderer.image = renderer.image
-genRenderer.code = renderer.code
+genRenderer.code = renderer.code 
 console.log "genRenderer"
 options = { gfm: true, breaks: false, renderer: genRenderer}
 marked.setOptions(options)
@@ -50,19 +51,8 @@ console.log marked.defaults
 lexer = new marked.Lexer(options)
 
 
-
 shorthand = (heading, content) ->
-  i = heading.indexOf(' ')
-  if i!=-1
-    type = heading.substring 0, i
-    params = {}
-    try         
-      params = JSON.parse '{' + heading.substring(i+1) + '}'          
-  else  
-    type = heading
-  console.log "heading: "+ heading
-  console.log params
-  switch type
+  switch heading
     when 'carousel'
       result = lexer.lex(content);
       console.log "carousel content:"
@@ -76,11 +66,8 @@ shorthand = (heading, content) ->
       console.log result
       return result = """
         <figure left-aside class="clickable image half" mdfile="#{params.mdfile}" >
-
-        #{result}                        
-                
-        <figcaption>#{params.caption}</figurecaption>
-
+          #{result}                                        
+          <figcaption>#{params.caption}</figurecaption>
         </figure>          
         """
     when "imagesLeft"
@@ -90,21 +77,31 @@ shorthand = (heading, content) ->
       console.log result
       return result = """
         <div style="margin: 0" class="force-float-images-left clearfix">
-
-        #{result}                        
-                    
+          #{result}                                            
         </div>            
         """
-    when 'sections'
+    when 'sections' #section list
       result = lexer.lex(content);
-      console.log "sections content:"
-      result = parserFactory(sectionsScheme)(result)
+      console.log "sections content: "
+      acc = {nbr:0}
+      result = parserFactory(sectionsScheme(acc))(result)
       console.log result
+      config.nbrOfSectionsToLoad(acc.nbr)
       return result
 
+    when 'page' #single page section
+      page={} # accumulator, in order to "pass by ref" the data in the list
+      result = lexer.lex(content);
+      result = parserFactory(pageScheme(page))(result)
+      
+      #we "fetch" the parent section from the section controller, see section.coffee:
+      return """ 
+      <page section="$sc.section" page-data='#{JSON.stringify(page)}'> 
+        #{result}
+      </page>
+      """
     else  
       return false
-
 
 
 carouselScheme = 
@@ -113,20 +110,71 @@ carouselScheme =
   listItem: (body, curIndex) ->
     '<div uib-slide index="' + curIndex + '" >  \n' + marked(body,options) + '  \n</div>  \n'
 
-sectionsScheme = 
-  list: (body) -> 
-    '<div uib-carousel active="active" interval="website.getCarouselInterval()">  \n' +  body + '  \n</div>  \n'
-  listItem: (body, curIndex) ->
-    '<div uib-slide index="' + curIndex + '" >  \n' + marked(body,options) + '  \n</div>  \n'
-  image: ( href, title, text) ->
-    section = 
-      id:title
-    website.sections.data.push()
-    """
-    <section ng-if="website.displaySection(section.id)"  id="\{{section.id}}" section="section" ng-class="'section-' + section.id" >            
-        <x-page ng-repeat='page in section.pages' ng-include="page.template" ng-init="pageIndex = $index"></x-page>
-    </section>
-    """
+sectionsScheme = (acc) -> 
+  scheme = 
+    text: (text) -> text
+    image: ( href, title, text) ->
+      section = 
+        id:text
+      title = htmlentities.decode(title)
+      try
+        params=CSON.parse title
+      catch e
+        msg = "section " + text + " not well formed: " + title + " is not a json string. " + e.message
+        console.log msg
+        return "<section>" + msg + "</section>"
+      section={section...,params...}
+      acc.nbr++
+      return """ 
+      <section  ng-if="website.displaySection(#{section.id})"  id="#{section.id}" section-data='#{JSON.stringify(section)}' class="section-#{section.id}">
+        <marked compile=true filename="'#{href}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
+        </marked> 
+      </section>
+      """
+
+  scheme.inlineLexer = new marked.InlineLexer([], {options...,renderer:scheme})
+  return scheme
+
+
+pageScheme = (page)->
+  scheme = 
+    list: (body) -> ""
+    listItem: (body, curIndex) ->
+      i = body.indexOf(':')
+      if i!=-1
+        key = body.substring(0, i).trim()
+        value = body.substring(i+1).trim() 
+        page[key]=value
+      else  
+        console.log "malformed data: " + body
+        return ""
+      return ""
+    text: (text) -> text
+    image: ( href, title, text) ->
+      box = {}
+      title = htmlentities.decode(title)
+      if title != ""        
+        try
+          box=CSON.parse title
+        catch e
+          msg = "box not well formed: " + title + " is not a cson string. " + e.message
+          console.log msg
+          return "<div>" + msg + "</div>"
+      html ="""
+        <div ng-controller="BoxCtrl" class="content-sizer box #{text}" ng-hide="website.isMainContentHidden()">
+      """
+      if box.mobileHeader
+        html+="""
+          <mobile-header>
+          </mobile-header>
+        """
+      return html + """         
+          <marked compile=true filename="'#{href}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
+        </div>
+      """
+  scheme.inlineLexer = new marked.InlineLexer([], {options...,renderer:scheme})
+  return scheme
+
 
 parserFactory = (parserScheme)->
   token = null
@@ -238,8 +286,6 @@ parserFactory = (parserScheme)->
       when 'list_item_start'
         if !parserScheme.listItem then return unknownToken()
         body = ''
-        console.log 'list item:'
-        console.log token
         loose = token.loose
         checked = token.checked
         task = token.task
@@ -262,11 +308,12 @@ parserFactory = (parserScheme)->
       #   // TODO parse inline content if parameter markdown=1
       #   return renderer.html(token.text);
       
-      # when 'paragraph': 
-      #   return renderer.paragraph(inline.output(token.text));
+      when 'paragraph' 
+        if !parserScheme.inlineLexer then return unknownToken()
+        return parserScheme.inlineLexer.output(token.text)
       
-      # when 'text': 
-      #   return renderer.paragraph(parseText());
+      when 'text'
+         return parserFactory(parserScheme)(parseText())
       
       else 
         return unknownToken()

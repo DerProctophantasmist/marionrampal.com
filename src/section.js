@@ -2,39 +2,60 @@
 (function() {
   module.exports = 'section';
 
-  require('angular').module('section', []).component('section', {
-    template: '<ng-transclude ng-if="!$c.empty"></ng-transclude>',
+  require('angular').module('section', [require('./sections'), require('./states')]).component('section', {
+    template: '<ng-transclude ng-if="!$sc.empty"></ng-transclude>',
     transclude: true,
     bindings: {
-      section: '<'
+      section: '<',
+      sectionData: '@'
     },
     controller: [
+      'State',
       'Calendars',
       '$scope',
-      function(Calendars,
-      $scope) {
+      'Sections',
+      function(State,
+      Calendars,
+      $scope,
+      Sections) {
         this.empty = false;
         this.$onInit = () => {
-          if (this.section.emptyEvent) {
-            $scope.$on(this.section.emptyEvent,
+          var e;
+          if (this.section == null) {
+            try {
+              this.section = JSON.parse(this.sectionData);
+            } catch (error) {
+              e = error;
+              console.log("data for the section is not well formed: " + e.toString());
+              return;
+            }
+          }
+          Sections.addSection(this.section);
+          if (this.section.emptyEvent) { //this is used for calendars only for now, if if it's empty hide the section
+            //why the hell do we hide the whole section and not just the page? Well we should hide the section
+            //if it has a single page, which is the case, hence, more work. Just lazy.
+            $scope.website = $scope.$parent.website;
+            if (!State.getAllowEdit()) {
+              $scope.$on(this.section.emptyEvent,
       (e,
       args) => {
-              var next,
+                var next,
       previous;
-              this.empty = true;
-              next = this.section.pages[this.section.pages.length - 1].next;
-              if ((previous = this.section.pages[0].previous) != null) {
-                previous.next = next;
-              }
-              if (next != null) {
-                return next.previous = previous;
-              }
-            });
+                this.empty = true;
+                next = this.section.pages[this.section.pages.length - 1].next;
+                if ((previous = this.section.pages[0].previous) != null) {
+                  previous.next = next;
+                }
+                if (next != null) {
+                  return next.previous = previous;
+                }
+              });
+            }
           }
         };
       }
     ],
-    controllerAs: '$c'
+    controllerAs: '$sc'
   });
 
 }).call(this);

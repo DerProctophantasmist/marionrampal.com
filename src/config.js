@@ -4,7 +4,7 @@
 
   config = window.config;
 
-  require('angular').module('config', [require('angular-marked')]).config([
+  require('angular').module('config', [require('angular-marked'), require('./sections')]).config([
     '$sceDelegateProvider',
     '$httpProvider',
     'markedProvider',
@@ -48,7 +48,9 @@
     }
   ]).factory('Config', [
     '$location',
-    function($location) {
+    'Sections',
+    function($location,
+    Sections) {
       var hostname;
       // local = /(\.local|192\.168\.1\.51)$/.test $location.host()
       // if local != config.local 
@@ -57,6 +59,9 @@
       hostname = $location.host().split('.').slice(-2).join('.');
       config.ajaxHost = function(uri) {
         return "https://ajax." + hostname + "/" + uri;
+      };
+      config.nbrOfSectionsToLoad = function(nbr) {
+        return Sections.nbrOfSectionsToLoad(nbr);
       };
       return config;
     }
