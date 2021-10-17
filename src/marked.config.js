@@ -18,11 +18,11 @@
 
   htmlentities = require('html-entities');
 
+  // console.log "marked defaults: "
+  // console.log marked.defaults
   renderer = {
     link: function(href, title, text) {
       var res;
-      console.log("marked defaults: ");
-      console.log(marked.defaults);
       if (res = ResourceFile(href, title, text, false)) { //last param is embed=true/false
         return res.html;
       } else {
@@ -87,35 +87,30 @@
     switch (heading) {
       case 'carousel':
         result = lexer.lex(content);
-        console.log("carousel content:");
         result = parserFactory(carouselScheme)(result);
-        console.log(result);
+        // console.log result
         return result;
       case "figure":
-        console.log(content);
         // result = marked.inlineLexer(content,[],options)
         result = marked(content, options);
-        console.log(result);
+        // console.log result
         return result = `<figure left-aside class="clickable image half" mdfile="${params.mdfile}" >
   ${result}                                        
   <figcaption>${params.caption}</figurecaption>
 </figure>          `;
       case "imagesLeft":
-        console.log(content);
-        // result = marked.inlineLexer(content,[],options)
         result = marked(content, options);
-        console.log(result);
+        // console.log result
         return result = `<div style="margin: 0" class="force-float-images-left clearfix">
   ${result}                                            
 </div>            `;
       case 'sections': //section list
         result = lexer.lex(content);
-        console.log("sections content: ");
         acc = {
           nbr: 0
         };
         result = parserFactory(sectionsScheme(acc))(result);
-        console.log(result);
+        // console.log result
         config.nbrOfSectionsToLoad(acc.nbr);
         return result;
       case 'page': //single page section
@@ -124,7 +119,7 @@
         result = parserFactory(pageScheme(page))(result);
         
         //we "fetch" the parent section from the section controller, see section.coffee:
-        return `<page section="$sc.section" page-data='${JSON.stringify(page)}'> 
+        return `<page sec-ctrl='$sc' page-data='${JSON.stringify(page)}'> 
   ${result}
 </page>`;
       default:
@@ -147,6 +142,9 @@
       text: function(text) {
         return text;
       },
+      link: function() {
+        return {};
+      },
       image: function(href, title, text) {
         var e, msg, params, section;
         section = {
@@ -163,7 +161,8 @@
         }
         section = {...section, ...params};
         acc.nbr++;
-        return `<section  ng-if="website.displaySection(${section.id})"  id="${section.id}" section-data='${JSON.stringify(section)}' class="section-${section.id}">
+        return `<section  ng-if="website.displaySection(${section.id})"  id="${section.id}" section-data='${JSON.stringify(section)}' class="section-${section.id}"
+style="{{(website.state.getAllowEdit())?'min-height:6em;':''}}">
   <marked compile=true filename="'${href}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
   </marked> 
 </section>`;
@@ -198,6 +197,9 @@
       text: function(text) {
         return text;
       },
+      link: function() {
+        return {};
+      },
       image: function(href, title, text) {
         var box, e, html, msg;
         box = {};
@@ -217,7 +219,7 @@
           html += `<mobile-header>
 </mobile-header>`;
         }
-        return html + `  <marked compile=true filename="'${href}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
+        return html + `  <marked compile=true filename="'${href}'" editor-button-style="position:absolute;top:6em;left:10em;color:black;z-index:1000;">
 </div>`;
       }
     };

@@ -21,13 +21,15 @@ require('angular').module('markdownEditor', [require('./sendToServer'), require(
 
         # Listen to StackEdit events and apply the changes to the textarea.
         stackedit.on('fileChange', (file) => 
-          DataFile.onChange(filename, file.content.text)
+          #notifying every change made in the editor is a bad idea, we end up rendering a lot of malformed versions
+          # DataFile.onChange(filename, file.content.text)
           curContent = file.content.text 
         )
         stackedit.on('close', () => 
           delete stackedit.$listeners['close']
           delete stackedit.$listeners['fileChange']
           if curContent != originalContent 
+            DataFile.onChange(filename, curContent)
             SendToServer.textFile(name,curContent)
 
         )

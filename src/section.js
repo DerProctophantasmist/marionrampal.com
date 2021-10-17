@@ -11,13 +11,11 @@
     },
     controller: [
       'State',
-      'Calendars',
-      '$scope',
       'Sections',
+      '$scope',
       function(State,
-      Calendars,
-      $scope,
-      Sections) {
+      Sections,
+      $scope) {
         this.empty = false;
         this.$onInit = () => {
           var e;
@@ -32,9 +30,6 @@
           }
           Sections.addSection(this.section);
           if (this.section.emptyEvent) { //this is used for calendars only for now, if if it's empty hide the section
-            //why the hell do we hide the whole section and not just the page? Well we should hide the section
-            //if it has a single page, which is the case, hence, more work. Just lazy.
-            $scope.website = $scope.$parent.website;
             if (!State.getAllowEdit()) {
               $scope.$on(this.section.emptyEvent,
       (e,

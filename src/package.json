@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "site web de Marion Rampal",
   "main": "index.js",
-  "style": "*.scss",
-  "transforms": [
-    "sass-css-stream"
-  ],
+  "style": "*.css",
   "repository": {
     "type": "git",
     "url": "git://github.com/DerProctophantasmist/marionrampal.com.git"
@@ -29,8 +26,10 @@
     "angular-utils-pagination": "latest",
     "bluebird": "^3.7.2",
     "bootstrap-sass": "latest",
+    "calendar-link": "^2.1.1",
     "cson-parser": "^4.0.9",
     "debounce": "^1.2.1",
+    "file-saver": "^2.0.5",
     "flag-icon-css": "^2.8.0",
     "html-entities": "^2.3.2",
     "js-cookie": "^2.2.1",
@@ -42,7 +41,6 @@
     "ng-videosharing-embed": "github:DerProctophantasmist/ng-videosharing-embed",
     "node-sass": "^4.14.1",
     "object.pick": "^1.3.0",
-    "sass-css-stream": "latest",
     "striptags": "^3.2.0"
   },
   "devDependencies": {

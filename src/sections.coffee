@@ -30,12 +30,23 @@ require('angular').module('sections',[require('./language.picker')])
         return section.next.pages[0]
       return findNextPageBeforeInsertion(section.next)
 
+         
+    loadedOneSection = ()->
+      nbrOfSectionsLoaded++
+      console.log "loaded #{nbrOfSectionsLoaded} of #{nbrOfSectionsToLoad} sections"     
+      if nbrOfSectionsLoaded == nbrOfSectionsToLoad    
+        for funcPairs in delayedOnLoad
+          execute funcPairs.perSection
+          if funcPairs.onEnd then funcPairs.onEnd()      
+      return      
+
     addSection = (section) ->
       section.pages = []
       section.getname = getname
       if data.length
         section.previous = data[data.length - 1]
         section.previous.next = section
+        
       section.addPage = (page)->
         page.active = false
         page.section = this
@@ -43,17 +54,17 @@ require('angular').module('sections',[require('./language.picker')])
 
         page.previous = findPreviousPageBeforeInsertion(section)
         if page.previous
-          if page.previous.next
+          if page.previous.next #we have found the next page, otherwise it means it has not been loaded yet
+            page.next = page.previous.next
             page.previous.next.previous = page
           page.previous.next = page
+        else 
+          page.next = findNextPageBeforeInsertion(section)
+          if page.next
+            # we know the next page had no previous, otherwise we'd have found it with findPreviousPageBeforeInsertion
+            page.next.previous = page
 
-        page.next = findNextPageBeforeInsertion(section)
-        if page.next
-          if page.next.previous
-            page.next.previous.next = page
-          page.next.previous = page
-
-# maybe we should have chosen between javascript arrays and a couple of linked list to represent our data, instead of doing both :)
+        # maybe we should have chosen between javascript arrays and a couple of linked list to represent our data, instead of doing both :)
         page.destroy = ()->
           if page.next
             page.next.previous = page.previous
@@ -72,13 +83,12 @@ require('angular').module('sections',[require('./language.picker')])
         
 
       section.index = data.push(section)
+      loadedOneSection()
       
 
 
     sections = { 
-      finalCount: -1
-      count : 0
-      data
+      data : data
       onLoad : (funcPerSection, onEnd) ->
         if nbrOfSectionsToLoad == nbrOfSectionsLoaded
           execute funcPerSection
@@ -87,16 +97,10 @@ require('angular').module('sections',[require('./language.picker')])
         delayedOnLoad.push {perSection:funcPerSection, onEnd:onEnd}      
         return
       addSection
-      nbrOfSectionsToLoad: (nbr) ->            
+      nbrOfSectionsToLoad: (nbr) ->       
+        console.log "nbr of sections to load: #{nbr}"     
         nbrOfSectionsToLoad = nbr
-        nbrOfSectionsLoaded = 0        
-      loadedOneSection : ()->
-        nbrOfSectionsLoaded++
-        if nbrOfSectionsLoaded == nbrOfSectionsToLoad          
-          for funcPairs in delayedOnLoad
-            execute funcPairs.perSection
-            if funcPairs.onEnd then funcPairs.onEnd()      
-          return      
+        nbrOfSectionsLoaded = 0   
       isLoaded: ()->
         nbrOfSectionsToLoad == nbrOfSectionsLoaded
     }

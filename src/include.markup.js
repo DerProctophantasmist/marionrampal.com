@@ -184,8 +184,8 @@
     attrs) {
           //handling preloaded content from the server:
           scope.content.data = element.html();
-          console.log('include markup get preloaded:');
-          console.log(scope.content.data);
+          // console.log 'include markup get preloaded:'
+          // console.log scope.content.data
           element.append($compile(template)(scope));
         }
       };

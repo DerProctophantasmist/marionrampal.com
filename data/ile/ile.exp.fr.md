@@ -17,6 +17,11 @@ Empruntant aux figures des écrivains voyageurs, des musicologues collectionneur
 
 Le capitaine Rampal et ses deux camarades partent en quête de l'Île aux chants mêlés en suivant la trace des métissages musicaux.  La trace d’Harry Belafonte, immense chanteur et militant, qui a fait découvrir à un public international l’héritage musical des Caraïbes en le réinventant. Celle aussi d’Alma Barthélémy, chanteuse créole presque inconnue, interprétant à sa façon si singulière des airs qui avaient voyagé entre le Canada et la France et jusqu’au bayous de Louisiane où elle habitait. Celle encore de Liliʻuokalani, la dernière reine d'Hawaï, qui fut aussi auteure compositrice.
 
+```imagesLeft 
+![Dessin de Cécile McLorin Salvant pour le spectacle](images/MarionRampal.IleAuxChants2.left.jpg "Dessin de Cécile McLorin Salvant pour le spectacle")
+![Dessin de Cécile McLorin Salvant pour le spectacle](images/MarionRampal.IleAuxChants2.left.jpg "Dessin de Cécile McLorin Salvant pour le spectacle")
+```
+
 
 Ces personnages empruntés aux réels sont projetés sur l’horizon légendaire du récit avec des fragments de leurs histoires personnelles, en même temps que se mêlent aux chansons « traditionnelles », des originaux de Marion Rampal qui en ont la couleur. Ces associations procedent d'une conviction: toute tradition est inventée et réinventée dans le présent, sans quoi elle devient inauthentique et creuse. Conserver une tradition c’est la faire mourir. 
 

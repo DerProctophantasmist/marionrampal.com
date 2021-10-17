@@ -5,10 +5,11 @@ require('angular').module('section',[require('./sections'), require('./states')]
   template: '<ng-transclude ng-if="!$sc.empty"></ng-transclude>',
   transclude: true,
   bindings: {section: '<', sectionData: '@'},
-  controller: ['State', 'Calendars', '$scope', 'Sections', (State, Calendars, $scope, Sections) ->        
+  controller: ['State', 'Sections', '$scope', (State,  Sections, $scope) ->        
       this.empty = false
         
       this.$onInit = ()=>
+        # $scope.website = $scope.$parent.website
         if !this.section?
           try
             this.section = JSON.parse(this.sectionData)
@@ -19,7 +20,6 @@ require('angular').module('section',[require('./sections'), require('./states')]
         if this.section.emptyEvent #this is used for calendars only for now, if if it's empty hide the section
         #why the hell do we hide the whole section and not just the page? Well we should hide the section
         #if it has a single page, which is the case, hence, more work. Just lazy.
-          $scope.website = $scope.$parent.website
           #we don't want to hide the section if we are editing
           if !State.getAllowEdit()
             $scope.$on( this.section.emptyEvent, 

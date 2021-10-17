@@ -20,14 +20,21 @@ require('angular').module('page',[require("./sections"),require("./section")])
     </article>
   """,
   transclude: true,
-  bindings: {pageData: '@', section: '<'},
-  require: 
-    secCtrl: '^?section'
-  controller: ['$scope',($scope) ->        
+  bindings: {pageData: '@'},
+  controller: ['$scope',($scope) ->     
+      $scope.$pc = this   
       this.empty = false
         
-      this.$onInit = ()=>
-        this.website = $scope.$parent.website
+      this.$postLink = ()=>
+        $cur = $scope
+        loop
+          $cur = $cur.$parent
+          if $cur == null
+            throw new ReferenceError("page #{page.id} cannot find parent section")
+          if !this.sectCtrl? then this.secCtrl = $cur.$sc
+          if !this.website? then this.website = $cur.website
+          if this.secCtrl? && this.website? then break
+
 
         if !this.page?
           try

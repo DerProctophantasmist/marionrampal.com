@@ -338,6 +338,10 @@ figcaption {
         z-index : 1;
         margin: 0 1em 0 0;
     }
+
+    .image.half + .image.half {
+        margin: 0 0 0 -1em;
+    }
 }
 
 
@@ -803,7 +807,7 @@ a.popup-link {
             }*/
 
     .content-sizer {
-        @include vendor('transition', 'all 1.3s ease');
+        @include vendor('transition', 'all 2.5s ease');
         @include vendor('transform', 'translateZ(0)');
         opacity: 1.0;
     }

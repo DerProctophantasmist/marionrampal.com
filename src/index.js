@@ -4,7 +4,7 @@
      
 
     var app = angular.module('single.page.site', [
-        require('./dyn.styles'), require('./data.integrator'), require('./data.provider'),
+        require('./dyn.styles'), require('./data.integrator'),
         require('./config'), 
         require('./modal'),
         require('./scrolling'),
@@ -38,6 +38,7 @@
             website.isMobileLayout = Quirks.isMobileLayout;             
             website.androidHeightHack = Quirks.androidHeightHack;
             website.locale = Locale;
+            website.state = State;
 
             website.getCarouselInterval = State.getCarouselInterval;
 

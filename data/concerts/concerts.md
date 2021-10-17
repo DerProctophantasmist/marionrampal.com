@@ -1,1 +1,1 @@
-<google-calendar id="u8rqlh129povjraessq4jcp7ok@group.calendar.google.com" @empty-event="noConcert"></google-calendar>
+<google-calendar id="u8rqlh129povjraessq4jcp7ok@group.calendar.google.com" empty-event="noConcert"></google-calendar>

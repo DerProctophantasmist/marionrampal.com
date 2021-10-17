@@ -8,10 +8,10 @@ EmbedUrl =  require('./resourceUrl').embedUrl
 CSON = require('cson-parser')
 htmlentities = require('html-entities')
 
+# console.log "marked defaults: "
+# console.log marked.defaults
 renderer =
   link :  ( href, title, text) ->
-    console.log "marked defaults: "
-    console.log marked.defaults
     if  res = ResourceFile(href,title,text,false) #last param is embed=true/false
       return res.html;
     else 
@@ -55,15 +55,14 @@ shorthand = (heading, content) ->
   switch heading
     when 'carousel'
       result = lexer.lex(content);
-      console.log "carousel content:"
+      # console.log "carousel content:"
       result = parserFactory(carouselScheme)(result)
-      console.log result
+      # console.log result
       return result
     when "figure"
-      console.log content
       # result = marked.inlineLexer(content,[],options)
       result = marked(content,options)
-      console.log result
+      # console.log result
       return result = """
         <figure left-aside class="clickable image half" mdfile="#{params.mdfile}" >
           #{result}                                        
@@ -71,10 +70,8 @@ shorthand = (heading, content) ->
         </figure>          
         """
     when "imagesLeft"
-      console.log content
-      # result = marked.inlineLexer(content,[],options)
       result = marked(content,options)
-      console.log result
+      # console.log result
       return result = """
         <div style="margin: 0" class="force-float-images-left clearfix">
           #{result}                                            
@@ -82,10 +79,10 @@ shorthand = (heading, content) ->
         """
     when 'sections' #section list
       result = lexer.lex(content);
-      console.log "sections content: "
+      # console.log "sections content: "
       acc = {nbr:0}
       result = parserFactory(sectionsScheme(acc))(result)
-      console.log result
+      # console.log result
       config.nbrOfSectionsToLoad(acc.nbr)
       return result
 
@@ -96,7 +93,7 @@ shorthand = (heading, content) ->
       
       #we "fetch" the parent section from the section controller, see section.coffee:
       return """ 
-      <page section="$sc.section" page-data='#{JSON.stringify(page)}'> 
+      <page sec-ctrl='$sc' page-data='#{JSON.stringify(page)}'> 
         #{result}
       </page>
       """
@@ -113,6 +110,7 @@ carouselScheme =
 sectionsScheme = (acc) -> 
   scheme = 
     text: (text) -> text
+    link: ()->{}
     image: ( href, title, text) ->
       section = 
         id:text
@@ -126,7 +124,8 @@ sectionsScheme = (acc) ->
       section={section...,params...}
       acc.nbr++
       return """ 
-      <section  ng-if="website.displaySection(#{section.id})"  id="#{section.id}" section-data='#{JSON.stringify(section)}' class="section-#{section.id}">
+      <section  ng-if="website.displaySection(#{section.id})"  id="#{section.id}" section-data='#{JSON.stringify(section)}' class="section-#{section.id}"
+      style="{{(website.state.getAllowEdit())?'min-height:6em;':''}}">
         <marked compile=true filename="'#{href}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
         </marked> 
       </section>
@@ -150,6 +149,7 @@ pageScheme = (page)->
         return ""
       return ""
     text: (text) -> text
+    link: ()->{}
     image: ( href, title, text) ->
       box = {}
       title = htmlentities.decode(title)
@@ -169,7 +169,7 @@ pageScheme = (page)->
           </mobile-header>
         """
       return html + """         
-          <marked compile=true filename="'#{href}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
+          <marked compile=true filename="'#{href}'" editor-button-style="position:absolute;top:6em;left:10em;color:black;z-index:1000;">
         </div>
       """
   scheme.inlineLexer = new marked.InlineLexer([], {options...,renderer:scheme})
