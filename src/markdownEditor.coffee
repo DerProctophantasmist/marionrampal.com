@@ -2,8 +2,7 @@ module.exports = 'markdownEditor'
 
 require('angular').module('markdownEditor', [require('./sendToServer'), require('./language.picker'),  require('./states')])
   .factory('MarkdownEditor',['SendToServer' , 'Locale' , 'State', 'DataFile', (SendToServer, Locale, State, DataFile ) ->
-    Locale.get().language
-    stackedit = new Stackedit();
+    stackedit = new Stackedit()
     curContent = null
     originalContent = null
     name = null
