@@ -7,6 +7,37 @@ striptags = require('striptags')
 # FileSaver = require("file-saver")
 calendarLink = require('calendar-link')
 
+setLocalDateTime = (event) ->
+  if !event.start.dateTime
+    return event.localDateTime = moment(event.start.date).format("ll")
+  if event.start.timeZone?
+    return event.localDateTime =  moment(event.start.dateTime).tz(event.start.timeZone).format("lll")      
+  return event.localDateTime = moment(event.start.dateTime).format("lll")
+
+addToGoogleCalendar = (event) ->
+  if event.start.datetime
+    dates = moment(event.start.datetime).format("YYYYMMDDTHHmmSS") + "/" + moment(event.end.datetime ? event.start.datetime).format("YYYYMMDDTHHmmSS")
+  else  
+    dates = moment(event.start.date).format("YYYYMMDD") + "/" + moment(event.start.date).add(1,'d').format("YYYYMMDD")
+    
+  googleEvent = {
+    action:'TEMPLATE'
+    text:event.summary
+    dates
+    ctz:event.timezone
+    details:event.description
+    location:event.location
+  }
+
+  params = Object.entries(googleEvent)
+  .map(([key, val])->
+      "#{encodeURIComponent(key)}=#{encodeURIComponent(val)}"
+  )
+  .join("&")  
+  window.open('https://calendar.google.com/calendar/render?'+params)
+  return
+ 
+
 require('angular').module('calendar', ['config', require('angular-marked'), require('angular-utils-pagination'), require('./language.picker'),  require('./states'), require('./songkick')])
   .factory('Calendars',['Config', '$http' , 'Locale' , 'State', (Config, $http, Locale, State ) ->
     key = Config.googleApiKey
@@ -16,13 +47,6 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
     moment.locale(Locale.get().language)
     errCount = 0
     
-    
-    setLocalDateTime = (event) ->
-      if !event.start.dateTime
-        return event.localDateTime = moment(event.start.date).format("l")
-      if event.start.timeZone?
-        return event.localDateTime =  moment(event.start.dateTime).tz(event.start.timeZone).format("lll")      
-      return event.localDateTime = moment(event.start.dateTime).format("lll")
      
     loadCalendar = (calId) -> 
       listEvents = 'https://www.googleapis.com/calendar/v3/calendars/' + calId + 
@@ -80,21 +104,14 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
               <div class="description" ng-show="event.expanded" marked="event.description"></div> 
               </li><dir-pagination-controls></dir-pagination-controls></ul>
               """,
-      bindings: {id: '@', emptyEvent: '@', musicBrainzId:'@'},
-      controller: ['Calendars', '$scope', 'Config', 'Songkick', '$http', 'State', (Calendars, $scope, Config, Songkick, $http, State) ->
+      bindings: {id: '@', emptyEvent: '@', musicBrainzId:'@', songkickId: '@'},
+      controller: ['Calendars', '$scope',  'Songkick', '$http', 'State', (Calendars, $scope, Songkick, $http, State) ->
       
           this.calendar = []
           
           this.toogleExpand = (event) ->
             if event.notRecorded #open in google calendar
-              window.open(calendarLink.google({
-                title:event.summary
-                description:event.description
-                start:event.start
-                end:event.end
-                location:event.location
-              })+"&ctz="+encodeURIComponent(event.timezone),"_blank")
-
+              addToGoogleCalendar(event)
               return
             event.expanded = !event.expanded
             return          
@@ -111,28 +128,30 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
               console.log JSON.stringify "calendar: "+ res
               this.calendar = res
 
-              if Config.songkickApikey && this.musicBrainzId && State.getAllowEdit()
+              if State.getAllowEdit()
                 events = this.calendar.reduce((events,event)->
                   events[event.localDateTime] = event
                   return events
                 ,{})
-                Songkick(this.musicBrainzId).then (newEvents)=>
+                Songkick({musicBrainzId:this.musicBrainzId, songkickId: this.songkickId}).then (newEvents)=>
                   # calendar = ical({name:'Songkick events'})
                   # calendar.createEvent(newEvents[0])
                   # FileSaver.saveAs(calendar.toBlob(),'Songkick events')
                   for newEvent in newEvents
+                    setLocalDateTime(newEvent)
                     if events[newEvent.localDateTime]?
                       return
                     newEvent.notRecorded = true
                     $http.get("http://api.geonames.org/timezoneJSON?lat=#{newEvent.lat}&lng=#{newEvent.lng}&username=proctophantasmist")
-                    .then( (response) =>
-                      newEvent.timezone=response.data.timezoneId
-                      this.calendar.unshift(newEvent)
-
+                    .then( ((newEvent) => 
+                        (response) =>
+                          newEvent.timezone=response.data.timezoneId
+                          this.calendar.unshift(newEvent) 
+                      )(newEvent)
                     )
                     .catch((error) ->
                       console.log error
-                      console.log ("could not retrieve timzone data forme geonames")
+                      console.log ("could not retrieve timezone data forme geonames")
                     )
               return
           return

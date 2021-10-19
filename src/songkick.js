@@ -22,10 +22,17 @@
     errCount,
     key,
     loadCalendar,
+    noop,
     setLocalDateTime;
       key = Config.songkickApikey;
       calendars = {};
       errCount = 0;
+      noop = {
+        then: function(callback) {
+          console.log("calendar not configured for songkick");
+          return callback([]);
+        }
+      };
       setLocalDateTime = function(event) {
         if (!event.start.dateTime) {
           return event.localDateTime = moment(event.start.date).format("l");
@@ -35,29 +42,26 @@
           return event.localDateTime = moment(event.start.dateTime).format("lll");
         }
       };
-      loadCalendar = function(musicBrainzId) {
+      loadCalendar = function(id) {
         var listEvents;
-        listEvents = 'https://api.songkick.com/api/3.0/artists/mbid:' + musicBrainzId + '/calendar.json?apikey=' + key;
-        return calendars[musicBrainzId] = $http.get(listEvents).then(function(response) {
+        listEvents = 'https://api.songkick.com/api/3.0/artists/' + id + '/calendar.json?apikey=' + key;
+        return calendars[id] = $http.get(listEvents).then(function(response) {
           var events;
           events = response.data.resultsPage.results.event;
           console.log(events);
           return events.map(function(event) {
-            var date,
-    offsetString;
-            date = event.start.datetime;
-            // date = date.substring(0,date.length-5) + "+0100"
-            offsetString = date.substring(date.length - 5);
-            //offsetString is in the format +-hhmm, we need +-hh:mm
-            offsetString = offsetString.slice(0,
-    3) + ":" + offsetString.slice(3);
+            event.start.dateTime = event.start.datetime;
+            if (event.end != null) {
+              event.end.dateTime = event.end.datetime;
+            } else {
+              event.end = event.start;
+            }
             return {
               summary: event.displayName,
               location: `${event.venue.displayName}, ${event.location.city}`,
               description: event.uri,
-              start: date,
-              localDateTime: moment(date).format("lll"),
-              end: date,
+              start: event.start,
+              end: event.end,
               lat: event.venue.lat,
               lng: event.venue.lng
             };
@@ -66,14 +70,14 @@
         }).catch(function(response) {
           console.log('songkick request failed: ' + response.message + ', status: ' + response.status);
           if (response.status === 404) {
-            return [];
+            return noop;
           }
           // we "eat" the error at some point, won't retry to access the calendar (note it is a global err count, not per calendar):
           if (errCount++ < 3) {
             console.log("calendar error number " + errCount);
-            return null;
+            return noop;
           }
-          return [];
+          return noop;
         });
       };
       Locale.onChange(function() {
@@ -100,11 +104,17 @@
         return results;
       });
       return function(calId) {
-        if (calendars[calId] == null) {
-          return loadCalendar(calId);
-        } else {
-          return calendars[calId];
+        var id,
+    ref,
+    ref1;
+        if (!Config.songkickApikey) {
+          return noop;
         }
+        id = (ref = calId.songkickId) != null ? ref : (calId.musicBrainzId != null ? "mbid:" + calId.musicBrainzId : null);
+        if (id == null) {
+          return noop;
+        }
+        return (ref1 = calendars[id]) != null ? ref1 : loadCalendar(id);
       };
     }
   ]);
