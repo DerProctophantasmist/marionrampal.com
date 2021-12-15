@@ -124,7 +124,7 @@ sectionsScheme = (acc) ->
       section={section...,params...}
       acc.nbr++
       return """ 
-      <section  ng-if="website.displaySection(#{section.id})"  id="#{section.id}" section-data='#{JSON.stringify(section)}' class="section-#{section.id}"
+      <section  ng-if="website.displaySection('#{section.id}')"  id="#{section.id}" section-data='#{JSON.stringify(section)}' class="section-#{section.id}"
       style="{{(website.state.getAllowEdit())?'min-height:6em;':''}}">
         <marked compile=true filename="'#{href}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
         </marked> 
