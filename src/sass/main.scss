@@ -20,6 +20,7 @@
 @import "libs/skel"; 
 
 @include skel-breakpoints((
+wide2K: '(max-width: 2560px)',
 wide: '(max-width: 1920px)',
 big: '(max-height: 1080px)',
 normal: '(max-width: 1680px)',
@@ -86,7 +87,7 @@ body {
     height: 100%;
     font-family:'Titillium Web', sans-serif;
     font-weight: 400;
-    font-size: 18pt;
+    font-size: 22pt;
     line-height: 1.2em;
     color: #39454b;
     letter-spacing: 0.5px;
@@ -108,7 +109,7 @@ body {
 input, textarea, select {
     font-family:'Titillium Web', sans-serif;
     font-weight: 300;
-    font-size: 18pt;
+    font-size: 22pt;
     line-height: 1.75em;
     color: #39454b;
     letter-spacing: 0.5px;
@@ -818,6 +819,22 @@ a.popup-link {
 
 }
 
+.style2 {
+    .modal-dialog {
+        width: auto;
+    }
+
+    &.inactive {
+        .content-sizer.left {
+            left: -35%;
+        }
+
+        .content-sizer.right {
+            left: 100%;
+        }
+    }
+}
+
 .baseStyle {
     padding: 4em 1em 5em 1em;
     overflow: hidden;
@@ -865,21 +882,6 @@ a.popup-link {
 
 }
 
-.style2 {
-    .modal-dialog {
-        width: auto;
-    }
-
-    &.inactive {
-        .content-sizer.left {
-            left: -35%;
-        }
-
-        .content-sizer.right {
-            left: 100%;
-        }
-    }
-}
 .style4 {
 
     @include vendor('justify-content', 'flex-start');
@@ -2064,6 +2066,37 @@ body.mobile-layout {
 /* Breakpoints */
 /* Wide */
 
+@include breakpoint(wide2K) {
+
+    /* Basic */
+    body, input, textarea, select {
+        font-size: 18pt;
+    }
+
+    /* Main */
+    .baseStyle {
+        .content-sizer {
+            width: 40%;
+
+            &.right {
+                left: 60%;
+            }
+        }
+
+    }
+
+
+
+    .style2 {
+
+        &.inactive {
+            .content-sizer.left {
+                left: -40%;
+            }
+        }
+    }
+
+}
 @include breakpoint(wide) {
 
     /* Basic */
