@@ -9,13 +9,26 @@ require('angular').module('oEmbed', ['config'])
     
     confs = {}
     resourceUrl = require('./resourceUrl').resourceUrl
-    
+     
     
          
-    load = (url, callback, resource) -> 
+    load = (url, resource, callback) -> 
       
       if( resource ?= resourceUrl(url))
         headers = []
+        if resource.provider in['akamai']
+          response ={ 
+            html:"""
+              <a popup-link="video" class="image half centered popup-link" data-url="#{url}"  content-settings="{&quot;playerID&quot;:&quot;#{resource.playerId}&quot;}">
+                <img src="#{resource.image}" /><span class="play-button"></span>
+              </a>
+            """
+            compile: true
+          }
+          confs[url] = response.data
+          callback(response)
+          return true
+
         if resource.provider in ['youtube']
           headers['Cache-Control'] = 'no-cache'
         else if resource.provider == 'soundcloud'
@@ -40,7 +53,7 @@ require('angular').module('oEmbed', ['config'])
                 console.log "BEWARE: the youtube video: " + resource.url + " is probably private. It won't be rendered."
               else
                 thumbnail_url = response.data.items[0].snippet.thumbnails.medium.url
-                response.data.html ='<a popup-link="video" class="image half centered popup-link" data-url="https://www.youtube.com/watch?v=' + resource.videoID + '" content-settings="{&quot;list&quot;:&quot;' + resource.playlist +
+                response.data.html ='<a popup-link="video" class="image half centered popup-link" data-url="https://www.youtube.com/watch?v=' + resource.videoId + '" content-settings="{&quot;list&quot;:&quot;' + resource.playlist +
                 '&quot;}"><img src="' + thumbnail_url + '" /><span class="play-button"></span></a>'
                 response.data.compile = true
           confs[url] = response.data
@@ -50,9 +63,9 @@ require('angular').module('oEmbed', ['config'])
       else return false
       
     
-    return (url, callback) ->
+    return (url, res, callback) ->
       if !confs[url]
-        return load(url, callback)
+        return load(url, res, callback)
       else
         callback(confs[url])
         return true
@@ -66,17 +79,25 @@ require('angular').module('oEmbed', ['config'])
         scope.popupLinks = scope.$parent.popupLinks;
         if(attrs.request? && attrs.provider?)
           res = attrs
-        scope.$watch('url', ()->
-          oEmbed(scope.url, (response)->
+
+          oEmbed(scope.url, res, (response)->
               if response.compile
                 elt.append($compile(response.html)(scope.$new(false)))
               else
                 elt.append(response.html)
-            ,
-            res
           )
-          return    
-        )
+        
+        # scope.$watch('url', ()->
+        #   oEmbed(scope.url, (response)->
+        #       if response.compile
+        #         elt.append($compile(response.html)(scope.$new(false)))
+        #       else
+        #         elt.append(response.html)
+        #     ,
+        #     res
+        #   )
+        #   return    
+        # )
   ])
 
  
