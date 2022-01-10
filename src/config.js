@@ -21,6 +21,8 @@
         'http*://soundcloud.com/**',
         'http*://vimeo.com/**',
         'http*://*.vimeo.com/**',
+        'http*://*.akamaihd.net/**',
+        'http*://akamaihd.net/**',
         'http*://*.youtube.com/**',
         'http*://youtube.com/**',
         'http*://*.youtu.be/**',

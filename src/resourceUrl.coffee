@@ -14,35 +14,19 @@ resourceUrl = (url,title, text) ->
   if provider 
     switch provider.groups.domain
       when 'soundcloud.com' 
-        #detect whether it is a track or a playlist and adjust height accordingly:
-        height = if url.indexOf('/sets/') != -1 then 305 else 110
-          
         res =  {
-          request: "https://soundcloud.com/oembed?type=json&visual=false&maxheight="+height+"&color=000000&show_comments=false&show_artwork=true&url=" + url,
           provider: "soundcloud"
         }
       when 'youtu.be', 'youtube.com'
-        parameters = url.match(/([a-z\:\/]*\/\/)(?:www\.)?(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\?(?:index=[0-9]+&amp;)?(?:list=)?([a-zA-Z0-9_-]{34})?)?/)
-        if parameters
-          playlist = if parameters[3] then parameters[3] else Config.defaultYoutubePlaylist
-          videoId = parameters[2]
-          protocol = parameters[1] 
         res =  {          
-          request: "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+videoId+"&fields=items(snippet(thumbnails(medium(url))))&key="+Config.googleApiKey,
-#          request: 'http://www.youtube.com/oembed?url=' +url,
-          provider: "youtube",
-          playlist: playlist,
-          'video-id': videoId,
-          protocol: protocol
+          provider: "youtube"
         }
       when 'vimeo.com'
         res =  {
-          request:"https://vimeo.com/api/oembed.json?autoplay=true&autopause=true&portrait=false&color=white&url="  + url,
           provider: 'vimeo'
         }
       when 'akamaihd.net'
         res = {
-          request: url
           provider: "akamai"
           'player-id': provider.groups.subdomain + provider.groups.domain 
           image: text ? ""

@@ -40,7 +40,7 @@
     //     text + '</h' + level + '>';
     image: function(href, title, text) {
       var res;
-      if ((res = EmbedUrl(href) || (res = ResourceFile(href, title, text, true)))) {
+      if ((res = EmbedUrl(href, title, text) || (res = ResourceFile(href, title, text, true)))) {
         // if res.provider &&res.provider != text.toLowerCase() then console.error('embeding failed for: ' + href + 'service ('+text+') doesn\'t match the one in the url ('+res.provider+')')
         return res.html;
       } else {

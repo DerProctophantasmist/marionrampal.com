@@ -6,9 +6,10 @@ EventEmitter = require('events');
 
 picker = require('angular').module('languagePicker',  [
   'ui.bootstrap',
-  'ui.bootstrap.locale-dialog'
+  'ui.bootstrap.locale-dialog',
+  require('angular-cookies')
 ])
-.factory('Locale', ['$window', ($window)->
+.factory('Locale', ['$window', '$cookies', ($window, $cookies)->
   defaultLoc = {
     "en": "en-US",
     "fr": "fr-FR"
@@ -28,11 +29,11 @@ picker = require('angular').module('languagePicker',  [
   emitter = new EventEmitter();
   emitter.setMaxListeners(100000);
   
-  if storedLocale =  $window.localStorage.getItem('marionrampal.locale')
-    console.log("stored locale: " + $window.localStorage.getItem('marionrampal.locale'))
+  if storedLocale =  $cookies.get('marionrampal.locale')
+    console.log "stored locale: " + storedLocale
     curLocale =  availLoc[storedLocale]    
     if !curLocale
-      localStorage.removeItem('marionrampal.locale')  
+      $cookies.remove('marionrampal.locale')
   else console.log("no stored locale")
   
   return locale = {
@@ -45,8 +46,8 @@ picker = require('angular').module('languagePicker',  [
         curLocale = availLoc[newLocale]
         emitter.emit('changeLocale') if emit
         if persist
-          $window.localStorage.setItem('marionrampal.locale', newLocale)        
-          console.log("stored locale: " + $window.localStorage.getItem('marionrampal.locale'))
+          $cookies.put('marionrampal.locale', newLocale)        
+          console.log("stored locale: " + newLocale)
   
       else if curLocale == null
         curLocale = availLoc['fr-FR']

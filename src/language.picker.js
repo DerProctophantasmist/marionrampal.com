@@ -8,9 +8,11 @@
 
   EventEmitter = require('events');
 
-  picker = require('angular').module('languagePicker', ['ui.bootstrap', 'ui.bootstrap.locale-dialog']).factory('Locale', [
+  picker = require('angular').module('languagePicker', ['ui.bootstrap', 'ui.bootstrap.locale-dialog', require('angular-cookies')]).factory('Locale', [
     '$window',
-    function($window) {
+    '$cookies',
+    function($window,
+    $cookies) {
       var availLoc,
     curLocale,
     defaultLoc,
@@ -35,11 +37,11 @@
       };
       emitter = new EventEmitter();
       emitter.setMaxListeners(100000);
-      if (storedLocale = $window.localStorage.getItem('marionrampal.locale')) {
-        console.log("stored locale: " + $window.localStorage.getItem('marionrampal.locale'));
+      if (storedLocale = $cookies.get('marionrampal.locale')) {
+        console.log("stored locale: " + storedLocale);
         curLocale = availLoc[storedLocale];
         if (!curLocale) {
-          localStorage.removeItem('marionrampal.locale');
+          $cookies.remove('marionrampal.locale');
         }
       } else {
         console.log("no stored locale");
@@ -58,9 +60,9 @@
               emitter.emit('changeLocale');
             }
             if (persist) {
-              $window.localStorage.setItem('marionrampal.locale',
+              $cookies.put('marionrampal.locale',
     newLocale);
-              console.log("stored locale: " + $window.localStorage.getItem('marionrampal.locale'));
+              console.log("stored locale: " + newLocale);
             }
           } else if (curLocale === null) {
             curLocale = availLoc['fr-FR'];

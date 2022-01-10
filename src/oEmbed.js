@@ -8,26 +8,73 @@
   require('angular').module('oEmbed', ['config']).constant('EmbedUrl', require('./resourceUrl').embedUrl).factory('oEmbed', [
     '$http',
     '$sce',
+    'Config',
     function($http,
-    $sce) {
+    $sce,
+    Config) {
       var confs,
     load,
     resourceUrl;
       confs = {};
       resourceUrl = require('./resourceUrl').resourceUrl;
       load = function(url,
-    callback,
-    resource) {
+    resource,
+    callback) {
         var headers,
-    ref;
+    height,
+    parameters,
+    playlist,
+    protocol,
+    ref,
+    ref1,
+    response,
+    videoId;
         if ((resource != null ? resource : resource = resourceUrl(url))) {
           headers = [];
-          if ((ref = resource.provider) === 'youtube') {
+          if ((ref = resource.provider) === 'akamai') {
+            response = {
+              html: `<a popup-link="video" class="image half centered popup-link" data-url="${url}"  content-settings="{&quot;playerID&quot;:&quot;${resource.playerId}&quot;}">
+  <img src="${resource.image}" /><span class="play-button"></span>
+</a>`,
+              compile: true
+            };
+            confs[url] = response.data;
+            callback(response);
+            return true;
+          }
+          if ((ref1 = resource.provider) === 'youtube') {
             headers['Cache-Control'] = 'no-cache';
+            parameters = url.match(/([a-z\:\/]*\/\/)(?:www\.)?(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\?(?:index=[0-9]+&amp;)?(?:list=)?([a-zA-Z0-9_-]{34})?)?/);
+            if (!parameters) {
+              callback({
+                err: new Error("not a youtube url")
+              });
+              return false;
+            }
+            playlist = parameters[3] ? parameters[3] : Config.defaultYoutubePlaylist;
+            videoId = parameters[2];
+            protocol = parameters[1];
+            resource = {
+              ...resource,
+              request: "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&fields=items(snippet(thumbnails(medium(url))))&key=" + Config.googleApiKey,
+              playlist: playlist,
+              'video-id': videoId,
+              protocol: protocol
+            };
           } else if (resource.provider === 'soundcloud') {
+            //detect whether it is a track or a playlist and adjust height accordingly:
+            height = url.indexOf('/sets/') !== -1 ? 305 : 110;
+            resource = {
+              ...resource,
+              request: "https://soundcloud.com/oembed?format=json&visual=false&maxheight=" + height + "&color=000000&show_comments=false&show_artwork=true&url=" + url
+            };
             headers['Cache-Control'] = void 0;
             headers["Content-Type"] = "text/plain";
           } else if (resource.provider === "vimeo") {
+            resource = {
+              ...resource,
+              request: "https://vimeo.com/api/oembed.json?autoplay=true&autopause=true&portrait=false&color=white&url=" + url
+            };
             headers['Cache-Control'] = void 0;
           }
           $http({
@@ -51,18 +98,22 @@
                 break;
               case 'youtube':
                 if (response.data.items.length === 0) {
-                  console.log("BEWARE: the youtube video: " + resource.url + " is probably private. It won't be rendered.");
-                } else {
-                  thumbnail_url = response.data.items[0].snippet.thumbnails.medium.url;
-                  response.data.html = '<a popup-link="video" class="image half centered popup-link" data-url="https://www.youtube.com/watch?v=' + resource.videoID + '" content-settings="{&quot;list&quot;:&quot;' + resource.playlist + '&quot;}"><img src="' + thumbnail_url + '" /><span class="play-button"></span></a>';
-                  response.data.compile = true;
+                  callback({
+                    err: new Error("BEWARE: the youtube video: " + resource.url + " is probably private. It won't be rendered.")
+                  });
+                  return;
                 }
+                thumbnail_url = response.data.items[0].snippet.thumbnails.medium.url;
+                response.data.html = '<a popup-link="video" class="image half centered popup-link" data-url="https://www.youtube.com/watch?v=' + resource.videoId + '" content-settings="{&quot;list&quot;:&quot;' + resource.playlist + '&quot;}"><img src="' + thumbnail_url + '" /><span class="play-button"></span></a>';
+                response.data.compile = true;
             }
             confs[url] = response.data;
             return callback(response.data);
           },
     function(response) {
-            return console.log('Could not load ' + url + ' : ' + JSON.stringify(response));
+            callback({
+              err: new Error('Could not load ' + url + ' : ' + JSON.stringify(response))
+            });
           });
           return true;
         } else {
@@ -70,9 +121,11 @@
         }
       };
       return function(url,
+    res,
     callback) {
         if (!confs[url]) {
           return load(url,
+    res,
     callback);
         } else {
           callback(confs[url]);
@@ -96,25 +149,39 @@
     attrs) {
           var res;
           scope.popupLinks = scope.$parent.popupLinks;
-          if ((attrs.request != null) && (attrs.provider != null)) {
+          if ((attrs.provider != null)) {
             res = attrs;
-          }
-          return scope.$watch('url',
-    function() {
-            oEmbed(scope.url,
+            return oEmbed(scope.url,
+    res,
     function(response) {
+              if (response.err) {
+                console.log(response.err);
+                return;
+              }
               if (response.compile) {
                 return elt.append($compile(response.html)(scope.$new(false)));
               } else {
                 return elt.append(response.html);
               }
-            },
-    res);
-          });
+            });
+          }
         }
       };
     }
   ]);
+
+  
+  // scope.$watch('url', ()->
+//   oEmbed(scope.url, (response)->
+//       if response.compile
+//         elt.append($compile(response.html)(scope.$new(false)))
+//       else
+//         elt.append(response.html)
+//     ,
+//     res
+//   )
+//   return    
+// )
 
 }).call(this);
 

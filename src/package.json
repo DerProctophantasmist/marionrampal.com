@@ -15,6 +15,7 @@
     "angular-bootstrap-lightbox": "github:DerProctophantasmist/angular-bootstrap-lightbox",
     "angular-bootstrap-locale-dialog": "^1.2.3",
     "angular-bootstrap-show-errors": "^2.3.0",
+    "angular-cookies": "^1.8.2",
     "angular-inview": "^2.3.1",
     "angular-lazy-image": "^0.2.4",
     "angular-loading-bar": "^0.8.0",
