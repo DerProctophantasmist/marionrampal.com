@@ -867,6 +867,10 @@ a.popup-link {
         .fa-inverse {color: #000}
     }
     
+    &.red  .box{
+        .fa-inverse {color: #FFF}
+    }
+    
     &.transparent .box {
         background-color: rgba(255,255,255,0);
         margin: 0; 
@@ -2687,6 +2691,9 @@ body.mobile-layout {
                 background-color: rgb(57,69,75);
                 color: #FFF;
                 .fa-inverse {color: #000}
+            }
+            .red {
+                .fa-inverse {color: #FFF}
             }
         }
     }

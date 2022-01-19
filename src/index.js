@@ -15,7 +15,7 @@
     ]); 
     //var modTools = angular.module('gen.tools',[]);
 
-
+ 
     app.filter('defaultsTo', function () {
         return function (input, defaultValue) {
             if (angular.isUndefined(input) || input === null || input === '') {
@@ -26,7 +26,9 @@
         };
     }); 
     
-  
+    app.filter('decodeURIComponent', function(){
+        return decodeURIComponent
+    })
 
  
     var websiteCtrl = ['$scope', 'googleFonts', 'Activate', 'Sections', 'Quirks', 'State','Locale',

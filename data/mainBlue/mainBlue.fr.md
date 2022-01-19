@@ -1,5 +1,6 @@
 
-<div class= "force-float-images-left clearfix text-center">
+<div class="force-float-images-left clearfix text-center">
+
 ![youtube](https://www.youtube.com/watch?v=sIorOkrRm9Q) avec Anne Paceo  
 et Pierre-François Blanchard
 

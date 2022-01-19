@@ -45,10 +45,7 @@ require('angular').module('config',[require('angular-marked'),require('./section
     config.ajaxHost = (uri) ->
       return "https://ajax." + hostname + "/" +uri
 
-    
-    config.nbrOfSectionsToLoad = (nbr)->
-      Sections.nbrOfSectionsToLoad(nbr)
-      
+          
     return config
     
   ])

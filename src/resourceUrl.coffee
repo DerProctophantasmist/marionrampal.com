@@ -1,5 +1,3 @@
-Config = window.config 
-
 
 attributeString = (object) ->
   ret = " "

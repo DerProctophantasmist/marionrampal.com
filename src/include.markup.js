@@ -24,6 +24,7 @@
       var expandedModal,
     fileCallbacks,
     filename,
+    getContentClasses,
     localizeChapeau,
     localizeFilename,
     onClosedEditor,
@@ -48,6 +49,21 @@
         } else {
           return chapeau;
         }
+      };
+      getContentClasses = function(element) {
+        var classes;
+        classes = "";
+        while (element = element.parent()) {
+          if (element.hasClass("box")) {
+            break;
+          }
+        }
+        if (element && element.hasClass("content-sizer")) {
+          if (element.hasClass("right")) {
+            classes += "right ";
+          }
+        }
+        return classes;
       };
       //these are the callbacks functions for the editor, they are actually passed to the editor from the modal template
       onEdit = function(markdown) {
@@ -121,6 +137,7 @@
               content.expanded = false;
               expandedModal = null;
             };
+            content.classes = getContentClasses($element);
             MobileExpand.open(content,
     $scope.popupLinks).then(onclose,
     onclose);
@@ -152,6 +169,7 @@
         return State.singleSection(); // && $scope.content.main
       };
       if ($scope.defaultExpanded()) {
+        
         //filename for the included file actually depends on locale, so compute it here:
         filename = localizeFilename($scope.content.filename);
         return DataFile.read(filename,

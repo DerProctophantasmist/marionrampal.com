@@ -216,11 +216,14 @@
                   $http.get(`http://api.geonames.org/timezoneJSON?lat=${newEvent.lat}&lng=${newEvent.lng}&username=proctophantasmist`).then(((newEvent) => {
                     return (response) => {
                       newEvent.timezone = response.data.timezoneId;
-                      return this.calendar.unshift(newEvent);
+                      console.log("total nbr of events (before):" + calendar.length);
+                      this.calendar.unshift(newEvent);
+                      console.log(newEvent);
+                      return console.log("total nbr of events:" + calendar.length);
                     };
                   })(newEvent)).catch(function(error) {
                     console.log(error);
-                    return console.log("could not retrieve timezone data forme geonames");
+                    return console.log("could not retrieve timezone data from geonames");
                   });
                 }
               });

@@ -146,12 +146,15 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
                     .then( ((newEvent) => 
                         (response) =>
                           newEvent.timezone=response.data.timezoneId
+                          console.log("total nbr of events (before):" + calendar.length)
                           this.calendar.unshift(newEvent) 
+                          console.log(newEvent)
+                          console.log("total nbr of events:" + calendar.length)
                       )(newEvent)
                     )
                     .catch((error) ->
                       console.log error
-                      console.log ("could not retrieve timezone data forme geonames")
+                      console.log ("could not retrieve timezone data from geonames")
                     )
               return
           return

@@ -62,9 +62,6 @@
       config.ajaxHost = function(uri) {
         return "https://ajax." + hostname + "/" + uri;
       };
-      config.nbrOfSectionsToLoad = function(nbr) {
-        return Sections.nbrOfSectionsToLoad(nbr);
-      };
       return config;
     }
   ]).run([

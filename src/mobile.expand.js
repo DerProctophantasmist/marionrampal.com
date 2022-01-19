@@ -19,7 +19,8 @@
           return {};
         },
         open: function(content,
-    popupLinks) {
+    popupLinks,
+    classes) {
           if (window !== null) {
             console.log("trying to open mobile expand window while it already is");
             return window;

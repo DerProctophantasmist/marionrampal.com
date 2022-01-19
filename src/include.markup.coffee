@@ -13,12 +13,21 @@ includeMarkupCtrl = [
       #we store it on the content so that the markdown editor button can correctly display the name of the file, doing it guarantees that it is always "up to date"
       $scope.content.localizedFilename = filename
       return filename
-
+ 
 
     localizeChapeau = (chapeau) ->
       if typeof chapeau == "object"
         return chapeau[Locale.get().language]
       else return chapeau
+
+    getContentClasses = (element)->
+      classes = ""
+      while element = element.parent()
+        if element.hasClass("box") then break;
+      if element && element.hasClass("content-sizer")
+        if element.hasClass("right")
+          classes += "right "
+      return classes
 
     #these are the callbacks functions for the editor, they are actually passed to the editor from the modal template
     onEdit = (markdown) ->
@@ -51,7 +60,7 @@ includeMarkupCtrl = [
       console.log 'include markup set preloaded:'
       console.log $element.preload
       DataFile.cache(localizeFilename($scope.content.filename),fileCallbacks, $scope,$element.preload)
-      
+       
     
     # $scope.content.data =  ""
     #make function accessible through $scope:  
@@ -79,6 +88,8 @@ includeMarkupCtrl = [
             content.expanded = false;
             expandedModal = null
             return
+          content.classes = getContentClasses($element)
+
           MobileExpand.open(content, $scope.popupLinks).then(onclose,onclose)
           expandedModal = MobileExpand
       else
@@ -96,14 +107,14 @@ includeMarkupCtrl = [
             DataFile.read(localizeFilename($scope.content.filename), fileCallbacks, $scope)
         $scope.chapeau = localizeChapeau $scope.content.chapeau, 
       $scope
-    )  
-      
+    )   
+       
     #if we are displaying a displaying a single section, and the content is marked as "main" read the data right away to be able to display.
 
     $scope.defaultExpanded = () ->
       return State.singleSection() # && $scope.content.main
       
-    if $scope.defaultExpanded()
+    if $scope.defaultExpanded() 
       #filename for the included file actually depends on locale, so compute it here:
       filename = localizeFilename $scope.content.filename
       DataFile.read(filename, fileCallbacks, $scope)          

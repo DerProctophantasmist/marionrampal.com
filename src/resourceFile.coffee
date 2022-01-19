@@ -1,4 +1,5 @@
 
+{markdownLinkTo, markdownEmbed} = require('./resourceFile.impl')
 
 escape = (str)->
     #nueuuasrege!
@@ -8,15 +9,6 @@ escape = (str)->
         when "\""
             return "\\&quot;"
     return str
-
-markdownLinkTo = (url, chapeau, inline) ->
-  return '<include-markup content="{&quot;filename&quot;:&quot;' + url +
-        '&quot;,&quot;chapeau&quot;:&quot;' + chapeau.replace(/[\n\\\"]/g,escape) + '&quot;,' +
-        '&quot;inline&quot;:' + (if inline then 'true' else 'false') +
-        '}" popup-links="popupLinks"></include-markup>'
-
-markdownEmbed = (url, title) ->
-  return '<div marked filename="&quot;' + url + '&quot;" compile="true" ></div> '
 
 
 resourceFile = (url,title,text,embed) ->  

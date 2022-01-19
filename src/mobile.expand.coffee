@@ -10,7 +10,7 @@ require('angular').module('mobile.expand', [
     window = null
     mobileExpand =  {
       refresh: ()->{}
-      open: (content,popupLinks) ->
+      open: (content,popupLinks,classes) ->
         if window != null
           console.log "trying to open mobile expand window while it already is"
           return window
@@ -27,7 +27,7 @@ require('angular').module('mobile.expand', [
             #   content.editor.off('onClose', onClose)
               
             this.title = 'Mobile Content'
-            State.hideMainContent(true)
+            State.hideMainContent(true) 
             this.ok = (e) ->
               $uibModalInstance.close();
               # console.log "markdown: " + $scope.content.data
@@ -53,7 +53,7 @@ require('angular').module('mobile.expand', [
             return this
           ],
           controllerAs:'MobileContentCtrl',
-          windowTopClass:'style2 white',
+          windowTopClass:'style2 white', 
           windowClass:'expanded-content'
         });
         window.result.then(( ->

@@ -51,12 +51,14 @@ avec les musiciens de la CIE NINE SPIRIT et QUATUOR MANFRED.
 [voir le site de la Cie Nine Spirit](http://www.ninespirit.org)
 
 ![youtube](https://youtu.be/5T9svbibvs8?list=PL5qp3t801Mh923DRfUMJ1W5tnV1H0V0C-)
-
+  
 **VERTIGO SONGS de Perrine Mansuy**  
 2011 (Laborie Jazz/ Abeille)  
 
 PERRINE MANSUY : piano, compositions / MARION RAMPAL: chant,paroles / RÉMY DECK: guitare, sound design / JEAN-LUC DI FRAYA : percussions   
 [voir le site de Perrine Mansuy](http://www.perrinemansuy.com/)
+
+![soundcloud](https://soundcloud.com/perrinemansuy/sets/vertigo-songs)  
 
 **Marion Rampal OWN VIRAGO**   
 (Cie Nine Spirit)   
@@ -69,10 +71,7 @@ Un univers singulier...Une voix vibrante, des mélodies limpides aux couleurs ch
 Compositions, voix: MARION RAMPAL / Guitare: AURELIEN ARNOUX / Batterie: CEDRICK BEC / Contrebasse: MICHEL PERES / Piano: FABIEN OTTONES  
 
 ![soundcloud](https://soundcloud.com/marion-rampal/sets/marion-rampal-own-virago-2009)
-
-
-![soundcloud](https://soundcloud.com/perrinemansuy/sets/vertigo-songs)
-
+  
 **WE USED TO HAVE A BAND**  
 duo pop-folk avec FRANÇOIS RICHEZ
 Impromptu aux Voix du Gaou en 2011:
@@ -85,6 +84,4 @@ Gospel géant participatif.
 Une commande de MP2013, du FJ5C et la Cie Nine Spirit pour l’inauguration de Marseille capitale européenne de la Culture. 
 
 ![youtube](https://youtu.be/gZer0BjHwuw?list=PL5qp3t801Mh923DRfUMJ1W5tnV1H0V0C-)
-
-
 
