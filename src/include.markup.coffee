@@ -56,10 +56,11 @@ includeMarkupCtrl = [
 
 
     #handling preloaded content from the server:
-    if $element.preload
+    if  preloaded = $element.html()
       console.log 'include markup set preloaded:'
-      console.log $element.preload
-      DataFile.cache(localizeFilename($scope.content.filename),fileCallbacks, $scope,$element.preload)
+      console.log preloaded
+      DataFile.cache(localizeFilename($scope.content.filename),preloaded)
+      $element.empty()
        
     
     # $scope.content.data =  ""
@@ -146,11 +147,6 @@ require('angular').module('includeMarkup', [
     scope: {content: '<', popupLinks: '='}
     controller: includeMarkupCtrl
     link:  (scope, element, attrs)  ->
-      #handling preloaded content from the server:
-      if element.preload = element.html()
-        element.empty()
-        # console.log 'include markup get preloaded:'
-        console.log element.preload
       element.append($compile(template)(scope));
       return
   ])

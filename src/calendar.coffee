@@ -140,16 +140,13 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
                   for newEvent in newEvents
                     setLocalDateTime(newEvent)
                     if events[newEvent.localDateTime]?
-                      return
+                      continue
                     newEvent.notRecorded = true
                     $http.get("http://api.geonames.org/timezoneJSON?lat=#{newEvent.lat}&lng=#{newEvent.lng}&username=proctophantasmist")
                     .then( ((newEvent) => 
                         (response) =>
                           newEvent.timezone=response.data.timezoneId
-                          console.log("total nbr of events (before):" + calendar.length)
                           this.calendar.unshift(newEvent) 
-                          console.log(newEvent)
-                          console.log("total nbr of events:" + calendar.length)
                       )(newEvent)
                     )
                     .catch((error) ->

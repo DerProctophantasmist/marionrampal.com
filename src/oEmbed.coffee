@@ -80,7 +80,7 @@ require('angular').module('oEmbed', ['config'])
                 callback {err: new Error( "BEWARE: the youtube video: " + resource.url + " is probably private. It won't be rendered.")}
                 return              
               thumbnail_url = response.data.items[0].snippet.thumbnails.medium.url
-              response.data.html ='<a popup-link="video" class="image half centered popup-link" data-url="https://www.youtube.com/watch?v=' + resource.videoId + '" content-settings="{&quot;list&quot;:&quot;' + resource.playlist +
+              response.data.html ='<a popup-link="video" class="image half centered popup-link" data-url="https://www.youtube.com/watch?v=' + resource["video-id"] + '" content-settings="{&quot;list&quot;:&quot;' + resource.playlist +
               '&quot;}"><img src="' + thumbnail_url + '" /><span class="play-button"></span></a>'
               response.data.compile = true
           confs[url] = response.data

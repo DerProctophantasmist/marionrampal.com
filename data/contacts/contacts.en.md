@@ -1,18 +1,25 @@
-<contact-form></contact-form>
-**For Marion Rampal Main Blue,  Tissé, Le Secret & L'Île aux Chants Mêlés**  
+<!-- contact-form></contact-form -->
 
-MANAGEMENT & CONCERTS :   
-François Peyratout   
-+33 620 761010  
-fr.peyratout *at* nemomusic.com  
-http://www.nemomusic.com  
+### Marion Rampal  "Tissé" 
+ 
+BOOKING :  
+GIANT STEPS / Pascal Piloget 
+pascal@g-steps.com
 
-MEDIAS :  
-Arielle Berthoud  
-+ 33 6 09 70 72 18  
-arielle.berthoud *at* noos.fr  
-http://arielleberthoud.com  
+PR:  
+Maude Favennec @ Into the Mood
+maude@intothemood.fr
+
+PRESS :
+Sophie Louvet 
+sophielouvetmenu@gmail.com
+
+### Le Secret & L'Île aux Chants Mêlés
+
+BOOKING :
+CASHMERE PROD / Kevin Hennekine & J.B Pretot
+booking@marionrampal.com
 
 **For other projets and collaborations:**  
 
-contact *at* marionrampal.com
+contact@marionrampal.com

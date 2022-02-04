@@ -6,10 +6,17 @@ require('angular').module('dataFile', [
   .factory('DataFile', ['$http', 'Config', 'State', ($http, Config, State ) ->
     
     files = {}
+    cache = {}
     
     loadDataFile = (filename, callbacks, scope) -> 
       ref = (files[filename] = {callbacks: [callbacks]})
       scope[filename + "-watcher"] = 0
+      if cache[filename] # the server sent us the data in the first package, we cached it
+        ref.data = cache[filename]
+        #this is a synchronous call, we don't need to check for other callbacks (we will if we have to fetch the data from the server)
+        callbacks.onSuccess(ref.data)
+        return
+      #else we fetch the data file from the server:
       $http({method: 'get', url: Config.dataPath + '/' +  filename, headers: {'Cache-Control': 'no-cache'}})
       .then (response) ->
           ref.data = response.data
@@ -30,14 +37,6 @@ require('angular').module('dataFile', [
           ref.data = ''
       return
     
-    #this mimicks the behaviour of loading data when we have done preloading
-    #simplyfies things for the calling code
-    cacheData = (filename, callbacks, scope, content) -> 
-      ref = (files[filename] = {callbacks: [callbacks]})
-      scope[filename + "-watcher"] = 0
-      ref.data = content
-      callbacks.onSuccess(content) if callbacks.onSuccess 
-
  
     dataFile = 
       #callbacks: {onChange, on404, onError, onSuccess }
@@ -65,22 +64,14 @@ require('angular').module('dataFile', [
           # console.log callbacks
           callbacks.onChange(content)
         return
-      #this mimicks the behaviour of loading data when we have done preloading
-      #simplyfies things for the calling code
-      cache: (filename, callbacks,scope,content) ->
+      
+      cache: (filename,content) ->
         ref = files[filename]
         if !ref # we haven't yet asked for this file
-          cacheData(filename, callbacks, scope, content)
-        else 
-          callbacks.onSuccess(ref.data)
-
-          ref.callbacks.push(callbacks)
-          scope[filename+"-watcher"] = ref.callbacks.length  - 1
-        
-          scope.$on '$destroy', ()-> 
-            delete callbacks[scope[filename+"-watcher"]]
-            return
-        return
+          cache[filename] = content
+          return
+        #hum we probably shouldn't be here: if we have already asked for it, why are we caching it only now?
+        console.log "Error: shouldn't be here, caching of #{filename} is too late. content was: #{content}."
 
     return dataFile
     

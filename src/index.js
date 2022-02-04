@@ -11,6 +11,7 @@
         require('./quirks'),
         require('./states'),
         require('./language.picker'),
+        require('./preloaded'),
         require('angular-loading-bar'), require('angular-animate')
     ]); 
     //var modTools = angular.module('gen.tools',[]);
