@@ -1,3 +1,4 @@
+CSON = require('cson-parser')
 
 attributeString = (object) ->
   ret = " "
@@ -6,10 +7,30 @@ attributeString = (object) ->
   return ret
 
 resourceUrl = (url,title, text) ->
-  provider = url.match(/(?<protocol>https?:\/\/)(?<subdomain>[^./]+\.)?(?<domain>[^./]+(?:\.[^./]+)+)/)
+  
   #note that subdomain includes the final '.'
   res = false
-  if provider 
+  attrs = ""
+  try
+    params = CSON.parse text.replace(/(&#39;)|(&quot;)/g, (sub)->
+      switch sub  
+        when "&#39;"
+          return "'"
+        when "&quot;"
+          return '"'
+    )
+  catch
+    params = null
+  if params
+    for attr, value of params
+      if typeof value != 'string' then value = CSON.stringify value 
+      attrs += "#{attr}=\"#{value}\" " 
+    res =  {
+      html: """
+        <a href="#{url}" #{attrs}/>#{params.content ? ""}</a>
+        """
+    }      
+  else if provider = url.match(/(?<protocol>https?:\/\/)(?<subdomain>[^./]+\.)?(?<domain>[^./]+(?:\.[^./]+)+)/)
     switch provider.groups.domain
       when 'soundcloud.com' 
         res =  {
@@ -44,6 +65,10 @@ resourceUrl = (url,title, text) ->
       when 'amazon.com', 'amazon.co.uk', 'amazon.de', 'amazon.fr', 'amazon.be'
         res =  {
           html: '<a href="'+url+'" /><span class="icon-amazon"></span></a>'
+        }      
+      when 'bandcamp.com'
+        res =  {
+          html: '<a href="'+url+'" /><span class="icon-bandcamp"></span></a>'
         }
   if res then res.url = url
   return res

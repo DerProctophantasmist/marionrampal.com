@@ -1,6 +1,6 @@
 module.exports = 'section'
 
-require('angular').module('section',[require('./sections'), require('./states')])
+require('angular').module('section',[require('./sections.ng'), require('./states')])
 .component('section', {
   template: '<ng-transclude ng-if="!$sc.empty"></ng-transclude>',
   transclude: true,
@@ -8,15 +8,16 @@ require('angular').module('section',[require('./sections'), require('./states')]
   controller: ['State', 'Sections', '$scope', (State,  Sections, $scope) ->        
       this.empty = false
         
-      this.$onInit = ()=>
+      this.$onInit = ()=> 
         # $scope.website = $scope.$parent.website
         if !this.section?
           try
             this.section = JSON.parse(this.sectionData)
           catch e
             console.log "data for the section is not well formed: " + e.toString()
+            console.log this.sectionData
             return
-        Sections.addSection(this.section)
+          this.section = Sections.registerSectionData(this.section) #if this.section already exists, then it was already added
         if this.section.emptyEvent #this is used for calendars only for now, if if it's empty hide the section
         #why the hell do we hide the whole section and not just the page? Well we should hide the section
         #if it has a single page, which is the case, hence, more work. Just lazy.
@@ -33,7 +34,13 @@ require('angular').module('section',[require('./sections'), require('./states')]
               )
 
         return
+
+      this.$onDestroy = ()=>
+        this.section.destroy()
+
       return
+
+
       
     ],
   controllerAs: '$sc'

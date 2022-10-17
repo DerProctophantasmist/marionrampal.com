@@ -13,6 +13,8 @@ __Dominique Boulay - Blues Magazine__
 #### *Mélange des genres, diront sans doute certains. Portrait fidèle d’un univers musical, serait tellement plus juste...[…] Le secret fait partie des disques que l’on a du mal à quitter. Marion Rampal est décidément l’une des voix les plus fascinantes du moment.*
 __Franpi Barriaux - Citizen Jazz__
 
+![youtube](https://www.youtube.com/watch?v=wbv88CRV3JI&list=PL5qp3t801Mh906POSR69Ta3-JcIs6YTe7)  
+
 *Lorsqu’Alice plongea de l’autre côté du miroir, tout lui sembla d’abord étrange puis elle s’habitua. Le secret est une invitation nostalgique, fantaisiste et parfois drolatique à considérer autrement ce qui semble acquis, immuable, intouchable. C’est une promenade impertinente et élégante entre le spleen baudelairien et le blues, avec pour guides deux rebelles respectueux qu’aucune musique ne saurait enfermer*. *Faire d’une mélodie de Fauré un standard de jazz ou d’un Lied de Schubert un pont pour traverser océans et territoires musicaux, ajouter un temps pour rapprocher Verlaine de la Nouvelle-Orléans, c’est possible lorsqu’on maîtrise à la perfection les codes des différents univers. Marion Rampal et Pierre-François Blanchard osent et assument, prennent tous les risques en funambules sûrs de leur fil*. 
 *Alors, forcément, leur secret est spécial, bizarre, décalé, un drôle de cocktail de poésie, de musique classique, d’humour, d’improvisation, avec de vertigineux précipités aux couleurs rafraichissantes, des rivières et des mers pour tanguer et swinguer, en hommage aux rivières souterraines de leur cher Pierre Barouh dont Pierre-François fut l’accompagnateur des dernières années. Deux souffleurs de légende traversent aussi ce secret, Archie Shepp et Raúl Barboza aux côtés desquels Marion et Pierre-François ont souvent le bonheur de jouer*. 
 *Bienvenue au pays des merveilles !* 
@@ -32,4 +34,3 @@ Le duo s’invente de nouveaux standards, des poèmes musicaux qui sont de « pr
 
 
 [*Visiter le site de Pierre-François Blanchard*](http://www.pierrefrancoisblanchard.com)
-

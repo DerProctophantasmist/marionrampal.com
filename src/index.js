@@ -45,9 +45,10 @@
 
             website.getCarouselInterval = State.getCarouselInterval;
 
-            website.init = function (prefLang,forceLang,allowEdit) {
+            website.init = function (prefLang,forceLang,allowEdit,nbrOfPreloadedSections) {
                 Locale.init(prefLang,forceLang);
                 State.setAllowEdit(allowEdit);
+                if(nbrOfPreloadedSections) Sections.nbrOfSectionsToLoad(nbrOfPreloadedSections)
             }
             
             website.headerImage = function () {

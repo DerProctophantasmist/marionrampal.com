@@ -1,4 +1,4 @@
-<!-- contact-form></contact-form -->
+<contact-form></contact-form>
 ### Marion Rampal  "Tissé" 
  
 BOOKING :  

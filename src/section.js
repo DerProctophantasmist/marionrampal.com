@@ -2,7 +2,7 @@
 (function() {
   module.exports = 'section';
 
-  require('angular').module('section', [require('./sections'), require('./states')]).component('section', {
+  require('angular').module('section', [require('./sections.ng'), require('./states')]).component('section', {
     template: '<ng-transclude ng-if="!$sc.empty"></ng-transclude>',
     transclude: true,
     bindings: {
@@ -25,10 +25,11 @@
             } catch (error) {
               e = error;
               console.log("data for the section is not well formed: " + e.toString());
+              console.log(this.sectionData);
               return;
             }
+            this.section = Sections.registerSectionData(this.section); //if this.section already exists, then it was already added
           }
-          Sections.addSection(this.section);
           if (this.section.emptyEvent) { //this is used for calendars only for now, if if it's empty hide the section
             if (!State.getAllowEdit()) {
               $scope.$on(this.section.emptyEvent,
@@ -47,6 +48,9 @@
               });
             }
           }
+        };
+        this.$onDestroy = () => {
+          return this.section.destroy();
         };
       }
     ],

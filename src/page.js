@@ -2,7 +2,7 @@
 (function() {
   module.exports = 'page';
 
-  require('angular').module('page', [require("./sections"), require("./section")]).component('page', {
+  require('angular').module('page', [require("./sections.ng"), require("./section")]).component('page', {
     // <article id="{{page.id}}" 
     //     in-view='$pc.website.Activate.page($inview, page, $inviewInfo)' in-view-options="inViewOptions"  
     //     data-afkl-lazy-image="{{page.bkgImg}}" data-afkl-lazy-image-options='{"background": true,"nolazy":true}' 

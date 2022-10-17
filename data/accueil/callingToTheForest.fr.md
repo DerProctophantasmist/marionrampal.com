@@ -4,4 +4,6 @@
 
 ![youtube](https://youtu.be/0E0k1yZ7V9o)
   
-Le morceau est à retrouver sur mon prochain album, **Tissé**, qui sortira le 25 **Février** 2022.
+Le morceau est à retrouver sur mon nouvel album, **Tissé**, sorti le 25 **Février** 2022.
+
+![partenaires](buy/partenairesTissé.md)

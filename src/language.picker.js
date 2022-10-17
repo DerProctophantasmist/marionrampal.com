@@ -124,7 +124,7 @@
       vm.selectedLocale = Locale.name();
       console.log(vm.selectedLocale);
       vm.classShowFlag = function() {
-        return "flag-icon flag-icon-" + Locale.get().country;
+        return "flag flag-" + Locale.get().country;
       };
       vm.changeLocale = function() {
         $localeSelectorDialog.open({

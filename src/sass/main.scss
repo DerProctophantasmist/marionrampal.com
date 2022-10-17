@@ -333,6 +333,13 @@ figcaption {
         margin: 0 auto;
     }
 }
+
+.image.half {
+    & .half {
+        width: 100%;
+    }
+}
+
 .force-float-images-left, .force-left {
     .image {        
         float: left;
@@ -1280,6 +1287,11 @@ body {
     background-image:  url('images/qobuz.svg'); 
 }
 
+.icon-bandcamp {
+    @extend %icon;
+    background-image:  url('images/bandcamp.svg'); 
+}
+
 .icon-spotify {
     @extend %icon;
     background-image:  url('images/spotify.svg'); 
@@ -1290,15 +1302,52 @@ body {
     background-image:  url('images/amazon.svg'); 
 }
 
+.selection-fip {
+    @extend %icon;
+    @extend .big;
+    background-image:  url('images/fip_sélection.svg'); 
+}
+
+.fnac {
+    @extend .icon-fnac;
+    @extend .big;
+}
+
+.qobuz {
+    @extend .icon-qobuz;
+    @extend .big;
+}
+
+.bandcamp {
+    @extend .icon-bandcamp;
+    @extend .big;
+}
+
+.spotify {
+    @extend .icon-spotify;
+    @extend .big;
+}
+
+.amazon {
+    @extend .icon-amazon;
+    @extend .big;
+}
 
 a:hover span%icon {
      @include vendor('transform', scale(1.2,1.2));
+}
+
+a:hover%icon {
+    @include vendor('transform', scale(1.2,1.2));
 }
 
 a:hover span.icon-fnac {
      @include vendor('transform',  rotate(-10deg)); 
 }
 
+a:hover.icon-fnac {
+    @include vendor('transform',  rotate(-10deg)); 
+}
 
 
 // stoping the uibModals from disabling the scrollbar:

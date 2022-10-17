@@ -4,7 +4,7 @@
 
   config = window.config;
 
-  require('angular').module('config', [require('angular-marked'), require('./sections')]).config([
+  require('angular').module('config', [require('angular-marked'), require('./sections.ng')]).config([
     '$sceDelegateProvider',
     '$httpProvider',
     'markedProvider',

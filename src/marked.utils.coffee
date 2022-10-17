@@ -2,15 +2,13 @@
 
 nbrOfSectionsToLoad = null
 
-module.exports = (callback) ->  
-  nbrOfSectionsToLoad = callback 
-  console.log {nbrOfSectionsToLoad: nbrOfSectionsToLoad}
- 
+module.exports = (callbacks) ->  
+  nbrOfSectionsToLoad = callbacks.nbrOfSectionsToLoad  
 
 marked = require('marked')
 oldRenderer = new marked.Renderer()
 ResourceFile = require('./resourceFile')
-{includeSectionFile,includePageFile} = require('./resourceFile.impl')
+{includeSectionFile,includePageFile,registerSectionData} = require('./resourceFile.impl')
 EmbedUrl =  require('./resourceUrl').embedUrl
 
 CSON = require('cson-parser')
@@ -94,16 +92,24 @@ shorthand = (heading, content) ->
         nbrOfSectionsToLoad(acc.nbr)
       return result
 
-    when 'page' #single page section
-      page={} # accumulator, in order to "pass by ref" the data in the list
+    when 'singlePage' #single page section
+      section={}
       result = lexer.lex(content);
-      result = parserFactory(pageScheme(page))(result)
+      result = parserFactory(singlePageScheme(section))(result)
+
+      page = section.page
+      delete section.page
+
+      if registerSectionData then registerSectionData(section)
       
       #we "fetch" the parent section from the section controller, see section.coffee:
       return """ 
-      <page sec-ctrl='$sc' page-data='#{JSON.stringify(page)}'> 
-        #{result}
-      </page>
+      <section  ng-if="website.displaySection('#{section.id}')"  id="#{section.id}" section-data='#{JSON.stringify(section).replace(/'/g, "&apos;")}' class="section-#{section.id}"
+      style="{{(website.state.getAllowEdit())?'min-height:6em;':''}}">
+        <page sec-ctrl='$sc' page-data='#{JSON.stringify(page)}'> 
+          #{result}
+        </page>
+      </section>
       """
     else  
       return false
@@ -120,38 +126,46 @@ sectionsScheme = (acc) ->
     text: (text) -> text
     link: ()->{}
     image: ( href, title, text) ->
-      section = 
-        id:text
-      title = htmlentities.decode(title)
-      try
-        params=CSON.parse title
-      catch e
-        msg = "section " + text + " not well formed: " + title + " is not a json string. " + e.message
-        console.log msg
-        return "<section>" + msg + "</section>"
-      section={section...,params...}
       acc.nbr++
       return """ 
-      <section  ng-if="website.displaySection('#{section.id}')"  id="#{section.id}" section-data='#{JSON.stringify(section)}' class="section-#{section.id}"
-      style="{{(website.state.getAllowEdit())?'min-height:6em;':''}}">
-        #{includeSectionFile(href)}
-      </section>
+        #{includeSectionFile(href, {id:text})}
       """
 
   scheme.inlineLexer = new marked.InlineLexer([], {options...,renderer:scheme})
   return scheme
 
 
-pageScheme = (page)->
+singlePageScheme = (section)->
+  cur = {data : section, root: null}
+  closingSub = false # true if we need to close nested list and link it to root data
+  prevIndex = -1
   scheme = 
-    list: (body) -> ""
+    list: (body) -> # we are out of the nested list (it's actually called a second time when we are out of the main section list, but we don't care)
+      closingSub = true
+      ""
     listItem: (body, curIndex) ->
+      if curIndex == 0 && curIndex <= prevIndex # we are at the start of a nested list
+        newNode = {}
+        newNode.root = cur
+        newNode.data = {}
+        cur = newNode
+        inSub = true
+      prevIndex = curIndex
       i = body.indexOf(':')
       if i!=-1
         key = body.substring(0, i).trim()
         value = body.substring(i+1).trim() 
-        page[key]=value
-      else  
+        try
+          cur.data[key]= CSON.parse value
+        catch e
+          msg = "data in section " + section.id + " not well formed: " + value + " is not a json string. " + e.message
+          console.log msg
+      else if closingSub
+        cur.root.data[body.trim()]=cur.data
+        cur=cur.root
+        closingSub = false
+        # just do nothing, it's ok, we'll do cur = section with the list token
+      else       
         console.log "malformed data: " + body
         return ""
       return ""

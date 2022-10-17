@@ -88,7 +88,7 @@ picker = require('angular').module('languagePicker',  [
   console.log(vm.selectedLocale)
   
   vm.classShowFlag = ()->
-    return "flag-icon flag-icon-" +  Locale.get().country
+    return "flag flag-" +  Locale.get().country
  
   vm.changeLocale =  () ->
     $localeSelectorDialog.open({

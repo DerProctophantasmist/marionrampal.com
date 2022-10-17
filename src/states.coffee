@@ -1,6 +1,6 @@
 module.exports = 'states'
 
-require('angular').module('states', [require('angular-ui-router'),require('angular-scroll'), require('./modal'),require('./sections')])
+require('angular').module('states', [require('angular-ui-router'),require('angular-scroll'), require('./modal'),require('./sections.ng')])
   .config(['$stateProvider' , '$urlRouterProvider', '$locationProvider', 
   ($stateProvider,$urlRouterProvider,$locationProvider) ->
 #    $urlRouterProvider.otherwise("/loading")

@@ -18,7 +18,6 @@ require('angular').module('mobileHeader',[require("./section"), require('./quirk
     secCtrl: '^?section'
   controller: ['Quirks', (Quirks) ->  
       this.shown = ()-> 
-        return true
         Quirks.isMobileLayout()
       this.NameIsLocalised = ()->
         if typeof this.secCtrl.section.name == 'string'

@@ -1,10 +1,10 @@
 module.exports = 'markedConfig'
-registerNbrOfSections = require('./marked.utils')
+markdownParam = require('./marked.utils')
 marked = require('marked')
 
 
 
-require('angular').module('markedConfig', [require('angular-marked'), require('angular-ui-bootstrap'), require('./oEmbed'), require('./sections'), require('./resource.file')])
+require('angular').module('markedConfig', [require('angular-marked'), require('angular-ui-bootstrap'), require('./oEmbed'), require('./sections.ng'), require('./resource.file')])
 .config(['markedProvider', 'EmbedUrl', 'ResourceFile', (markedProvider, EmbedUrl, ResourceFile) ->  
   console.log "marked defaults"
   console.log marked.defaults
@@ -12,7 +12,7 @@ require('angular').module('markedConfig', [require('angular-marked'), require('a
   markedProvider.setRenderer(marked.defaults.renderer)
 ])
 .run(['Sections',(Sections)->
-  registerNbrOfSections(Sections.nbrOfSectionsToLoad)
+  markdownParam({nbrOfSectionsToLoad: Sections.nbrOfSectionsToLoad})
 ])
 .directive('carouselCtrl', () ->
     template: "<div ng-transclude></div>"

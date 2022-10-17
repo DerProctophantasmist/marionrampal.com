@@ -34,7 +34,7 @@ Main Blue célèbre le Blues  comme art d’incarner l’émotion. C’est un ca
 Avec :
 ANNE PACEO : Batterie, Choeurs / PIERRE-FRANÇOIS BLANCHARD :Fender Rhodes, Orgue, claviers, choeurs / Invités: JULIA SARR au choeurs & SEBASTIEN LLADO au Trombone / Enregistré par SEBASTIEN TONDO au Studio des Bruères, Mignaloux-Beauvoir / Mixé par SEBASTIEN TONDO & RAPHAEL ALLAIN au Studio Think Tank, Montreuil / Mastering par RAPHAEL JONIN  / Visuels par MARC HERNANDEZ / Photos par MARTIN SARRAZAC / Production & Management FRANÇOIS PEYRATOUT / Edition CAPT'N MUSIC
 
-![logos main blue](/images/barre logos main blue.jpg)
+![logos main blue](/images/barre%20logos%20main%20blue.jpg)
 
 REGARDER LE LIVE DE "The Perfect Husband", 2014
 ![youtube](https://www.youtube.com/watch?v=mWCdSFWrqH8)

@@ -1,22 +1,28 @@
+sections = require('./sections')
 
-markdownLinkTo = (url, chapeau, inline) ->
-  return '<include-markup content="{&quot;filename&quot;:&quot;' + url +
-        '&quot;,&quot;chapeau&quot;:&quot;' + chapeau.replace(/[\n\\\"]/g,escape) + '&quot;,' +
-        '&quot;inline&quot;:' + (if inline then 'true' else 'false') +
+markdownLinkTo = (content) ->
+  return '<include-markup content="{&quot;filename&quot;:&quot;' + content.filename +
+        '&quot;,&quot;chapeau&quot;:&quot;' + content.chapeau + '&quot;,' +
+        '&quot;inline&quot;:' + (if content.inline then 'true' else 'false') +
         '}" popup-links="popupLinks"></include-markup>'
 
-markdownEmbed = (url, title) ->
-  return '<div marked filename="&quot;' + url + '&quot;" compile="true" ></div> '
+markdownEmbed = (content) ->
+  return '<div marked filename="&quot;' + content.filename + '&quot;" compile="true" ></div> '
 
 
 includePageFile = (url) ->"""  
-    <marked compile=true filename="'#{url}'" editor-button-style="position:absolute;top:6em;left:10em;color:black;z-index:1000;">
+    <div marked compile=true filename="'#{url}'" editor-button-style="position:absolute;top:6em;left:10em;color:black;z-index:1000;">
+    </div>
   """
 
 
-includeSectionFile = (url) -> """
-    <marked compile=true filename="'#{url}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
+includeSectionFile = (url, section) -> 
+    sections.registerSection(section)
     """
+    <div marked compile=true filename="'#{url}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
+    </div>
+    """
+
 
 module.exports = 
   markdownLinkTo:markdownLinkTo

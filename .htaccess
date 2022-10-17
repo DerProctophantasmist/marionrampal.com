@@ -25,7 +25,7 @@ RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*(default|index)\.(html|php|htm
 RewriteRule ^(([^/]+/)*)(default|main|index)\.(html|php|htm)$ $1 [L,R=301]
 
 
-RewriteCond     %{REQUEST_URI} ^(/|/mainblue|/concerts|/contacts|/biography|/listen|/lesecret|/ile)$
+RewriteCond     %{REQUEST_URI} ^(/|/mainblue|/concerts|/contacts|/biography|/listen|/lesecret|/ile|/tisse)$
 RewriteRule     ([^/]*)/?$ http://127.0.0.1:49152/?page=$1&forceLang=%{ENV:ForceLang} [P,L]
 
 

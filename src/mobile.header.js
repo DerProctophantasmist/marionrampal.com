@@ -20,7 +20,6 @@
       'Quirks',
       function(Quirks) {
         this.shown = function() {
-          return true;
           return Quirks.isMobileLayout();
         };
         this.NameIsLocalised = function() {

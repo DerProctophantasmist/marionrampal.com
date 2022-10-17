@@ -1,6 +1,6 @@
 module.exports = 'page'
 
-require('angular').module('page',[require("./sections"),require("./section")])
+require('angular').module('page',[require("./sections.ng"),require("./section")])
 .component('page', {
 
     # <article id="{{page.id}}" 
