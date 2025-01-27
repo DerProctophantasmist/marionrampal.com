@@ -21,19 +21,12 @@ require('angular').module('songkick', ['config', require('./language.picker'), ]
         console.log "calendar not configured for songkick"
         callback([])
     
-    setLocalDateTime = (event) ->
-      if !event.start.dateTime
-          event.localDateTime = moment(event.start.date).format("l")
-      else if event.start.timeZone != undefined 
-        event.localDateTime =  moment(event.start.dateTime).tz(event.start.timeZone).format("lll") 
-      else 
-        event.localDateTime = moment(event.start.dateTime).format("lll")
-     
     loadCalendar = (id) ->
       listEvents = 'https://api.songkick.com/api/3.0/artists/' + id +  '/calendar.json?apikey=' + key
       return calendars[id] = $http.get(listEvents)
         .then( (response) ->      
           events = response.data.resultsPage.results.event
+          console.log "Songkick events:"
           console.log events
           return events.map((event)->
             event.start.dateTime = event.start.datetime
@@ -43,13 +36,16 @@ require('angular').module('songkick', ['config', require('./language.picker'), ]
             
             return {
               summary: event.displayName
-              location: "#{event.venue.displayName}, #{event.location.city}"
+              location: 
+                searchName: "#{event.venue.displayName}, #{event.location.city}"
+                displayName: event.venue.displayName
+                locality: event.venue.city.displayName if event.venue.city?
+                country:event.venue.city.country if event.venue.city?
+                postalCode:event.location.zip
+                address: event.location.street                
               description: event.uri
-              start: event.start
-              end: event.end
-              lat: event.venue.lat
-              lng: event.venue.lng
-              # timezone:  getZoneFromOffset(offsetString)
+              start: { dateTime: event.start.datetime, date: event.start.date if !event.start.datetime?}
+              end: { dateTime: event.end.datetime, date: event.end.date if !event.end.datetime?} if event.end?
             }            
           )
         )
@@ -59,17 +55,11 @@ require('angular').module('songkick', ['config', require('./language.picker'), ]
           # we "eat" the error at some point, won't retry to access the calendar (note it is a global err count, not per calendar):
           if errCount++<3
             console.log "calendar error number " + errCount
-            return noop 
+            return [noop] 
           return noop
         )
     
     
-    Locale.onChange(()->
-      moment.locale(Locale.get().language)
-      for calId, calendar of calendars
-        for event in calendar
-          setLocalDateTime event          
-    )
 
     return (calId) ->
       if !Config.songkickApikey 

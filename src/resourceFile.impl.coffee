@@ -11,7 +11,7 @@ markdownEmbed = (content) ->
 
 
 includePageFile = (url) ->"""  
-    <div marked compile=true filename="'#{url}'" editor-button-style="position:absolute;top:6em;left:10em;color:black;z-index:1000;">
+    <div marked compile=true filename="'#{url}'" editor-button-style="position:absolute;top:6em;left:10em;color:black;text-shadow:none;z-index:1000;">
     </div>
   """
 
@@ -19,7 +19,7 @@ includePageFile = (url) ->"""
 includeSectionFile = (url, section) -> 
     sections.registerSection(section)
     """
-    <div marked compile=true filename="'#{url}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;z-index:1000;">
+    <div marked compile=true filename="'#{url}'" editor-button-style="position:absolute;top:3em;left:10em;color:black;text-shadow:none;z-index:1000;">
     </div>
     """
 

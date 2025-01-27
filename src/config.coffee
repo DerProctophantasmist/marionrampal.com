@@ -21,7 +21,7 @@ require('angular').module('config',[require('angular-marked'),require('./section
       'http*://*.marionrampal.local/**', 
       'http*://192.168.1.51/**',
       'http*://proctophantasmist.net/**',
-      'http*://*.proctophantasmist.net/**'
+      'http*://*.proctophantasmist.net/**',
     ])
     if not $httpProvider.defaults.headers.common?
         $httpProvider.defaults.headers.commom = {}

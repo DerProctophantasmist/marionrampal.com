@@ -52,23 +52,23 @@ resourceUrl = (url,title, text) ->
         }
       when 'fnac.com'
         res =  {
-          html: '<a href="'+url+'" /><span class="icon-fnac"></span></a>'
+          html: '<a href="'+url+'" /><span class="fnac"></span></a>'
         }        
       when 'qobuz.com'
         res =  {
-          html: '<a href="'+url+'" /><span class="icon-qobuz"></span></a>'
+          html: '<a href="'+url+'" /><span class="qobuz"></span></a>'
         }   
       when 'spotify.com'
         res =  {
-          html: '<a href="'+url+'" /><span class="icon-spotify"></span></a>'
+          html: '<a href="'+url+'" /><span class="spotify"></span></a>'
         }
       when 'amazon.com', 'amazon.co.uk', 'amazon.de', 'amazon.fr', 'amazon.be'
         res =  {
-          html: '<a href="'+url+'" /><span class="icon-amazon"></span></a>'
+          html: '<a href="'+url+'" /><span class="amazon"></span></a>'
         }      
       when 'bandcamp.com'
         res =  {
-          html: '<a href="'+url+'" /><span class="icon-bandcamp"></span></a>'
+          html: '<a href="'+url+'" /><span class="bandcamp"></span></a>'
         }
   if res then res.url = url
   return res

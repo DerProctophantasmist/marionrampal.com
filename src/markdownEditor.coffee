@@ -14,10 +14,10 @@ require('angular').module('markdownEditor', [require('./sendToServer'), require(
         # Open the iframe
         stackedit.openFile(
           name: filename, # with an optional filename
-          content: 
+          content:
             text: markdown # and the Markdown content.
         )
-
+        
         # Listen to StackEdit events and apply the changes to the textarea.
         stackedit.on('fileChange', (file) => 
           #notifying every change made in the editor is a bad idea, we end up rendering a lot of malformed versions
