@@ -12,9 +12,9 @@
   * styles: ['400', '700']
 * page
   * type: "style2"
-  * theme: "transparent white text-center"
-  * bkgImg: "images/MarionRampal.MarieRouge.dorée.sourire.right.jpg 1920w, images/MarionRampal4k.MarieRouge.dorée.sourire.right.jpg 3840w"
-  * bkgImgPos: "74% 40%"
+  * theme: "transparent red white text-center"
+  * bkgImg: "images/MarionRampal.Oizel.alicelemarin(88).jpg 1920w, images/MarionRampal4k.Oizel.alicelemarin(88).jpg 3840w"
+  * bkgImgPos: "34% 34%"
  
-![left](accueil/home) 
+![right](accueil/home.fr.md) 
 ```

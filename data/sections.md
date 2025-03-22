@@ -1,10 +1,11 @@
 ```sections
 ![home](sections/home.md)
+![oizel](sections/oizel.md)
+![lesecret](sections/leSecret.md)
+![concerts](sections/concerts.md)
 ![tisse](sections/tisse.md)
 ![ile](sections/ile.md)
-![lesecret](sections/leSecret.md)
 ![mainblue](sections/mainBlue.md)
-![concerts](sections/concerts.md)
 ![biography](sections/bio.md)
 ![listen](sections/listen.md)
 ![lyrics](sections/lyrics.md)

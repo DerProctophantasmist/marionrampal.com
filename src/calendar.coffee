@@ -113,14 +113,13 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
                 <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-stack-1x fa-inverse" ng-class='{"fa-minus":event.expanded, "fa-plus":!event.expanded}' ></i>
               </button>
               <span class="localTime">{{event.localDateTime}}</span> 
-              <div compile="true" marked="event.summary"></div>
+              <div class="summary">{{event.summary}}</div>
               <a target="blank" ng-href="{{$c.googleMaps(event.location.searchName)}}" class="location">
                 {{event.location.displayName}}{{event.location.locality?', '+event.location.locality:''}}{{event.location.country?', '+event.location.country:''}}
               </a> 
               <div ng-show="event.expanded">
                 <div class="description" marked="event.description"></div>
-                tickets: <a target="blank" ng-href="{{event.ticketUrl}}" ng-model="event.ticketUrl"></a><br/>
-                band: <span ng-model="event.band"></span>
+                <ng-show="event.ticketUrl!=''">tickets: <a target="blank" ng-href="{{event.ticketUrl}}">{{event.ticketUrl}}</a><br/></ng-show>
               </div>
               </li>             
               
@@ -130,7 +129,7 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
                 </button>
                 <button ng-show="!event.notRecorded" ng-click="$c.deleteEvent(($c.currentPage-1)*$c.itemsPerPage+$index)"  class="edit-event btn btn-default"> 
                   delete event
-                </button>
+                </button> 
                 <span  class="localTime"  style="{{event.notRecorded?'color:red;':''}}">{{event.localDateTime}}</span>
                 <span style="display:block;" contenteditable=true ng-model="event.summary"  class="summary" style="{{event.notRecorded?'color:red;':''}}"></span>
                 <div  ng-init="$c.setupDateFields(event)" >
@@ -142,11 +141,8 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
                 <button ng-click="$c.checkVenue(event.location)" ng-show="event.location"  class="fa-stack fa-sm clickable-icon"> 
                   <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-stack-1x fa-inverse fa-search" ></i>
                 </button>
-                <button ng-click="$c.toogleLocation(event.location)" ng-show="event.location" style="padding:0" class="fa-stack clickable-icon fa-sm"> 
-                  <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-stack-1x fa-inverse" ng-class='{"fa-minus":event.location.expanded, "fa-plus":!event.location.expanded}' ></i>
-                </button>
-                <span ng-show="event.location.expanded">
-                  <br /><span style="display:inline-block;" contenteditable=true ng-model="event.location.displayName" ><br /></span> 
+                <span ng-show="$c.hasLocationDetails(event)">
+                  <br /><span style="display:inline-block;" contenteditable=true ng-model="event.location.displayName" ></span> <br />
                   Adresse: <span style="display:inline-block;" contenteditable=true ng-model="event.location.address"></span><br ng-if="event.location.address"/>
                   ZIP: <span style="display:inline-block;" contenteditable=true ng-model="event.location.postalCode"></span><span ng-if="event.location.postalCode"> </span>
                   Commune: <span style="display:inline-block;" contenteditable=true ng-model="event.location.locality"></span><span ng-if="event.location.locality">, </span>
@@ -328,8 +324,9 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
             event.expanded = !event.expanded
             return    
  
-          this.toogleLocation = (location) -> 
-            location.expanded = !location.expanded
+          this.hasLocationDetails = (event) -> 
+            loc = event.location
+            return loc.displayName || loc.address || loc.postalCode || loc.locality || loc.country
 
           this.googleMaps = (name) ->
             #google maps links in calendar should only be active if event is expanded: Why the hell? activate all the time
@@ -338,10 +335,9 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
 #            return ""
           
           this.checkVenue = (location) =>
-            $http.post('https://places.googleapis.com/v1/places:searchText',{"textQuery":location.searchName},
+            $http.post('./googleapis/places/v1/places:searchText',{"textQuery":location.searchName},
               headers:
                 'Content-Type':'application/json'
-                'X-Goog-Api-Key': Config.googleApiKey
                 'X-Goog-FieldMask':'places.displayName,places.addressComponents,places.formattedAddress'
             ).then (res)->
               if (places = res.data.places) && (places.length == 1)
@@ -349,7 +345,6 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
                   location[hyphensToCamelCase(component.types[0])] = component.longText
                 location.address = (if location.streetNumber? then (location.streetNumber + " ") else "" ) + if  location.route then location.route else ""
                 location.displayName = places[0].displayName.text
-                location.expanded = true if !location.expanded
             return
 
           this.saveAsTemplate = (event)=>
@@ -397,16 +392,15 @@ require('angular').module('calendar', ['config', require('angular-marked'), requ
                   return exportedEvents if event.notRecorded # we don't want to save this one, don't change the accumulator
 
                   exportedEvents.push({
-                    Venue: event.location.displayName
-                    City:event.location.locality
-                    Country: event.location.country
-                    Address: event.location.address
-                    "Date":moment(event.start.dateTime).format("YYYY-MM-DD"),
-                    Time:moment(event.start.dateTime).format("hh:mm A") #Time*,Duration,
-                    "Ticket Link": event.ticketUrl
-                    # Lineup:,
-                    "Event Name":event.summary
-                    Description: event.description
+                    venue: event.location.displayName
+                    city:event.location.locality
+                    "country or state": event.location.country
+                    address: event.location.address
+                    "date":moment(event.start.dateTime).format("YYYY-MM-DD"),
+                    "time":moment(event.start.dateTime).format("hh:mm A") 
+                    "ticket link": event.ticketUrl
+                    "event name":event.summary
+                    description: event.description
                   })
                   return exportedEvents
                 , []                

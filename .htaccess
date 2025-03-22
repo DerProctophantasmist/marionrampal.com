@@ -29,6 +29,11 @@ RewriteCond     %{REQUEST_URI} ^(/|/mainblue|/concerts|/contacts|/biography|/lis
 RewriteRule     ([^/]*)/?$ http://127.0.0.1:49152/?page=$1&forceLang=%{ENV:ForceLang} [P,L]
 
 
+RewriteCond     "%{HTTPS}"  "on"
+RewriteCond     %{REQUEST_URI} /googleapis/youtube/
+RewriteRule     ^(.*)/?$ http://127.0.0.1:49152/$1 [P,L]
+
+
 RewriteCond     %{REQUEST_FILENAME} !-f
 RewriteRule .* - [L,R=404]
 

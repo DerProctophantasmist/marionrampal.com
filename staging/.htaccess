@@ -8,9 +8,6 @@ SetEnvIf REQUEST_SCHEME "https" https
 SetEnvIf Request_URI "^((?:/[^/]+)+)/[^/]*$" PATH=$1
 
 
-AuthUserFile /var/www/.htpasswd
-AuthType Basic
-AuthName "marionrampal.com staging"
 
 <RequireAny>
     Require method OPTIONS
@@ -46,6 +43,9 @@ RewriteCond     "%{HTTPS}"  "on"
 RewriteCond     %{REQUEST_URI} ^/staging/(commit$|unstage$|editfile/)
 RewriteRule     ^(.*)/?$ http://127.0.0.1:49152/admin/$1 [P,L]
 
+RewriteCond     "%{HTTPS}"  "on"
+RewriteCond     %{REQUEST_URI} ^/staging/(googleapis|infoconcert)/
+RewriteRule     ^(.*)/?$ http://127.0.0.1:49152/$1 [P,L]
 
 
 RewriteCond     %{REQUEST_FILENAME} !-f

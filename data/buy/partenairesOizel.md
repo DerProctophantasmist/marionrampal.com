@@ -1,0 +1,2 @@
+![class:'bandcamp'](https://marionrampal.bandcamp.com/album/oizel )
+![class:'qobuz'](https://www.qobuz.com/fr-fr/album/oizel-marion-rampal/cboe1gr5t7kxa )![class:'fnac'](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.fnac.com/a19332876/Marion-Rampal-Oizel-CD-album )![class:'selection-fip'](https://www.radiofrance.fr/fip/albums/oizel-2024 )

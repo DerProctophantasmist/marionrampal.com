@@ -1,6 +1,6 @@
 ```singlePage
 * id: "listen"
-* name: {en:'Listen/Watch', fr:'Écouter/Regarder'}
+* name: {en:'Other collaborations', fr:'Autre collaborations'}
 * title
   * fr: "Autres collaborations"
   * en: "Other collaborations" 

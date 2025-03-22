@@ -1,5 +1,5 @@
 
-# Nouvel Album: **_Tissé_**
+# **_Tissé_**
 
 <figure left-aside class="clickable image half left text-center" mdfile="buy/buyTissé.md">
 

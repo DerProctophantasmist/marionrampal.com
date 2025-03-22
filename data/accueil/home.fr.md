@@ -1,7 +1,6 @@
 ```carousel
-* ![markdown](accueil/tisseRelease)
-* ![markdown](accueil/AVoleClip)
-* ![markdown](accueil/tisserealeaseparty)
-* ![markdown](accueil/callingToTheForest)
-* ![markdown](accueil/tisseLiveFJ5C)
+* ![markdown](accueil/bandcamp)
+* ![markdown](accueil/DeBeauxDimanchesClip)
+* ![markdown](accueil/GrandeOurseClip)
+* ![markdown](accueil/oizelLive)
 ```

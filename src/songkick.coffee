@@ -51,12 +51,12 @@ require('angular').module('songkick', ['config', require('./language.picker'), ]
         )
         .catch( (response) -> 
           console.log 'songkick request failed: ' + response.message + ', status: ' + response.status
-          return noop if response.status == 404
+          return [] if response.status == 404
           # we "eat" the error at some point, won't retry to access the calendar (note it is a global err count, not per calendar):
           if errCount++<3
             console.log "calendar error number " + errCount
-            return [noop] 
-          return noop
+            return [] 
+          return []
         )
     
     

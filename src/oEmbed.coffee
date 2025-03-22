@@ -41,7 +41,7 @@ require('angular').module('oEmbed', ['config'])
           protocol = parameters[1]           
           resource =  {
             resource...,          
-            request: "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+videoId+"&fields=items(snippet(thumbnails(medium(url))))&key="+Config.googleApiKey,
+            request: "./googleapis/youtube/v3/videos?part=snippet&id="+videoId+"&fields=items(snippet(thumbnails(medium(url))))",
             playlist: playlist,
             'video-id': videoId,
             protocol: protocol

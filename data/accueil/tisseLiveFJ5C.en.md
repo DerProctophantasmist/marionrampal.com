@@ -1,7 +1,10 @@
-# __Video__
-### __Marion Rampal__ live
-with __*Tissé*__ at __Festival des 5 continents__ in Marseille  
-and with **Archie Shepp** at **Jazz à Porquerolles**  
+# __Live__
+### __Marion Rampal Tissé__  live  2023-2024
 
-![images/marionrampal.live.hd.jpg](https://embedftv-a.akamaihd.net/a217bd550c8005516b8a74988f7cbddf)        
-an **Oleo Films**, france<b>télévisions</b>, __culturebox__ co-production
+![youtube](https://youtu.be/9SYh1BWg1ds)
+
+The new singles are on bandcamp:
+
+<iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3936639654/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://marionrampal.bandcamp.com/album/pendant-que-les-champs-br-lent">Pendant que les champs brûlent by Marion Rampal</a></iframe>
+
+<iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1434001942/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://marionrampal.bandcamp.com/album/dont-think-twice-its-all-right">Don&#39;t Think Twice It&#39;s All Right by Marion Rampal</a></iframe>

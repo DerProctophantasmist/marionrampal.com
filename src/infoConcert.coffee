@@ -12,13 +12,13 @@ require('angular').module('infoconcert', ['config', require('./language.picker')
   .factory('Infoconcert',['Config', '$http' , 'Locale' , '$q', (Config, $http, Locale, $q) ->
     calendars = {}
     errCount = 0
-    baseUrl = "https://www.infoconcert.com"
+    baseUrl = "./infoconcert" #server configured to accept requests only from the staging directory
 
     parseInfoconcertPage = (response) ->
       parser = new DOMParser()
       concerts = []
       doc = parser.parseFromString(response.data, 'text/html')
-      doc.querySelectorAll('.date-line-concert').forEach (curElement)->
+      doc.querySelector(".main-content-dates").querySelectorAll('.date-line').forEach (curElement)->
         dateTime = curElement.querySelector("time").getAttribute("datetime")
         venue = curElement.querySelector('div.salle span[itemprop="name"]').innerText
         location = curElement.querySelector('div.ville-dpt');
